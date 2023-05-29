@@ -1,0 +1,777 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		194791552A22006E00FD2604 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791542A22006E00FD2604 /* LoginView.swift */; };
+		194791572A2200CA00FD2604 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791562A2200CA00FD2604 /* LoginViewModel.swift */; };
+		194791592A22010900FD2604 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791582A22010900FD2604 /* APIConstants.swift */; };
+		1947915B2A22012A00FD2604 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1947915A2A22012A00FD2604 /* NetworkError.swift */; };
+		1947915E2A22100500FD2604 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1947915D2A22100500FD2604 /* Network.swift */; };
+		194791602A2231E400FD2604 /* MusicLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1947915F2A2231E400FD2604 /* MusicLibraryView.swift */; };
+		194791622A223D7500FD2604 /* LoginState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791612A223D7500FD2604 /* LoginState.swift */; };
+		194791642A24999800FD2604 /* SpotifyLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791632A24999800FD2604 /* SpotifyLoginView.swift */; };
+		194791A22A24A5FB00FD2604 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791A12A24A5FB00FD2604 /* Route.swift */; };
+		194791A42A24AAD900FD2604 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791A32A24AAD900FD2604 /* SettingsView.swift */; };
+		194791A62A24B8FD00FD2604 /* MusicLibraryOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791A52A24B8FD00FD2604 /* MusicLibraryOld.swift */; };
+		194791A92A24DFB900FD2604 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791A82A24DFB900FD2604 /* PlayerViewModel.swift */; };
+		197212752A0E533C007225BB /* ArtifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212742A0E533C007225BB /* ArtifyApp.swift */; };
+		197212772A0E533C007225BB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212762A0E533C007225BB /* ContentView.swift */; };
+		197212792A0E533E007225BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 197212782A0E533E007225BB /* Assets.xcassets */; };
+		1972127C2A0E533E007225BB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1972127B2A0E533E007225BB /* Preview Assets.xcassets */; };
+		1972127E2A0E533E007225BB /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1972127D2A0E533E007225BB /* Persistence.swift */; };
+		197212812A0E533E007225BB /* Artify.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1972127F2A0E533E007225BB /* Artify.xcdatamodeld */; };
+		1972128B2A0E533E007225BB /* ArtifyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1972128A2A0E533E007225BB /* ArtifyTests.swift */; };
+		197212952A0E533E007225BB /* ArtifyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212942A0E533E007225BB /* ArtifyUITests.swift */; };
+		197212972A0E533E007225BB /* ArtifyUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212962A0E533E007225BB /* ArtifyUITestsLaunchTests.swift */; };
+		197212A62A178BBB007225BB /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212A52A178BBB007225BB /* Playlist.swift */; };
+		197212A82A178BD5007225BB /* MusicLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212A72A178BD5007225BB /* MusicLibraryViewModel.swift */; };
+		197212AF2A1B6B81007225BB /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212AE2A1B6B81007225BB /* Track.swift */; };
+		197212B12A1B6BBB007225BB /* PlaylistLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212B02A1B6BBB007225BB /* PlaylistLibrary.swift */; };
+		197212B52A1B6BE6007225BB /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212B42A1B6BE6007225BB /* IntroView.swift */; };
+		197212B92A1B6C38007225BB /* PlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212B82A1B6C38007225BB /* PlayView.swift */; };
+		197212BB2A1B6DE0007225BB /* SpotifyURLService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212BA2A1B6DE0007225BB /* SpotifyURLService.swift */; };
+		197212BE2A20A167007225BB /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212BD2A20A167007225BB /* AuthManager.swift */; };
+		197212C02A21093E007225BB /* AccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212BF2A21093E007225BB /* AccessToken.swift */; };
+		197212C22A210984007225BB /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212C12A210984007225BB /* APIManager.swift */; };
+		197212C42A210DD5007225BB /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212C32A210DD5007225BB /* HTTPMethod.swift */; };
+		197212C62A210E34007225BB /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212C52A210E34007225BB /* DataProvider.swift */; };
+		197212C82A211062007225BB /* ArtistAlbums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212C72A211062007225BB /* ArtistAlbums.swift */; };
+		197212CA2A211181007225BB /* AlbumListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212C92A211181007225BB /* AlbumListViewModel.swift */; };
+		197212CC2A2114D1007225BB /* AlbumListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212CB2A2114D1007225BB /* AlbumListView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		197212872A0E533E007225BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 197212692A0E533C007225BB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 197212702A0E533C007225BB;
+			remoteInfo = Artify;
+		};
+		197212912A0E533E007225BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 197212692A0E533C007225BB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 197212702A0E533C007225BB;
+			remoteInfo = Artify;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		194791542A22006E00FD2604 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		194791562A2200CA00FD2604 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		194791582A22010900FD2604 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		1947915A2A22012A00FD2604 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		1947915D2A22100500FD2604 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		1947915F2A2231E400FD2604 /* MusicLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLibraryView.swift; sourceTree = "<group>"; };
+		194791612A223D7500FD2604 /* LoginState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginState.swift; sourceTree = "<group>"; };
+		194791632A24999800FD2604 /* SpotifyLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyLoginView.swift; sourceTree = "<group>"; };
+		194791A12A24A5FB00FD2604 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		194791A32A24AAD900FD2604 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		194791A52A24B8FD00FD2604 /* MusicLibraryOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLibraryOld.swift; sourceTree = "<group>"; };
+		194791A82A24DFB900FD2604 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		197212712A0E533C007225BB /* Artify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Artify.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		197212742A0E533C007225BB /* ArtifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtifyApp.swift; sourceTree = "<group>"; };
+		197212762A0E533C007225BB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		197212782A0E533E007225BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1972127B2A0E533E007225BB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		1972127D2A0E533E007225BB /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		197212802A0E533E007225BB /* Artify.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Artify.xcdatamodel; sourceTree = "<group>"; };
+		197212862A0E533E007225BB /* ArtifyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArtifyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1972128A2A0E533E007225BB /* ArtifyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtifyTests.swift; sourceTree = "<group>"; };
+		197212902A0E533E007225BB /* ArtifyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArtifyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		197212942A0E533E007225BB /* ArtifyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtifyUITests.swift; sourceTree = "<group>"; };
+		197212962A0E533E007225BB /* ArtifyUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtifyUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		197212A32A0E5A6B007225BB /* DMSerifDisplay-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DMSerifDisplay-Italic.ttf"; path = "../../../Documents/Medieninformatik/6.Semester/Mobile Computing/Projekt/DM_Serif_Display (1)/DMSerifDisplay-Italic.ttf"; sourceTree = "<group>"; };
+		197212A42A0E5A6B007225BB /* DMSerifDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DMSerifDisplay-Regular.ttf"; path = "../../../Documents/Medieninformatik/6.Semester/Mobile Computing/Projekt/DM_Serif_Display (1)/DMSerifDisplay-Regular.ttf"; sourceTree = "<group>"; };
+		197212A52A178BBB007225BB /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
+		197212A72A178BD5007225BB /* MusicLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLibraryViewModel.swift; sourceTree = "<group>"; };
+		197212AE2A1B6B81007225BB /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		197212B02A1B6BBB007225BB /* PlaylistLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistLibrary.swift; sourceTree = "<group>"; };
+		197212B42A1B6BE6007225BB /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		197212B82A1B6C38007225BB /* PlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayView.swift; sourceTree = "<group>"; };
+		197212BA2A1B6DE0007225BB /* SpotifyURLService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyURLService.swift; sourceTree = "<group>"; };
+		197212BD2A20A167007225BB /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		197212BF2A21093E007225BB /* AccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessToken.swift; sourceTree = "<group>"; };
+		197212C12A210984007225BB /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		197212C32A210DD5007225BB /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		197212C52A210E34007225BB /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		197212C72A211062007225BB /* ArtistAlbums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistAlbums.swift; sourceTree = "<group>"; };
+		197212C92A211181007225BB /* AlbumListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListViewModel.swift; sourceTree = "<group>"; };
+		197212CB2A2114D1007225BB /* AlbumListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1972126E2A0E533C007225BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		197212832A0E533E007225BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1972128D2A0E533E007225BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		194791532A21FFF500FD2604 /* Old_api */ = {
+			isa = PBXGroup;
+			children = (
+				197212CB2A2114D1007225BB /* AlbumListView.swift */,
+				197212BD2A20A167007225BB /* AuthManager.swift */,
+				197212C12A210984007225BB /* APIManager.swift */,
+				197212C32A210DD5007225BB /* HTTPMethod.swift */,
+				197212C92A211181007225BB /* AlbumListViewModel.swift */,
+				197212C52A210E34007225BB /* DataProvider.swift */,
+				197212BF2A21093E007225BB /* AccessToken.swift */,
+			);
+			path = Old_api;
+			sourceTree = "<group>";
+		};
+		1947915C2A22013300FD2604 /* SpotifyAPI */ = {
+			isa = PBXGroup;
+			children = (
+				197212BA2A1B6DE0007225BB /* SpotifyURLService.swift */,
+				1947915A2A22012A00FD2604 /* NetworkError.swift */,
+				194791582A22010900FD2604 /* APIConstants.swift */,
+				1947915D2A22100500FD2604 /* Network.swift */,
+			);
+			path = SpotifyAPI;
+			sourceTree = "<group>";
+		};
+		194791A72A24DF3400FD2604 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				194791A82A24DFB900FD2604 /* PlayerViewModel.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		197212682A0E533C007225BB = {
+			isa = PBXGroup;
+			children = (
+				197212732A0E533C007225BB /* Artify */,
+				197212892A0E533E007225BB /* ArtifyTests */,
+				197212932A0E533E007225BB /* ArtifyUITests */,
+				197212722A0E533C007225BB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		197212722A0E533C007225BB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				197212712A0E533C007225BB /* Artify.app */,
+				197212862A0E533E007225BB /* ArtifyTests.xctest */,
+				197212902A0E533E007225BB /* ArtifyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		197212732A0E533C007225BB /* Artify */ = {
+			isa = PBXGroup;
+			children = (
+				194791532A21FFF500FD2604 /* Old_api */,
+				197212BC2A1B78E3007225BB /* Resources */,
+				197212AC2A1B6B11007225BB /* View */,
+				197212AD2A1B6B1D007225BB /* ViewModel */,
+				197212AB2A1B6AF4007225BB /* Model */,
+				197212A32A0E5A6B007225BB /* DMSerifDisplay-Italic.ttf */,
+				197212A42A0E5A6B007225BB /* DMSerifDisplay-Regular.ttf */,
+				197212742A0E533C007225BB /* ArtifyApp.swift */,
+				197212782A0E533E007225BB /* Assets.xcassets */,
+				1972127D2A0E533E007225BB /* Persistence.swift */,
+				1972127F2A0E533E007225BB /* Artify.xcdatamodeld */,
+				1972127A2A0E533E007225BB /* Preview Content */,
+			);
+			path = Artify;
+			sourceTree = "<group>";
+		};
+		1972127A2A0E533E007225BB /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				1972127B2A0E533E007225BB /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		197212892A0E533E007225BB /* ArtifyTests */ = {
+			isa = PBXGroup;
+			children = (
+				1972128A2A0E533E007225BB /* ArtifyTests.swift */,
+			);
+			path = ArtifyTests;
+			sourceTree = "<group>";
+		};
+		197212932A0E533E007225BB /* ArtifyUITests */ = {
+			isa = PBXGroup;
+			children = (
+				197212942A0E533E007225BB /* ArtifyUITests.swift */,
+				197212962A0E533E007225BB /* ArtifyUITestsLaunchTests.swift */,
+			);
+			path = ArtifyUITests;
+			sourceTree = "<group>";
+		};
+		197212AB2A1B6AF4007225BB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				197212B02A1B6BBB007225BB /* PlaylistLibrary.swift */,
+				197212A52A178BBB007225BB /* Playlist.swift */,
+				197212AE2A1B6B81007225BB /* Track.swift */,
+				197212C72A211062007225BB /* ArtistAlbums.swift */,
+				194791612A223D7500FD2604 /* LoginState.swift */,
+				194791A12A24A5FB00FD2604 /* Route.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		197212AC2A1B6B11007225BB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				197212762A0E533C007225BB /* ContentView.swift */,
+				1947915F2A2231E400FD2604 /* MusicLibraryView.swift */,
+				197212B42A1B6BE6007225BB /* IntroView.swift */,
+				197212B82A1B6C38007225BB /* PlayView.swift */,
+				194791542A22006E00FD2604 /* LoginView.swift */,
+				194791632A24999800FD2604 /* SpotifyLoginView.swift */,
+				194791A32A24AAD900FD2604 /* SettingsView.swift */,
+				194791A52A24B8FD00FD2604 /* MusicLibraryOld.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		197212AD2A1B6B1D007225BB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				194791A72A24DF3400FD2604 /* Player */,
+				197212A72A178BD5007225BB /* MusicLibraryViewModel.swift */,
+				194791562A2200CA00FD2604 /* LoginViewModel.swift */,
+				1947915C2A22013300FD2604 /* SpotifyAPI */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		197212BC2A1B78E3007225BB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		197212702A0E533C007225BB /* Artify */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1972129A2A0E533E007225BB /* Build configuration list for PBXNativeTarget "Artify" */;
+			buildPhases = (
+				1972126D2A0E533C007225BB /* Sources */,
+				1972126E2A0E533C007225BB /* Frameworks */,
+				1972126F2A0E533C007225BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Artify;
+			productName = Artify;
+			productReference = 197212712A0E533C007225BB /* Artify.app */;
+			productType = "com.apple.product-type.application";
+		};
+		197212852A0E533E007225BB /* ArtifyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1972129D2A0E533E007225BB /* Build configuration list for PBXNativeTarget "ArtifyTests" */;
+			buildPhases = (
+				197212822A0E533E007225BB /* Sources */,
+				197212832A0E533E007225BB /* Frameworks */,
+				197212842A0E533E007225BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				197212882A0E533E007225BB /* PBXTargetDependency */,
+			);
+			name = ArtifyTests;
+			productName = ArtifyTests;
+			productReference = 197212862A0E533E007225BB /* ArtifyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		1972128F2A0E533E007225BB /* ArtifyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 197212A02A0E533E007225BB /* Build configuration list for PBXNativeTarget "ArtifyUITests" */;
+			buildPhases = (
+				1972128C2A0E533E007225BB /* Sources */,
+				1972128D2A0E533E007225BB /* Frameworks */,
+				1972128E2A0E533E007225BB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				197212922A0E533E007225BB /* PBXTargetDependency */,
+			);
+			name = ArtifyUITests;
+			productName = ArtifyUITests;
+			productReference = 197212902A0E533E007225BB /* ArtifyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		197212692A0E533C007225BB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					197212702A0E533C007225BB = {
+						CreatedOnToolsVersion = 14.3;
+					};
+					197212852A0E533E007225BB = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 197212702A0E533C007225BB;
+					};
+					1972128F2A0E533E007225BB = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 197212702A0E533C007225BB;
+					};
+				};
+			};
+			buildConfigurationList = 1972126C2A0E533C007225BB /* Build configuration list for PBXProject "Artify" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 197212682A0E533C007225BB;
+			productRefGroup = 197212722A0E533C007225BB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				197212702A0E533C007225BB /* Artify */,
+				197212852A0E533E007225BB /* ArtifyTests */,
+				1972128F2A0E533E007225BB /* ArtifyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1972126F2A0E533C007225BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1972127C2A0E533E007225BB /* Preview Assets.xcassets in Resources */,
+				197212792A0E533E007225BB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		197212842A0E533E007225BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1972128E2A0E533E007225BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1972126D2A0E533C007225BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1947915E2A22100500FD2604 /* Network.swift in Sources */,
+				194791572A2200CA00FD2604 /* LoginViewModel.swift in Sources */,
+				197212C22A210984007225BB /* APIManager.swift in Sources */,
+				197212A82A178BD5007225BB /* MusicLibraryViewModel.swift in Sources */,
+				194791A22A24A5FB00FD2604 /* Route.swift in Sources */,
+				197212BE2A20A167007225BB /* AuthManager.swift in Sources */,
+				197212AF2A1B6B81007225BB /* Track.swift in Sources */,
+				194791A62A24B8FD00FD2604 /* MusicLibraryOld.swift in Sources */,
+				194791A92A24DFB900FD2604 /* PlayerViewModel.swift in Sources */,
+				197212CA2A211181007225BB /* AlbumListViewModel.swift in Sources */,
+				1972127E2A0E533E007225BB /* Persistence.swift in Sources */,
+				197212C82A211062007225BB /* ArtistAlbums.swift in Sources */,
+				197212C62A210E34007225BB /* DataProvider.swift in Sources */,
+				194791552A22006E00FD2604 /* LoginView.swift in Sources */,
+				197212C42A210DD5007225BB /* HTTPMethod.swift in Sources */,
+				194791602A2231E400FD2604 /* MusicLibraryView.swift in Sources */,
+				197212772A0E533C007225BB /* ContentView.swift in Sources */,
+				197212A62A178BBB007225BB /* Playlist.swift in Sources */,
+				197212B92A1B6C38007225BB /* PlayView.swift in Sources */,
+				194791622A223D7500FD2604 /* LoginState.swift in Sources */,
+				194791A42A24AAD900FD2604 /* SettingsView.swift in Sources */,
+				197212812A0E533E007225BB /* Artify.xcdatamodeld in Sources */,
+				197212B52A1B6BE6007225BB /* IntroView.swift in Sources */,
+				197212BB2A1B6DE0007225BB /* SpotifyURLService.swift in Sources */,
+				197212752A0E533C007225BB /* ArtifyApp.swift in Sources */,
+				1947915B2A22012A00FD2604 /* NetworkError.swift in Sources */,
+				197212B12A1B6BBB007225BB /* PlaylistLibrary.swift in Sources */,
+				194791592A22010900FD2604 /* APIConstants.swift in Sources */,
+				197212C02A21093E007225BB /* AccessToken.swift in Sources */,
+				197212CC2A2114D1007225BB /* AlbumListView.swift in Sources */,
+				194791642A24999800FD2604 /* SpotifyLoginView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		197212822A0E533E007225BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1972128B2A0E533E007225BB /* ArtifyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1972128C2A0E533E007225BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				197212952A0E533E007225BB /* ArtifyUITests.swift in Sources */,
+				197212972A0E533E007225BB /* ArtifyUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		197212882A0E533E007225BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 197212702A0E533C007225BB /* Artify */;
+			targetProxy = 197212872A0E533E007225BB /* PBXContainerItemProxy */;
+		};
+		197212922A0E533E007225BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 197212702A0E533C007225BB /* Artify */;
+			targetProxy = 197212912A0E533E007225BB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		197212982A0E533E007225BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		197212992A0E533E007225BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1972129B2A0E533E007225BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Artify/Preview Content\"";
+				DEVELOPMENT_TEAM = FULB7B7465;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "marieke.schmitz-student.hs-rm.de.Artify";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1972129C2A0E533E007225BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Artify/Preview Content\"";
+				DEVELOPMENT_TEAM = FULB7B7465;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "marieke.schmitz-student.hs-rm.de.Artify";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1972129E2A0E533E007225BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FULB7B7465;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "marieke.schmitz-student.hs-rm.de.ArtifyTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Artify.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Artify";
+			};
+			name = Debug;
+		};
+		1972129F2A0E533E007225BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FULB7B7465;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "marieke.schmitz-student.hs-rm.de.ArtifyTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Artify.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Artify";
+			};
+			name = Release;
+		};
+		197212A12A0E533E007225BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FULB7B7465;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "marieke.schmitz-student.hs-rm.de.ArtifyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Artify;
+			};
+			name = Debug;
+		};
+		197212A22A0E533E007225BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = FULB7B7465;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "marieke.schmitz-student.hs-rm.de.ArtifyUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Artify;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1972126C2A0E533C007225BB /* Build configuration list for PBXProject "Artify" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				197212982A0E533E007225BB /* Debug */,
+				197212992A0E533E007225BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1972129A2A0E533E007225BB /* Build configuration list for PBXNativeTarget "Artify" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1972129B2A0E533E007225BB /* Debug */,
+				1972129C2A0E533E007225BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1972129D2A0E533E007225BB /* Build configuration list for PBXNativeTarget "ArtifyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1972129E2A0E533E007225BB /* Debug */,
+				1972129F2A0E533E007225BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		197212A02A0E533E007225BB /* Build configuration list for PBXNativeTarget "ArtifyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				197212A12A0E533E007225BB /* Debug */,
+				197212A22A0E533E007225BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1972127F2A0E533E007225BB /* Artify.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				197212802A0E533E007225BB /* Artify.xcdatamodel */,
+			);
+			currentVersion = 197212802A0E533E007225BB /* Artify.xcdatamodel */;
+			path = Artify.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 197212692A0E533C007225BB /* Project object */;
+}
