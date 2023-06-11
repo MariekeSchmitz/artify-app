@@ -7,6 +7,23 @@
 
 import Foundation
 
-struct PlaylistLibrary {
-    var playlists : Array<Playlist> = []
+struct PlaylistLibrary : Decodable, Hashable {
+    var items : Array<SimplifiedPlaylistObject> = []
 }
+
+struct SimplifiedPlaylistObject:Decodable, Hashable{
+    var images: [ImageObject] = []
+    var name: String = ""
+    var id: String = ""
+}
+
+struct ImageObject: Decodable, Hashable {
+    var url: String = ""
+    var height: Int?
+    var width: Int?
+}
+
+//struct TracksInformation: Decodable, Hashable {
+//    var href: String = ""
+//    var total: Int = 0
+//}

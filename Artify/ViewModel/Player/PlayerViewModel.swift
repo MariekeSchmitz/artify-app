@@ -2,46 +2,36 @@
 //  PlayerViewModel.swift
 //  Artify
 //
-//  Created by Marieke Schmitz on 29.05.23.
+//  Created by Marieke Schmitz on 01.06.23.
 //
 
 import Foundation
 
-
-protocol PlayerDataSource: AnyObject {
-    var songName: String? {get}
-//    var subtitle: String? {get}
-//    var imageURL: URL? {get}
-}
-
-class PlayerViewModel: ObservableObject {
+class PlayerViewModel : ObservableObject {
     
+    var currentTrack:Track?
+    var currentPlaylist:Playlist?
+    let player:SpotifyPlayerService = SpotifyPlayerService.shared
     static let shared = PlayerViewModel()
     
-    private var track:Track?
-    private var tracks:[Track] = []
-    
-    var currentTrack: Track? {
-        if let track = track, tracks.isEmpty {
-            return track
-        } else if !tracks.isEmpty {
-            return tracks.first
-        }
-        
-        return nil
+    func playTrack(id:String) {
+        player.playTrack(trackURI:id)
     }
     
-    func startPlayback(track:Track) -> Void {
-        self.track = track
-        self.tracks = []
+    func pauseTrack() {
+        player.pauseTrack()
     }
     
-}
-
-extension PlayerViewModel : PlayerDataSource {
-    var songName: String? {
-        return currentTrack?.name
+    func resumeTrack() {
+        player.resumeTrack()
     }
     
+    func playNextTrack() {
+        player.playNextTrack()
+    }
+    
+    func playPreviousTrack() {
+        player.playPreviousTrack()
+    }
     
 }

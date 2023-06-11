@@ -7,6 +7,11 @@
 
 import Foundation
 
-struct Playlist {
-    var songs : Array<Track> = []
+struct Playlist:Decodable, Hashable {
+    var items : Array<PlaylistTrackObject> = []
+}
+
+struct PlaylistTrackObject:Decodable, Hashable, Identifiable {
+    let id = UUID()
+    var track:Track = Track()
 }

@@ -38,9 +38,6 @@ struct PlayView: View {
                         NavigationLink(value: Route.settings) {
                             Text("Settings")
                         }
-                    } 
-                    Button("Play") {
-                        PlayerViewModel.shared.startPlayback(track: musicLibraryVM.track)
                     }
                 }
                 .navigationTitle("Player").navigationBarTitleDisplayMode(.inline)
@@ -50,14 +47,38 @@ struct PlayView: View {
                         MusicLibraryView(musicLibraryVM: musicLibraryVM, path: $path)
                     case .settings:
                         SettingsView()
-    //                case .login:
-    //                    LoginView(path: $path)
-    //                case .login:
-                        
                     }
                 }
+                
+                Spacer()
+
+                
+                HStack {
+                    Button("Previous") {
+                        playerVM.playPreviousTrack()
+                    }
+        
+                    VStack {
+                        Button("Pause") {
+                            playerVM.pauseTrack()
+                        }
+                        Button("Play") {
+                            playerVM.resumeTrack()
+                        }
+//                        Button("Play specific song") {
+//                            playerVM.playTrack("id: String")
+//                        }
+                    }
+        
+                    Button("Next") {
+                        playerVM.playNextTrack()
+                    }
+                }
+                
+                
+                
             }
-        }
+        }.padding(.all)
     }
 }
 

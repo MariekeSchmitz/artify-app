@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-        Text("This the one and only SettingsView :>")
+        Text("Settingsview")
     }
 }
 

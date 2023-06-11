@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct ArtifyApp: App {
     let persistenceController = PersistenceController.shared
-    var network = Network()
+//    var network = Network()
     
     private let loginViewModel:LoginViewModel = LoginViewModel()
     private let musicLibraryViewModel:MusicLibraryViewModel = MusicLibraryViewModel()

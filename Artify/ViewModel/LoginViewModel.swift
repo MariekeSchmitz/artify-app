@@ -9,6 +9,8 @@ import Foundation
 
 class LoginViewModel: ObservableObject{
     
+    static let shared = LoginViewModel()
+    
     let spotifyService: SpotifyURLService = SpotifyURLService.shared
     @Published var loginState: LoginState = LoginState.shared
 

@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1919387F2A35DAEA009B1743 /* Artists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1919387E2A35DAEA009B1743 /* Artists.swift */; };
+		191938812A35DB0F009B1743 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191938802A35DB0E009B1743 /* Artist.swift */; };
+		191938872A36195D009B1743 /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191938862A36195D009B1743 /* PlaylistView.swift */; };
+		1919388A2A361A04009B1743 /* PlaylistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 191938892A361A04009B1743 /* PlaylistViewModel.swift */; };
+		1919388C2A3623D7009B1743 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1919388B2A3623D7009B1743 /* TrackView.swift */; };
+		192A63282A28737E00F1DDB8 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192A63272A28737E00F1DDB8 /* PlayerViewModel.swift */; };
+		192A632A2A28C89E00F1DDB8 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192A63292A28C89E00F1DDB8 /* File.swift */; };
+		192A632C2A28DF0C00F1DDB8 /* TrackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192A632B2A28DF0C00F1DDB8 /* TrackList.swift */; };
+		192A632E2A28E56E00F1DDB8 /* SavedTrackObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192A632D2A28E56E00F1DDB8 /* SavedTrackObject.swift */; };
 		194791552A22006E00FD2604 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791542A22006E00FD2604 /* LoginView.swift */; };
 		194791572A2200CA00FD2604 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791562A2200CA00FD2604 /* LoginViewModel.swift */; };
 		194791592A22010900FD2604 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791582A22010900FD2604 /* APIConstants.swift */; };
@@ -18,7 +27,6 @@
 		194791A22A24A5FB00FD2604 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791A12A24A5FB00FD2604 /* Route.swift */; };
 		194791A42A24AAD900FD2604 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791A32A24AAD900FD2604 /* SettingsView.swift */; };
 		194791A62A24B8FD00FD2604 /* MusicLibraryOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791A52A24B8FD00FD2604 /* MusicLibraryOld.swift */; };
-		194791A92A24DFB900FD2604 /* PlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791A82A24DFB900FD2604 /* PlayerViewModel.swift */; };
 		197212752A0E533C007225BB /* ArtifyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212742A0E533C007225BB /* ArtifyApp.swift */; };
 		197212772A0E533C007225BB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212762A0E533C007225BB /* ContentView.swift */; };
 		197212792A0E533E007225BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 197212782A0E533E007225BB /* Assets.xcassets */; };
@@ -43,6 +51,10 @@
 		197212C82A211062007225BB /* ArtistAlbums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212C72A211062007225BB /* ArtistAlbums.swift */; };
 		197212CA2A211181007225BB /* AlbumListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212C92A211181007225BB /* AlbumListViewModel.swift */; };
 		197212CC2A2114D1007225BB /* AlbumListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197212CB2A2114D1007225BB /* AlbumListView.swift */; };
+		1985B42A2A277ED600F65B30 /* SpotifyLibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1985B4292A277ED600F65B30 /* SpotifyLibraryService.swift */; };
+		1985B42C2A277FA600F65B30 /* SpotifyPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1985B42B2A277FA600F65B30 /* SpotifyPlayerService.swift */; };
+		1985B4322A2786C000F65B30 /* RequestTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1985B4312A2786C000F65B30 /* RequestTypes.swift */; };
+		1985B4342A27C18400F65B30 /* HTTPmethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1985B4332A27C18400F65B30 /* HTTPmethods.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +75,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1919387E2A35DAEA009B1743 /* Artists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artists.swift; sourceTree = "<group>"; };
+		191938802A35DB0E009B1743 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
+		191938862A36195D009B1743 /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
+		191938892A361A04009B1743 /* PlaylistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewModel.swift; sourceTree = "<group>"; };
+		1919388B2A3623D7009B1743 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
+		192A63272A28737E00F1DDB8 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
+		192A63292A28C89E00F1DDB8 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		192A632B2A28DF0C00F1DDB8 /* TrackList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackList.swift; sourceTree = "<group>"; };
+		192A632D2A28E56E00F1DDB8 /* SavedTrackObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTrackObject.swift; sourceTree = "<group>"; };
 		194791542A22006E00FD2604 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		194791562A2200CA00FD2604 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		194791582A22010900FD2604 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
@@ -74,7 +95,6 @@
 		194791A12A24A5FB00FD2604 /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		194791A32A24AAD900FD2604 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		194791A52A24B8FD00FD2604 /* MusicLibraryOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLibraryOld.swift; sourceTree = "<group>"; };
-		194791A82A24DFB900FD2604 /* PlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewModel.swift; sourceTree = "<group>"; };
 		197212712A0E533C007225BB /* Artify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Artify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		197212742A0E533C007225BB /* ArtifyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtifyApp.swift; sourceTree = "<group>"; };
 		197212762A0E533C007225BB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -104,6 +124,10 @@
 		197212C72A211062007225BB /* ArtistAlbums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistAlbums.swift; sourceTree = "<group>"; };
 		197212C92A211181007225BB /* AlbumListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListViewModel.swift; sourceTree = "<group>"; };
 		197212CB2A2114D1007225BB /* AlbumListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListView.swift; sourceTree = "<group>"; };
+		1985B4292A277ED600F65B30 /* SpotifyLibraryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyLibraryService.swift; sourceTree = "<group>"; };
+		1985B42B2A277FA600F65B30 /* SpotifyPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyPlayerService.swift; sourceTree = "<group>"; };
+		1985B4312A2786C000F65B30 /* RequestTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTypes.swift; sourceTree = "<group>"; };
+		1985B4332A27C18400F65B30 /* HTTPmethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPmethods.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,16 +155,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		191938882A3619F3009B1743 /* MusicLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				197212A72A178BD5007225BB /* MusicLibraryViewModel.swift */,
+				191938892A361A04009B1743 /* PlaylistViewModel.swift */,
+			);
+			path = MusicLibrary;
+			sourceTree = "<group>";
+		};
 		194791532A21FFF500FD2604 /* Old_api */ = {
 			isa = PBXGroup;
 			children = (
 				197212CB2A2114D1007225BB /* AlbumListView.swift */,
-				197212BD2A20A167007225BB /* AuthManager.swift */,
-				197212C12A210984007225BB /* APIManager.swift */,
-				197212C32A210DD5007225BB /* HTTPMethod.swift */,
 				197212C92A211181007225BB /* AlbumListViewModel.swift */,
 				197212C52A210E34007225BB /* DataProvider.swift */,
+				197212C12A210984007225BB /* APIManager.swift */,
+				197212BD2A20A167007225BB /* AuthManager.swift */,
+				197212C32A210DD5007225BB /* HTTPMethod.swift */,
 				197212BF2A21093E007225BB /* AccessToken.swift */,
+				194791A52A24B8FD00FD2604 /* MusicLibraryOld.swift */,
 			);
 			path = Old_api;
 			sourceTree = "<group>";
@@ -149,9 +183,14 @@
 			isa = PBXGroup;
 			children = (
 				197212BA2A1B6DE0007225BB /* SpotifyURLService.swift */,
+				1985B4292A277ED600F65B30 /* SpotifyLibraryService.swift */,
+				1985B42B2A277FA600F65B30 /* SpotifyPlayerService.swift */,
 				1947915A2A22012A00FD2604 /* NetworkError.swift */,
 				194791582A22010900FD2604 /* APIConstants.swift */,
 				1947915D2A22100500FD2604 /* Network.swift */,
+				1985B4312A2786C000F65B30 /* RequestTypes.swift */,
+				1985B4332A27C18400F65B30 /* HTTPmethods.swift */,
+				192A63292A28C89E00F1DDB8 /* File.swift */,
 			);
 			path = SpotifyAPI;
 			sourceTree = "<group>";
@@ -159,7 +198,7 @@
 		194791A72A24DF3400FD2604 /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				194791A82A24DFB900FD2604 /* PlayerViewModel.swift */,
+				192A63272A28737E00F1DDB8 /* PlayerViewModel.swift */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -234,9 +273,13 @@
 				197212B02A1B6BBB007225BB /* PlaylistLibrary.swift */,
 				197212A52A178BBB007225BB /* Playlist.swift */,
 				197212AE2A1B6B81007225BB /* Track.swift */,
+				192A632B2A28DF0C00F1DDB8 /* TrackList.swift */,
 				197212C72A211062007225BB /* ArtistAlbums.swift */,
 				194791612A223D7500FD2604 /* LoginState.swift */,
 				194791A12A24A5FB00FD2604 /* Route.swift */,
+				192A632D2A28E56E00F1DDB8 /* SavedTrackObject.swift */,
+				1919387E2A35DAEA009B1743 /* Artists.swift */,
+				191938802A35DB0E009B1743 /* Artist.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -251,7 +294,8 @@
 				194791542A22006E00FD2604 /* LoginView.swift */,
 				194791632A24999800FD2604 /* SpotifyLoginView.swift */,
 				194791A32A24AAD900FD2604 /* SettingsView.swift */,
-				194791A52A24B8FD00FD2604 /* MusicLibraryOld.swift */,
+				191938862A36195D009B1743 /* PlaylistView.swift */,
+				1919388B2A3623D7009B1743 /* TrackView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -259,8 +303,8 @@
 		197212AD2A1B6B1D007225BB /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				191938882A3619F3009B1743 /* MusicLibrary */,
 				194791A72A24DF3400FD2604 /* Player */,
-				197212A72A178BD5007225BB /* MusicLibraryViewModel.swift */,
 				194791562A2200CA00FD2604 /* LoginViewModel.swift */,
 				1947915C2A22013300FD2604 /* SpotifyAPI */,
 			);
@@ -412,11 +456,13 @@
 				197212BE2A20A167007225BB /* AuthManager.swift in Sources */,
 				197212AF2A1B6B81007225BB /* Track.swift in Sources */,
 				194791A62A24B8FD00FD2604 /* MusicLibraryOld.swift in Sources */,
-				194791A92A24DFB900FD2604 /* PlayerViewModel.swift in Sources */,
 				197212CA2A211181007225BB /* AlbumListViewModel.swift in Sources */,
 				1972127E2A0E533E007225BB /* Persistence.swift in Sources */,
 				197212C82A211062007225BB /* ArtistAlbums.swift in Sources */,
+				192A632C2A28DF0C00F1DDB8 /* TrackList.swift in Sources */,
+				1985B42C2A277FA600F65B30 /* SpotifyPlayerService.swift in Sources */,
 				197212C62A210E34007225BB /* DataProvider.swift in Sources */,
+				1985B4342A27C18400F65B30 /* HTTPmethods.swift in Sources */,
 				194791552A22006E00FD2604 /* LoginView.swift in Sources */,
 				197212C42A210DD5007225BB /* HTTPMethod.swift in Sources */,
 				194791602A2231E400FD2604 /* MusicLibraryView.swift in Sources */,
@@ -426,14 +472,24 @@
 				194791622A223D7500FD2604 /* LoginState.swift in Sources */,
 				194791A42A24AAD900FD2604 /* SettingsView.swift in Sources */,
 				197212812A0E533E007225BB /* Artify.xcdatamodeld in Sources */,
+				1919388A2A361A04009B1743 /* PlaylistViewModel.swift in Sources */,
+				192A632E2A28E56E00F1DDB8 /* SavedTrackObject.swift in Sources */,
+				1919388C2A3623D7009B1743 /* TrackView.swift in Sources */,
 				197212B52A1B6BE6007225BB /* IntroView.swift in Sources */,
 				197212BB2A1B6DE0007225BB /* SpotifyURLService.swift in Sources */,
+				191938872A36195D009B1743 /* PlaylistView.swift in Sources */,
+				192A632A2A28C89E00F1DDB8 /* File.swift in Sources */,
 				197212752A0E533C007225BB /* ArtifyApp.swift in Sources */,
+				1919387F2A35DAEA009B1743 /* Artists.swift in Sources */,
+				192A63282A28737E00F1DDB8 /* PlayerViewModel.swift in Sources */,
+				1985B42A2A277ED600F65B30 /* SpotifyLibraryService.swift in Sources */,
 				1947915B2A22012A00FD2604 /* NetworkError.swift in Sources */,
+				1985B4322A2786C000F65B30 /* RequestTypes.swift in Sources */,
 				197212B12A1B6BBB007225BB /* PlaylistLibrary.swift in Sources */,
 				194791592A22010900FD2604 /* APIConstants.swift in Sources */,
 				197212C02A21093E007225BB /* AccessToken.swift in Sources */,
 				197212CC2A2114D1007225BB /* AlbumListView.swift in Sources */,
+				191938812A35DB0F009B1743 /* Artist.swift in Sources */,
 				194791642A24999800FD2604 /* SpotifyLoginView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
