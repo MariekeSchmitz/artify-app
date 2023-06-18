@@ -11,9 +11,9 @@ import SwiftUI
 struct PlayView: View {
     
     @State var path = NavigationPath()
-    @ObservedObject var loginVM: LoginViewModel
-    @ObservedObject var musicLibraryVM: MusicLibraryViewModel
-    @ObservedObject var playerVM: PlayerViewModel
+    @StateObject var loginVM: LoginViewModel = LoginViewModel.shared
+    @StateObject var musicLibraryVM: MusicLibraryViewModel = MusicLibraryViewModel.shared
+    @StateObject var playerVM: PlayerViewModel = PlayerViewModel.shared
     
 //    init(_ loginViewModel:LoginViewModel, _ musicLibraryViewModel:MusicLibraryViewModel, _ playerViewModel:PlayerViewModel) {
 //        self.loginVM = loginViewModel
@@ -26,10 +26,13 @@ struct PlayView: View {
         NavigationStack(path: $path) {
             
             if !loginVM.loginState.loggedIn {
-                LoginView(path: $path, loginVM: loginVM)
+                LoginView(path: $path, loginVM: loginVM).background(Color.darkGrayBG)
                 
             } else {
                 
+                ZStack {
+                    Color.yellow
+                }
                 VStack {
                     HStack {
                         NavigationLink(value: Route.musicLibrary) {
@@ -54,6 +57,7 @@ struct PlayView: View {
 
                 
                 HStack {
+                    
                     Button("Previous") {
                         playerVM.playPreviousTrack()
                     }
@@ -78,14 +82,14 @@ struct PlayView: View {
                 
                 
             }
-        }.padding(.all)
+        }.padding(.all).background(Color.darkGrayBG)
     }
 }
 
 
-//struct PlayView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PlayView()
-//    }
-//}
+struct PlayView_Previews: PreviewProvider {
+    static var previews: some View {
+        PlayView()
+    }
+}
 

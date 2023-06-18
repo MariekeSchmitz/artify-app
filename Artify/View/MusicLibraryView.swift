@@ -15,20 +15,36 @@ struct MusicLibraryView: View {
     @Binding var path: NavigationPath
 
     var body: some View {
-        VStack{
-            
-            Text("MusicLibraryView").font(.largeTitle)
-            
-            Text("Playlists").font(.title)
-            PlaylistsView(playlists: musicLibraryVM.playlistLibrary.items, path:$path)
-            
-            Text("Tracks").font(.title)
-            TrackView(savedTrackObjects: musicLibraryVM.favoriteTracks.items, path: $path)
-            
-        }.onAppear(){
-            musicLibraryVM.getFavouriteTracks()
-            musicLibraryVM.getUsersPlaylists()
-        }.border(.green).padding(0)
+        
+        Color.darkGrayBG
+            .ignoresSafeArea()
+            .overlay(
+                VStack{
+                    
+                    Text("Tracks")
+                        .font(Font.custom("DMSerifDisplay-Regular", size: 70))
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .foregroundColor(Color.white)
+                        
+                    
+                    Text("Playlists")
+                        .font(Font.custom("DMSerifDisplay-Regular", size: 30))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .foregroundColor(Color.white)
+                    PlaylistsView(playlists: musicLibraryVM.playlistLibrary.items, path:$path)
+                    
+                    Text("Tracks")
+                        .font(Font.custom("DMSerifDisplay-Regular", size: 30))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .foregroundColor(Color.white)
+                    TrackView(savedTrackObjects: musicLibraryVM.favoriteTracks.items, path: $path)
+                    
+                }.onAppear(){
+                    musicLibraryVM.getFavouriteTracks()
+                    musicLibraryVM.getUsersPlaylists()
+                }
+                
+            )
     }
 }
 
@@ -53,10 +69,19 @@ struct PlaylistCellView: View {
     var playlist: SimplifiedPlaylistObject
     @Binding var path:NavigationPath
     
+    var imageURL : String {
+        if (playlist.images.count == 0) {
+           return "https://en.wikipedia.org/wiki/Image#/media/File:Image_created_with_a_mobile_phone.png"
+        } else {
+            return playlist.images[0].url
+        }
+    }
+    
+    
     var body: some View {
-        
-        NavigationLink(destination: PlaylistView(playlistID: playlist.id, playlistName: playlist.name, imageURL: playlist.images[0].url, path:$path)) {
-            AsyncImage(url: URL(string: playlist.images[0].url)) {
+                
+        NavigationLink(destination: PlaylistView(playlistID: playlist.id, playlistName: playlist.name, imageURL: imageURL, path:$path)) {
+            AsyncImage(url: URL(string: imageURL)) {
                 image in image.resizable()
             }
             placeholder: { Color.gray }
@@ -71,8 +96,9 @@ struct PlaylistCellView: View {
                         .bold()
                         .foregroundColor(Color.white)
                         .padding()
+                    
                 })
-            
+
         }
 
     }

@@ -29,16 +29,20 @@ struct TrackView: View {
 struct TrackCellView: View {
     
     var playerVM = PlayerViewModel.shared
+    var musicLibraryVM = MusicLibraryViewModel.shared
     var track: Track
     @Binding var path:NavigationPath
     
     var body: some View {
         
         VStack (alignment: .leading){
-            Text(track.name).font(.title3)
-            Text(getArtistString(artists:track.artists)).font(.subheadline)
+            Text(track.name).font(.title3).foregroundColor(Color.white)
+            Text(getArtistString(artists:track.artists)).font(.subheadline).foregroundColor(Color.white)
         } .onTapGesture {
             playerVM.playTrack(id: track.uri)
+            musicLibraryVM.track = track
+            print(musicLibraryVM.track.name)
+            print(track.name)
             path = NavigationPath()
         }
         

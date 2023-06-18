@@ -10,6 +10,7 @@ import Foundation
 class PlaylistViewModel : ObservableObject {
     
     let libraryService = SpotifyLibraryService.shared
+    
     @Published var playlist:Playlist = Playlist()
     
     

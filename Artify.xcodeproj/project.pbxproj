@@ -55,6 +55,13 @@
 		1985B42C2A277FA600F65B30 /* SpotifyPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1985B42B2A277FA600F65B30 /* SpotifyPlayerService.swift */; };
 		1985B4322A2786C000F65B30 /* RequestTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1985B4312A2786C000F65B30 /* RequestTypes.swift */; };
 		1985B4342A27C18400F65B30 /* HTTPmethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1985B4332A27C18400F65B30 /* HTTPmethods.swift */; };
+		198741F52A3B649000853D12 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198741F42A3B649000853D12 /* ColorExtension.swift */; };
+		198741F72A3B659700853D12 /* DMSerifDisplay-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 197212A32A0E5A6B007225BB /* DMSerifDisplay-Italic.ttf */; };
+		198741F82A3B659700853D12 /* DMSerifDisplay-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 197212A32A0E5A6B007225BB /* DMSerifDisplay-Italic.ttf */; };
+		198741F92A3B659800853D12 /* DMSerifDisplay-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 197212A32A0E5A6B007225BB /* DMSerifDisplay-Italic.ttf */; };
+		198741FA2A3B659A00853D12 /* DMSerifDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 197212A42A0E5A6B007225BB /* DMSerifDisplay-Regular.ttf */; };
+		198741FB2A3B659B00853D12 /* DMSerifDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 197212A42A0E5A6B007225BB /* DMSerifDisplay-Regular.ttf */; };
+		198741FC2A3B659B00853D12 /* DMSerifDisplay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 197212A42A0E5A6B007225BB /* DMSerifDisplay-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +135,10 @@
 		1985B42B2A277FA600F65B30 /* SpotifyPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyPlayerService.swift; sourceTree = "<group>"; };
 		1985B4312A2786C000F65B30 /* RequestTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTypes.swift; sourceTree = "<group>"; };
 		1985B4332A27C18400F65B30 /* HTTPmethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPmethods.swift; sourceTree = "<group>"; };
+		198741F42A3B649000853D12 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		198741F62A3B64C800853D12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		198741FD2A3B65D300853D12 /* DMSerifDisplay-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DMSerifDisplay-Italic.ttf"; sourceTree = "<group>"; };
+		198741FE2A3B65D300853D12 /* DMSerifDisplay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DMSerifDisplay-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +237,7 @@
 		197212732A0E533C007225BB /* Artify */ = {
 			isa = PBXGroup;
 			children = (
+				198741F62A3B64C800853D12 /* Info.plist */,
 				194791532A21FFF500FD2604 /* Old_api */,
 				197212BC2A1B78E3007225BB /* Resources */,
 				197212AC2A1B6B11007225BB /* View */,
@@ -296,6 +308,7 @@
 				194791A32A24AAD900FD2604 /* SettingsView.swift */,
 				191938862A36195D009B1743 /* PlaylistView.swift */,
 				1919388B2A3623D7009B1743 /* TrackView.swift */,
+				198741F42A3B649000853D12 /* ColorExtension.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -314,6 +327,8 @@
 		197212BC2A1B78E3007225BB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				198741FD2A3B65D300853D12 /* DMSerifDisplay-Italic.ttf */,
+				198741FE2A3B65D300853D12 /* DMSerifDisplay-Regular.ttf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -422,6 +437,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				198741F72A3B659700853D12 /* DMSerifDisplay-Italic.ttf in Resources */,
+				198741FA2A3B659A00853D12 /* DMSerifDisplay-Regular.ttf in Resources */,
 				1972127C2A0E533E007225BB /* Preview Assets.xcassets in Resources */,
 				197212792A0E533E007225BB /* Assets.xcassets in Resources */,
 			);
@@ -431,6 +448,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				198741F82A3B659700853D12 /* DMSerifDisplay-Italic.ttf in Resources */,
+				198741FB2A3B659B00853D12 /* DMSerifDisplay-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +457,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				198741F92A3B659800853D12 /* DMSerifDisplay-Italic.ttf in Resources */,
+				198741FC2A3B659B00853D12 /* DMSerifDisplay-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +500,7 @@
 				197212BB2A1B6DE0007225BB /* SpotifyURLService.swift in Sources */,
 				191938872A36195D009B1743 /* PlaylistView.swift in Sources */,
 				192A632A2A28C89E00F1DDB8 /* File.swift in Sources */,
+				198741F52A3B649000853D12 /* ColorExtension.swift in Sources */,
 				197212752A0E533C007225BB /* ArtifyApp.swift in Sources */,
 				1919387F2A35DAEA009B1743 /* Artists.swift in Sources */,
 				192A63282A28737E00F1DDB8 /* PlayerViewModel.swift in Sources */,
@@ -652,6 +674,7 @@
 				DEVELOPMENT_TEAM = FULB7B7465;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Artify/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -681,6 +704,7 @@
 				DEVELOPMENT_TEAM = FULB7B7465;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Artify/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

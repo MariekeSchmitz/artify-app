@@ -38,7 +38,7 @@ struct PlaylistView: View {
         }
         .onAppear() {
             playlistViewmodel.getAllTracksInPlaylist(playlistId: playlistID)
-        }
+        }.background(Color.darkGrayBG)
         
     }
 }

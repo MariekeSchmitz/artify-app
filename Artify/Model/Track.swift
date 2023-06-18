@@ -7,8 +7,9 @@
 
 import Foundation
 
-struct Track: Decodable, Identifiable, Hashable {
-    let id = UUID()
+struct Track: Decodable, Hashable {
+//    let id = UUID()
+    var id: String = ""
     var name: String = ""
     var uri: String = ""
     var artists: [Artist] = []
@@ -18,5 +19,6 @@ struct Track: Decodable, Identifiable, Hashable {
         case name
         case uri
         case artists
+        case id
     }
 }
