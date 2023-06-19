@@ -16,7 +16,7 @@ struct ArtifyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            PlayView()
+            NavigationView()
 //            ContentView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }

@@ -8,16 +8,25 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
+    @Binding var settingsViewOn:Bool
+    
     var body: some View {
         VStack{
             Text("Settingsview")
+            Button("Zurück") {
+                withAnimation {
+                    settingsViewOn.toggle()
+                }
+               
+            }
         }.background(Color.darkGrayBG)
         
     }
 }
 
-struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView()
-    }
-}
+//struct SettingsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SettingsView()
+//    }
+//}

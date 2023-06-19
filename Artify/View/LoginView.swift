@@ -11,42 +11,34 @@ import SwiftUI
 import WebKit
 
 
-struct LoginView: View {
-    
-//    @EnvironmentObject var network: Network
-//    @ObservedObject var viewmodel:LoginViewModel = LoginViewModel()
-    @State var webViewPresent = false
-    @Binding var path:NavigationPath
-    @ObservedObject var loginVM:LoginViewModel
-    
-    var body: some View{
-        
-        HStack {
-            
-            Button("Login to Spotify") {
-                webViewPresent.toggle()
-            }
-            
-            .sheet(isPresented: $webViewPresent, onDismiss: {
-                path = NavigationPath()
-            }){
-                SpotifyWebView(loginVM:loginVM, webViewPresent: $webViewPresent)
-            }
-            .ignoresSafeArea()
-            .navigationTitle("Login to Spotify")
-            .navigationBarTitleDisplayMode(.inline)
-            
-            
-//            NavigationView {
-//                NavigationLink(destination: MusicLibraryView()) {
-//                    Text("Get started")
-//                }
+//struct LoginView: View {
+//
+////    @EnvironmentObject var network: Network
+////    @ObservedObject var viewmodel:LoginViewModel = LoginViewModel()
+//    @State var webViewPresent = false
+//    @ObservedObject var loginVM:LoginViewModel
+//
+//    var body: some View{
+//
+//        HStack {
+//
+//            Button("Login to Spotify") {
+//                webViewPresent.toggle()
 //            }
-
-        }
-    }
-    
-}
+//
+//            .sheet(isPresented: $webViewPresent, onDismiss: {
+//            }){
+//                SpotifyWebView(loginVM:loginVM, webViewPresent: $webViewPresent)
+//            }
+//            .ignoresSafeArea()
+//            .navigationTitle("Login to Spotify")
+//            .navigationBarTitleDisplayMode(.inline)
+//
+//
+//        }
+//    }
+//
+//}
 
 
 

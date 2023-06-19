@@ -9,65 +9,82 @@ import SwiftUI
 
 struct MusicLibraryView: View {
     
-    @StateObject var musicLibraryVM : MusicLibraryViewModel
+    @StateObject var musicLibraryVM : MusicLibraryViewModel = MusicLibraryViewModel.shared
     let playerVM = PlayerViewModel.shared
+    @Binding var musicLibraryViewOn:Bool
     
-    @Binding var path: NavigationPath
-
+    
     var body: some View {
         
-        Color.darkGrayBG
-            .ignoresSafeArea()
-            .overlay(
-                VStack{
+        NavigationStack {
+            ZStack {
+                Color.darkGrayBG.ignoresSafeArea()
+                VStack(spacing:0){
+                    HStack{
+                        Button("Zurück") {
+                            withAnimation {
+                                musicLibraryViewOn.toggle()
+                            }
+                        }
+                        Text("Tracks")
+                            .font(Font.custom("DMSerifDisplay-Regular", size: 80))
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .foregroundColor(Color.white)
+                            .padding(.top, 50)
+                            .padding(.trailing, 20)
+                    }
                     
-                    Text("Tracks")
-                        .font(Font.custom("DMSerifDisplay-Regular", size: 70))
-                        .frame(maxWidth: .infinity, alignment: .trailing)
+                    Text("Deine Playlists")
+                        .font(Font.custom("DMSerifDisplay-Regular", size: 32))
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(Color.white)
+                        .padding(.top, 35)
+                        .padding(.bottom, 15)
                         
+                    PlaylistsView(playlists: musicLibraryVM.playlistLibrary.items, musicLibraryViewOn: $musicLibraryViewOn).padding(0)
                     
-                    Text("Playlists")
-                        .font(Font.custom("DMSerifDisplay-Regular", size: 30))
+                    
+                    Text("Deine Top-Tracks")
+                        .font(Font.custom("DMSerifDisplay-Regular", size: 32))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(Color.white)
-                    PlaylistsView(playlists: musicLibraryVM.playlistLibrary.items, path:$path)
+                        .padding(.top, 35)
+                        .padding(.bottom, 15)
                     
-                    Text("Tracks")
-                        .font(Font.custom("DMSerifDisplay-Regular", size: 30))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundColor(Color.white)
-                    TrackView(savedTrackObjects: musicLibraryVM.favoriteTracks.items, path: $path)
-                    
-                }.onAppear(){
+                    TrackView(musicLibraryViewOn: $musicLibraryViewOn, savedTrackObjects: musicLibraryVM.favoriteTracks.items)
+                }
+                .onAppear(){
                     musicLibraryVM.getFavouriteTracks()
                     musicLibraryVM.getUsersPlaylists()
-                }
+                }.padding(.leading, 20)
                 
-            )
+            }
+        }
     }
 }
 
 struct PlaylistsView: View {
     
     var playlists:[SimplifiedPlaylistObject]
-    @Binding var path:NavigationPath
+    @Binding var musicLibraryViewOn:Bool
     
     var body: some View {
         ScrollView(.horizontal) {
             LazyHStack {
                 ForEach(playlists, id: \.self) { playlist in
-                    PlaylistCellView(playlist: playlist, path:$path)
+                    PlaylistCellView(playlist: playlist, musicLibraryViewOn: $musicLibraryViewOn)
                 }
             }
-        }
+        }.padding(0).frame(height: 200)
+
+        
     }
 }
 
 struct PlaylistCellView: View {
     
     var playlist: SimplifiedPlaylistObject
-    @Binding var path:NavigationPath
+    @Binding var musicLibraryViewOn:Bool
     
     var imageURL : String {
         if (playlist.images.count == 0) {
@@ -79,38 +96,33 @@ struct PlaylistCellView: View {
     
     
     var body: some View {
-                
-        NavigationLink(destination: PlaylistView(playlistID: playlist.id, playlistName: playlist.name, imageURL: imageURL, path:$path)) {
-            AsyncImage(url: URL(string: imageURL)) {
-                image in image.resizable()
+        
+            NavigationLink(destination: PlaylistView(musicLibraryViewOn: $musicLibraryViewOn, playlistID: playlist.id, playlistName: playlist.name, imageURL: imageURL)) {
+                AsyncImage(url: URL(string: imageURL)) {
+                    image in image.resizable()
+                }
+                placeholder: { Color.gray }
+                    .frame(width: 200, height: 200)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .overlay(content: {
+                        RoundedRectangle(cornerRadius: 20).foregroundColor(Color.black).opacity(0.5).frame(width: 200, height: 200)
+
+                    })
+                    .overlay(alignment: .bottomLeading, content: {
+                        Text(playlist.name)
+                            .font(Font.custom("Poppins-Regular", size: 18)).foregroundColor(.white)
+                            .multilineTextAlignment(.leading)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding()
+                    })
             }
-            placeholder: { Color.gray }
-                .frame(width: 200, height: 200)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-                .overlay(content: {
-                    RoundedRectangle(cornerRadius: 20).foregroundColor(Color.black).opacity(0.5).frame(width: 200, height: 200)
-
-                })
-                .overlay(alignment: .bottomLeading, content: {
-                    Text(playlist.name)
-                        .bold()
-                        .foregroundColor(Color.white)
-                        .padding()
-                    
-                })
-
-        }
-
     }
 }
 
 
-
-
-
-struct MusicLibraryView_Previews: PreviewProvider {
-
-    static var previews: some View {
-        MusicLibraryView(musicLibraryVM: MusicLibraryViewModel.shared, path:PlayView(loginVM: LoginViewModel.shared, musicLibraryVM:MusicLibraryViewModel.shared, playerVM: PlayerViewModel.shared).$path)
-    }
-}
+//struct MusicLibraryView_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+////        MusicLibraryView(musicLibraryVM: MusicLibraryViewModel.shared, path:PlayView(loginVM: LoginViewModel.shared, musicLibraryVM:MusicLibraryViewModel.shared, playerVM: PlayerViewModel.shared).$path)
+//    }
+//}

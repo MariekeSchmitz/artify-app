@@ -9,42 +9,52 @@ import SwiftUI
 
 struct TrackView: View {
     
+    @Binding var musicLibraryViewOn:Bool
     var savedTrackObjects:[SavedTrackObject]
-    @Binding var path:NavigationPath
     
     var body: some View {
         
         ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: 5) {
                 ForEach(savedTrackObjects, id: \.self) { savedTrackObject in
-                    TrackCellView(track: savedTrackObject.track, path: $path)
+                    TrackCellView(musicLibraryViewOn:$musicLibraryViewOn, track: savedTrackObject.track)
                 }
             }
         }
-        .frame(height: 250)
+       
     }
     
 }
 
 struct TrackCellView: View {
     
+    @Binding var musicLibraryViewOn:Bool
     var playerVM = PlayerViewModel.shared
     var musicLibraryVM = MusicLibraryViewModel.shared
     var track: Track
-    @Binding var path:NavigationPath
     
     var body: some View {
-        
-        VStack (alignment: .leading){
-            Text(track.name).font(.title3).foregroundColor(Color.white)
-            Text(getArtistString(artists:track.artists)).font(.subheadline).foregroundColor(Color.white)
-        } .onTapGesture {
-            playerVM.playTrack(id: track.uri)
-            musicLibraryVM.track = track
-            print(musicLibraryVM.track.name)
-            print(track.name)
-            path = NavigationPath()
+       
+        ZStack (alignment: .leading) {
+            Color.black
+            HStack {
+                
+                Rectangle().fill(Color.white).frame(width: 1, height: 30, alignment: .leading).padding(.trailing,10)
+                
+                VStack (alignment: .leading){
+                    Text(track.name).font(Font.custom("Poppins-Regular", size: 18)).foregroundColor(.white)
+                    Text(getArtistString(artists:track.artists)).font(Font.custom("Poppins-Italic", size: 13)).foregroundColor(.white)
+                }
+            }
+            .onTapGesture {
+                playerVM.playTrack(id: track.uri)
+                musicLibraryVM.track = track
+                withAnimation {
+                    musicLibraryViewOn.toggle()
+                }
+            }.padding()
         }
+        
         
     }
     

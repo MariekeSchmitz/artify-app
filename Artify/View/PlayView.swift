@@ -10,58 +10,74 @@ import SwiftUI
 
 struct PlayView: View {
     
-    @State var path = NavigationPath()
     @StateObject var loginVM: LoginViewModel = LoginViewModel.shared
     @StateObject var musicLibraryVM: MusicLibraryViewModel = MusicLibraryViewModel.shared
-    @StateObject var playerVM: PlayerViewModel = PlayerViewModel.shared
     
-//    init(_ loginViewModel:LoginViewModel, _ musicLibraryViewModel:MusicLibraryViewModel, _ playerViewModel:PlayerViewModel) {
-//        self.loginVM = loginViewModel
-//        self.musicLibraryVM = musicLibraryViewModel
-//        self.playerVM = playerViewModel
-//    }
+    @State var musicLibraryViewOn = false
+    @State var settingViewOn = false
     
     var body: some View{
         
-        NavigationStack(path: $path) {
+        ZStack {
             
-            if !loginVM.loginState.loggedIn {
-                LoginView(path: $path, loginVM: loginVM).background(Color.darkGrayBG)
+            if musicLibraryViewOn {
                 
+                Color.black.opacity(0.5).ignoresSafeArea()
+                
+                MusicLibraryView(musicLibraryViewOn: $musicLibraryViewOn).transition(.move(edge: .trailing))
+              
+//                GeometryReader{ geometry in
+//                    
+//                    MusicLibraryView(musicLibraryViewOn: $musicLibraryViewOn)
+//                        .frame(width: geometry.size.width * 0.9, alignment: .center)
+//
+//                }.transition(.move(edge: .trailing))
+                
+            } else if settingViewOn {
+                SettingsView(settingsViewOn: $settingViewOn).transition(.move(edge: .trailing))
             } else {
-                
-                ZStack {
-                    Color.yellow
-                }
-                VStack {
-                    HStack {
-                        NavigationLink(value: Route.musicLibrary) {
-                            Text("Music Library")
+                MainView(musicLibraryViewOn: $musicLibraryViewOn, settingViewOn: $settingViewOn)
+            }
+        }
+    }
+}
+
+struct MainView:View {
+    
+    @StateObject var playerVM: PlayerViewModel = PlayerViewModel.shared
+    @Binding var musicLibraryViewOn:Bool
+    @Binding var settingViewOn:Bool
+    @State var counter: Int = 0
+
+    var body: some View {
+        ZStack {
+            Color.black.ignoresSafeArea()
+            VisualizationView()
+            
+            VStack{
+                HStack{
+                    Button("MusicLibrary") {
+                        withAnimation {
+                            musicLibraryViewOn.toggle()
                         }
-                        NavigationLink(value: Route.settings) {
-                            Text("Settings")
-                        }
+                        
                     }
-                }
-                .navigationTitle("Player").navigationBarTitleDisplayMode(.inline)
-                .navigationDestination(for: Route.self) { route in
-                    switch route {
-                    case .musicLibrary:
-                        MusicLibraryView(musicLibraryVM: musicLibraryVM, path: $path)
-                    case .settings:
-                        SettingsView()
+                    
+                    Button("Settings") {
+                        withAnimation {
+                            settingViewOn.toggle()
+                        }
                     }
                 }
                 
                 Spacer()
-
                 
                 HStack {
                     
+                    Text("\(counter)").foregroundColor(.white)
                     Button("Previous") {
                         playerVM.playPreviousTrack()
                     }
-        
                     VStack {
                         Button("Pause") {
                             playerVM.pauseTrack()
@@ -69,22 +85,20 @@ struct PlayView: View {
                         Button("Play") {
                             playerVM.resumeTrack()
                         }
-//                        Button("Play specific song") {
-//                            playerVM.playTrack("id: String")
-//                        }
+                        
                     }
-        
                     Button("Next") {
                         playerVM.playNextTrack()
                     }
                 }
-                
-                
-                
             }
-        }.padding(.all).background(Color.darkGrayBG)
+        }.onReceive(playerVM.timer) { time in
+            self.counter += 1
+        }
     }
 }
+
+
 
 
 struct PlayView_Previews: PreviewProvider {

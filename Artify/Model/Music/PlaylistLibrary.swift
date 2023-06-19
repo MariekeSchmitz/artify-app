@@ -23,7 +23,4 @@ struct ImageObject: Decodable, Hashable {
     var width: Int?
 }
 
-//struct TracksInformation: Decodable, Hashable {
-//    var href: String = ""
-//    var total: Int = 0
-//}
+

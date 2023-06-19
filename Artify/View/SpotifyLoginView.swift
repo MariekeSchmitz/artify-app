@@ -14,6 +14,7 @@ struct SpotifyWebView: UIViewRepresentable {
     
     @ObservedObject var loginVM:LoginViewModel
     @Binding var webViewPresent: Bool
+    @Binding var playViewOn: Bool
     
     private let webView = WKWebView()
     
@@ -49,6 +50,7 @@ struct SpotifyWebView: UIViewRepresentable {
             webView.removeFromSuperview()
             
             webViewPresent.toggle()
+            playViewOn.toggle()
 
             loginVM.loginState.loggedIn.toggle()
 //            loginVM.loginState.token = token

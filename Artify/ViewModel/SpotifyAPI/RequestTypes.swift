@@ -18,6 +18,7 @@ enum RequestTypes {
     case getAllPlaylists
     case getAllTracks
     case getPlaylistById
+    case audioFeatures
+    case audioAnalysis
 
-    
 }

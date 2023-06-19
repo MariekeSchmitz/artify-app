@@ -14,15 +14,6 @@ struct LoginState {
     
     static let shared = LoginState()
     
-//    init() {
-//        
-////        UserDefaults.standard.removeObject(forKey: "Authorization")
-//        
-//        if let token = UserDefaults.standard.string(forKey: "Authorization"){
-//            self.token = token
-//            loggedIn = true
-//        }
-//    }
     
 
 }

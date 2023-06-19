@@ -14,6 +14,20 @@ class PlayerViewModel : ObservableObject {
     let player:SpotifyPlayerService = SpotifyPlayerService.shared
     static let shared = PlayerViewModel()
     
+    let timer = Timer
+        .publish(every: 1, on: .main, in: .common)
+        .autoconnect()
+    
+    
+    
+    
+//    func startTimer () {
+//        DispatchQueue.global(qos: .background).async {
+//            <#code#>
+//        }
+//    }
+    
+    
     func playTrack(id:String) {
         player.playTrack(trackURI:id)
     }

@@ -10,35 +10,29 @@ import SwiftUI
 struct PlaylistView: View {
     
     @StateObject var playlistViewmodel = PlaylistViewModel()
+    @Binding var musicLibraryViewOn:Bool
+
     var playerVM = PlayerViewModel.shared
     var playlistID : String
     var playlistName : String
     var imageURL : String
-    @Binding var path : NavigationPath
     
     var body: some View {
        
         VStack {
-           
+            
+            ImageView(url: imageURL, name: playlistName).ignoresSafeArea()
             ScrollView{
-                ImageView(url: imageURL)
-                    .overlay(alignment: .bottomLeading, content: {
-                        Text(playlistName)
-                            .bold()
-                            .foregroundColor(Color.white)
-                            .padding()
-                    })
-                
-                LazyVStack(alignment: .leading, spacing: 20) {
+                LazyVStack(alignment: .leading, spacing: 5) {
                     ForEach(playlistViewmodel.playlist.items, id: \.self) { track in
-                        TrackCellView(track: track.track, path: $path)
+                        TrackCellView(musicLibraryViewOn: $musicLibraryViewOn, track: track.track)
                     }
                 }
-            }
+            }.ignoresSafeArea().padding(0)
         }
         .onAppear() {
             playlistViewmodel.getAllTracksInPlaylist(playlistId: playlistID)
-        }.background(Color.darkGrayBG)
+        }.background(Color.black).ignoresSafeArea()
         
     }
 }
@@ -48,20 +42,40 @@ struct PlaylistView: View {
 struct ImageView: View {
     
     var url:String
+    var name: String
     
     var body: some View {
     
-        AsyncImage(url: URL(string: url)) {
-            image in image.resizable()
-        }
-        placeholder: { Color.gray }
-            .scaledToFill()
-            .frame(width:200, height: 200)
-            .overlay(content: {
-                Rectangle().foregroundColor(Color.black).opacity(0.5).frame(width: 200, height: 200)
+        
+        GeometryReader { geo in
+            AsyncImage(url: URL(string: url)) {
+                image in image.resizable().aspectRatio(contentMode: .fill).ignoresSafeArea()
+            }
+            placeholder: { Color.gray }
+////                .scaledToFill()
+                .frame(width:geo.size.width, height: geo.size.width).ignoresSafeArea()
+                .overlay(alignment: .bottomLeading) {
+                    Rectangle().fill(
+                        LinearGradient(gradient: Gradient(colors: [Color.clear, Color.black]),
+                                       startPoint: .top,
+                                       endPoint: .bottom)).frame(width:geo.size.width, height: geo.size.width).ignoresSafeArea()
+                        .overlay(alignment: .bottomLeading) {
+                            Text(name)
+                                .font(Font.custom("DMSerifDisplay-Regular", size: 55))
+                                .font(Font.body.leading(.tight))
+                                .foregroundColor(Color.white)
+                                .multilineTextAlignment(.leading)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding()
+                                .ignoresSafeArea()
+                                .lineSpacing(0)
 
-            })
+                        }
+                    
+                }.ignoresSafeArea()
             
+        }
+        
         
     }
 }
