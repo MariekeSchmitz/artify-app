@@ -73,6 +73,8 @@ struct AudioAnalysisBeat: Decodable, Hashable {
     var confidence: Double = 0
 }
 
+
+// start and duration in seconds
 struct AudioAnalysisBar: Decodable, Hashable {
     var start: Double = 0
     var duration: Double = 0

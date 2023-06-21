@@ -9,14 +9,10 @@ import Foundation
 
 class PlayerViewModel : ObservableObject {
     
-    var currentTrack:Track?
+    @Published var currentTrack:Track?
     var currentPlaylist:Playlist?
     let player:SpotifyPlayerService = SpotifyPlayerService.shared
     static let shared = PlayerViewModel()
-    
-    let timer = Timer
-        .publish(every: 1, on: .main, in: .common)
-        .autoconnect()
     
     
     
@@ -27,6 +23,12 @@ class PlayerViewModel : ObservableObject {
 //        }
 //    }
     
+    
+    func playCurrentTrack() {
+        if let t = currentTrack {
+            playTrack(id: t.uri)
+        }
+    }
     
     func playTrack(id:String) {
         player.playTrack(trackURI:id)

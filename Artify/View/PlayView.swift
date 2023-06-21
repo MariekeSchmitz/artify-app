@@ -47,7 +47,6 @@ struct MainView:View {
     @StateObject var playerVM: PlayerViewModel = PlayerViewModel.shared
     @Binding var musicLibraryViewOn:Bool
     @Binding var settingViewOn:Bool
-    @State var counter: Int = 0
 
     var body: some View {
         ZStack {
@@ -74,10 +73,10 @@ struct MainView:View {
                 
                 HStack {
                     
-                    Text("\(counter)").foregroundColor(.white)
-                    Button("Previous") {
-                        playerVM.playPreviousTrack()
-                    }
+                    
+//                    Button("Previous") {
+//                        playerVM.playPreviousTrack()
+//                    }
                     VStack {
                         Button("Pause") {
                             playerVM.pauseTrack()
@@ -87,13 +86,11 @@ struct MainView:View {
                         }
                         
                     }
-                    Button("Next") {
-                        playerVM.playNextTrack()
-                    }
+//                    Button("Next") {
+//                        playerVM.playNextTrack()
+//                    }
                 }
             }
-        }.onReceive(playerVM.timer) { time in
-            self.counter += 1
         }
     }
 }
