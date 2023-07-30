@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct PlayView: View {
+struct MainView: View {
     
     @StateObject var loginVM: LoginViewModel = LoginViewModel.shared
     @StateObject var musicLibraryVM: MusicLibraryViewModel = MusicLibraryViewModel.shared
@@ -36,13 +36,13 @@ struct PlayView: View {
             } else if settingViewOn {
                 SettingsView(settingsViewOn: $settingViewOn).transition(.move(edge: .trailing))
             } else {
-                MainView(musicLibraryViewOn: $musicLibraryViewOn, settingViewOn: $settingViewOn)
+                PlayView(musicLibraryViewOn: $musicLibraryViewOn, settingViewOn: $settingViewOn)
             }
         }
     }
 }
 
-struct MainView:View {
+struct PlayView:View {
     
     @StateObject var playerVM: PlayerViewModel = PlayerViewModel.shared
     @Binding var musicLibraryViewOn:Bool
@@ -100,7 +100,7 @@ struct MainView:View {
 
 struct PlayView_Previews: PreviewProvider {
     static var previews: some View {
-        PlayView()
+        MainView()
     }
 }
 

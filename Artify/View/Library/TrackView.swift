@@ -30,7 +30,6 @@ struct TrackCellView: View {
     
     @Binding var musicLibraryViewOn:Bool
     var playerVM = PlayerViewModel.shared
-    var musicLibraryVM = MusicLibraryViewModel.shared
     var audioAnalysis = MusicAnalysisViewModel.shared
     var track: Track
     
@@ -50,7 +49,7 @@ struct TrackCellView: View {
             .onTapGesture {
                 playerVM.currentTrack = track
                 Task {
-                    // Fetch analysis data, afterwards back to MainView TO DO: could be parallel
+                    // Fetch analysis data, afterwards back to MainView – TO DO: could be parallel to be faster
                     await audioAnalysis.getTracksAudioAnalysis(id: track.id)
                     await audioAnalysis.getTracksAudioFeatures(id: track.id)
                     withAnimation {

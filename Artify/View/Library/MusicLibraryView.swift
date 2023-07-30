@@ -9,13 +9,11 @@ import SwiftUI
 
 struct MusicLibraryView: View {
     
-    @StateObject var musicLibraryVM : MusicLibraryViewModel = MusicLibraryViewModel.shared
-    let playerVM = PlayerViewModel.shared
+    @StateObject var musicLibraryVM = MusicLibraryViewModel.shared
+    @StateObject var playerVM = PlayerViewModel.shared
     @Binding var musicLibraryViewOn:Bool
     
-    
     var body: some View {
-        
         NavigationStack {
             ZStack {
                 Color.darkGrayBG.ignoresSafeArea()
@@ -42,7 +40,6 @@ struct MusicLibraryView: View {
                         .padding(.bottom, 15)
                         
                     PlaylistsView(playlists: musicLibraryVM.playlistLibrary.items, musicLibraryViewOn: $musicLibraryViewOn).padding(0)
-                    
                     
                     Text("Deine Top-Tracks")
                         .font(Font.custom("DMSerifDisplay-Regular", size: 32))

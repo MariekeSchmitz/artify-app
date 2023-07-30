@@ -11,28 +11,165 @@ class MusicAnalysisViewModel : ObservableObject {
     
     static let shared = MusicAnalysisViewModel()
     let analysisService = SpotifyAnalysisService.shared
-    @Published var audioFeatures: AudioFeatures = AudioFeatures()
-    @Published var audioAnalysis: AudioAnalysis = AudioAnalysis()
-    var indexBeats: Int = 0
+    var audioFeatures: AudioFeatures = AudioFeatures()
+    var audioAnalysis: AudioAnalysis = AudioAnalysis()
+    var songTimer: Double = 0.00
+
+    @Published var visualizationValues:[VisualizationElement] = []
+    var beatsPerTimestamp = [Double:Int]()
     
+    var counterBeatsDetected: Int = 0
+    
+
+    var timerVisualization: Timer?
     
     let timer = Timer
         .publish(every: 0.01, on: .main, in: .common)
         .autoconnect()
     
-    func checkBeats(time:Double) -> Bool {
-        print(time)
-        let beats = audioAnalysis.beats
-        for beat in beats {
+    
+    func setupTimer () {
+        
+        if let t = timerVisualization {
+            t.invalidate()
+        }
+                
+        counterBeatsDetected = 0
+        
+        timerVisualization = Timer.scheduledTimer(
+                timeInterval: 0.01,
+                target: self,
+                selector: #selector(handleTimerExecution),
+                userInfo: nil,
+                repeats: true)
+    }
+    
+    
+    private func setupVisualizationData() {
+        
+        var numBeats = 0
+        var currentSegmentCounter = 0
+        var currentSectionCounter = 0
+        
+        visualizationValues = [VisualizationElement](repeating: VisualizationElement(), count: audioAnalysis.beats.count)
+        beatsPerTimestamp = [Double:Int]()
+        
+        for beat in audioAnalysis.beats {
+            
+            visualizationValues[numBeats] = VisualizationElement()
+            
+            currentSegmentCounter = getPitchData(beatStart: beat.start, numBeats: numBeats, currentSegmentCounter: currentSegmentCounter)
+            
+            currentSectionCounter = getSectionData(beatStart: beat.start, numBeats: numBeats, currentSectionCounter: currentSectionCounter)
+            
+            numBeats += 1
+            
             let roundedBeatStart = round(beat.start * 100) / 100.00
-//            print("ROUNDEDBEAT: \(roundedBeatStart)")
-            if roundedBeatStart == time {
-                return true
+            beatsPerTimestamp[roundedBeatStart] = numBeats
+        }
+        
+        print(visualizationValues)
+        
+    }
+    
+    private func getPitchData(beatStart:Double, numBeats:Int, currentSegmentCounter:Int) -> Int{
+        
+        let segments = audioAnalysis.segments
+        
+        // segments sorted by time
+        for i in currentSegmentCounter..<segments.count {
+            
+            let segment = segments[i]
+            let segmentStart = segment.start
+            let segmentEnd = segment.start + segment.duration
+            
+            // if beat lies within segment, add pitches from this segment to visualitationValues
+            if (beatStart >= segmentStart && beatStart < segmentEnd) {
+                
+                let pitches = segment.pitches
+                visualizationValues[numBeats].pitches = pitches
+                
+                // return current segmentIndex as new starting point for next segment search
+                return i
             }
         }
         
-        return false
+        return currentSegmentCounter
+        
     }
+    
+    private func getSectionData(beatStart:Double, numBeats:Int, currentSectionCounter:Int) -> Int {
+        
+        let sections = audioAnalysis.sections
+        
+        for i in currentSectionCounter..<sections.count {
+            
+            let section = sections[i]
+            let sectionStart = section.start
+            let sectionEnd = section.start + section.duration
+            
+            // if beat lies within segment, add pitches from this segment to visualitationValues
+            if (beatStart >= sectionStart && beatStart < sectionEnd) {
+                
+                visualizationValues[numBeats].sectionCounter = i
+                visualizationValues[numBeats].sectionChange = (i != currentSectionCounter)
+                
+                // return current segmentIndex as new starting point for next segment search
+                return i
+            }
+        }
+        
+        return currentSectionCounter
+        
+    }
+    
+    @objc private func handleTimerExecution() {
+        
+        songTimer += 0.01
+        let roundedTimer = round(songTimer*100)/100
+//        if checkBeats(time: roundedTimer) {
+//            print("beat detected")
+////            addToVisualizationValues(index: counterBeatsDetected)
+//            colorToggle.toggle()
+//        }
+        checkIfBeatDetected(time: roundedTimer)
+        
+    }
+    
+    
+    
+    func checkIfBeatDetected(time:Double){
+        
+        if (beatsPerTimestamp.keys.contains(time)) {
+            visualizationValues[counterBeatsDetected].beatPlayed = true
+            counterBeatsDetected += 1
+            print("total num beats detected: \(counterBeatsDetected)")
+        }
+        
+//        print("______")
+//
+//        for v in visualizationValues {
+//            print(v.beatPlayed)
+//        }
+//
+//        print("______")
+
+        
+//        let beats = audioAnalysis.beats
+//        for beat in beats {
+//            let roundedBeatStart = round(beat.start * 100) / 100.00
+//            if roundedBeatStart == time {
+//                counterBeatsDetected += 1
+//                return true
+//            }
+//        }
+//        return false
+    }
+    
+//    func addToVisualizationValues(index:Int) {
+//        visualizationValues[index - 1] = audioAnalysis.beats[index - 1]
+//        print(visualizationValues)
+//    }
     
     
 //    @MainActor
@@ -42,7 +179,7 @@ class MusicAnalysisViewModel : ObservableObject {
             let features:AudioFeatures? = await analysisService.getAudioFeatures(trackId: id)
             if let f = features {
                 self.audioFeatures = f
-//                print(self.audioFeatures)
+                print(self.audioFeatures)
             }
 //        }
         
@@ -55,11 +192,16 @@ class MusicAnalysisViewModel : ObservableObject {
             let analysis:AudioAnalysis? = await analysisService.getAudioAnalysis(trackId: id)
             if let a = analysis {
                 self.audioAnalysis = a
-//                print(self.audioAnalysis)
+                print(self.audioAnalysis)
             }
+        
+        setupVisualizationData()
+        
 //        }
         
     }
+    
+  
     
     
     

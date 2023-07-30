@@ -45,14 +45,12 @@ struct ImageView: View {
     var name: String
     
     var body: some View {
-    
-        
+
         GeometryReader { geo in
             AsyncImage(url: URL(string: url)) {
                 image in image.resizable().aspectRatio(contentMode: .fill).ignoresSafeArea()
             }
             placeholder: { Color.gray }
-////                .scaledToFill()
                 .frame(width:geo.size.width, height: geo.size.width).ignoresSafeArea()
                 .overlay(alignment: .bottomLeading) {
                     Rectangle().fill(
@@ -73,10 +71,8 @@ struct ImageView: View {
                         }
                     
                 }.ignoresSafeArea()
-            
         }
-        
-        
+  
     }
 }
 

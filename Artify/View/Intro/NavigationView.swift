@@ -16,9 +16,8 @@ struct NavigationView: View {
     
     var body: some View {
         
-        
         if (playViewOn) {
-            PlayView()
+            MainView()
         } else {
             ZStack{
                 Color.darkGrayBG.ignoresSafeArea()
@@ -42,10 +41,7 @@ struct NavigationView: View {
                     }
                 }
             }
-            
         }
-     
-        
     }
     
     private func delayIntro() async {
@@ -78,21 +74,6 @@ struct IntroView: View {
         }
     }
     
-}
-
-struct RoundedButton: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .padding()
-            .foregroundStyle(.white)
-            .overlay(
-                RoundedRectangle(cornerRadius: 100)
-                            .stroke(Color.white, lineWidth: 1)
-                            .frame(width: 180, height: 45)
-                    )
-            .font(Font.custom("Poppins-Regular", size: 15))
-            
-    }
 }
 
 struct NavigationView_Previews: PreviewProvider {

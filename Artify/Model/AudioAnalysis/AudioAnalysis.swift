@@ -67,14 +67,13 @@ struct AudioAnalysisTatum: Decodable, Hashable {
     var confidence: Double = 0
 }
 
+// start and duration in seconds
 struct AudioAnalysisBeat: Decodable, Hashable {
     var start: Double = 0
     var duration: Double = 0
     var confidence: Double = 0
 }
 
-
-// start and duration in seconds
 struct AudioAnalysisBar: Decodable, Hashable {
     var start: Double = 0
     var duration: Double = 0
