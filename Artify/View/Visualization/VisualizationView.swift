@@ -21,8 +21,9 @@ struct VisualizationView:View {
             // Shapes
 //            Rectangle().fill(analysisVM.colorToggle ? Color.red : Color.blue).ignoresSafeArea()
             
-            CircleVisualization(radius: 400, values: analysisVM.visualizationValues)
+//            CircleVisualization(radius: 400, values: analysisVM.visualizationValues)
             
+            VisualizationSpriteView().ignoresSafeArea()
             
             
             // Song data
@@ -53,8 +54,8 @@ struct VisualizationView:View {
             
             if (playerVM.currentTrack != nil) {
                 playerVM.playCurrentTrack()
-                analysisVM.setupTimer()
-                counterOn = true
+//                analysisVM.setupTimer()
+//                counterOn = true
             }
            
         }

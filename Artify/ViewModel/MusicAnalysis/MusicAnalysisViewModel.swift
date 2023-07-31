@@ -16,33 +16,35 @@ class MusicAnalysisViewModel : ObservableObject {
     var songTimer: Double = 0.00
 
     @Published var visualizationValues:[VisualizationElement] = []
-    var beatsPerTimestamp = [Double:Int]()
+    var numBeatsPerTimestamp = [Double:Int]()
+    var beatDetectedPerTimeStamp = [Double:Bool]()
+
     
     var counterBeatsDetected: Int = 0
     
 
-    var timerVisualization: Timer?
+//    var timerVisualization: Timer?
     
-    let timer = Timer
-        .publish(every: 0.01, on: .main, in: .common)
-        .autoconnect()
+//    let timer = Timer
+//        .publish(every: 0.01, on: .main, in: .common)
+//        .autoconnect()
     
     
-    func setupTimer () {
-        
-        if let t = timerVisualization {
-            t.invalidate()
-        }
-                
-        counterBeatsDetected = 0
-        
-        timerVisualization = Timer.scheduledTimer(
-                timeInterval: 0.01,
-                target: self,
-                selector: #selector(handleTimerExecution),
-                userInfo: nil,
-                repeats: true)
-    }
+//    func setupTimer () {
+//
+//        if let t = timerVisualization {
+//            t.invalidate()
+//        }
+//
+//        counterBeatsDetected = 0
+//
+//        timerVisualization = Timer.scheduledTimer(
+//                timeInterval: 0.01,
+//                target: self,
+//                selector: #selector(handleTimerExecution),
+//                userInfo: nil,
+//                repeats: true)
+//    }
     
     
     private func setupVisualizationData() {
@@ -50,26 +52,32 @@ class MusicAnalysisViewModel : ObservableObject {
         var numBeats = 0
         var currentSegmentCounter = 0
         var currentSectionCounter = 0
+        counterBeatsDetected = 0
         
         visualizationValues = [VisualizationElement](repeating: VisualizationElement(), count: audioAnalysis.beats.count)
-        beatsPerTimestamp = [Double:Int]()
+        numBeatsPerTimestamp = [Double:Int]()
         
         for beat in audioAnalysis.beats {
             
             visualizationValues[numBeats] = VisualizationElement()
             
             currentSegmentCounter = getPitchData(beatStart: beat.start, numBeats: numBeats, currentSegmentCounter: currentSegmentCounter)
-            
             currentSectionCounter = getSectionData(beatStart: beat.start, numBeats: numBeats, currentSectionCounter: currentSectionCounter)
             
             numBeats += 1
             
             let roundedBeatStart = round(beat.start * 100) / 100.00
-            beatsPerTimestamp[roundedBeatStart] = numBeats
+            numBeatsPerTimestamp[roundedBeatStart] = numBeats
+            beatDetectedPerTimeStamp[roundedBeatStart] = false
         }
         
         print(visualizationValues)
+        print(visualizationValues.count)
         
+//        let sortedByValueDictionary = numBeatsPerTimestamp.sorted { $0.1 < $1.1 }
+//
+//        print(sortedByValueDictionary)
+//
     }
     
     private func getPitchData(beatStart:Double, numBeats:Int, currentSegmentCounter:Int) -> Int{
@@ -123,28 +131,55 @@ class MusicAnalysisViewModel : ObservableObject {
         
     }
     
-    @objc private func handleTimerExecution() {
-        
-        songTimer += 0.01
-        let roundedTimer = round(songTimer*100)/100
-//        if checkBeats(time: roundedTimer) {
-//            print("beat detected")
-////            addToVisualizationValues(index: counterBeatsDetected)
-//            colorToggle.toggle()
-//        }
-        checkIfBeatDetected(time: roundedTimer)
-        
-    }
+//    @objc private func handleTimerExecution() {
+//
+//        songTimer += 0.01
+//        let roundedTimer = round(songTimer*100)/100
+////        if checkBeats(time: roundedTimer) {
+////            print("beat detected")
+//////            addToVisualizationValues(index: counterBeatsDetected)
+////            colorToggle.toggle()
+////        }
+//        checkIfBeatDetected(time: roundedTimer)
+//
+//    }
     
     
     
-    func checkIfBeatDetected(time:Double){
+    func checkIfBeatDetected(time:Double) -> Bool{
         
-        if (beatsPerTimestamp.keys.contains(time)) {
-            visualizationValues[counterBeatsDetected].beatPlayed = true
-            counterBeatsDetected += 1
-            print("total num beats detected: \(counterBeatsDetected)")
+        let previousTime = round((time - 0.01)*100)/100
+
+        if (numBeatsPerTimestamp.keys.contains(time)) {
+            
+            if (!(beatDetectedPerTimeStamp[time]!)) {
+                beatDetectedPerTimeStamp[time] = true
+                counterBeatsDetected += 1
+                
+                print("beat detected: \(time)")
+                print("total num beats detected: \(counterBeatsDetected)")
+                
+                return true
+            }
+        
+            
+            
+        } else if (numBeatsPerTimestamp.keys.contains(previousTime)) {
+
+            if (!(beatDetectedPerTimeStamp[previousTime]!)) {
+                beatDetectedPerTimeStamp[previousTime] = true
+                counterBeatsDetected += 1
+
+                print("beat detected: \(previousTime)")
+                print("total num beats detected: \(counterBeatsDetected)")
+
+                return true
+            }
         }
+        
+
+    
+        return false
         
 //        print("______")
 //
