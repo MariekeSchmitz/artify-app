@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct VisualizationView:View {
     @StateObject var musicLibraryVM: MusicLibraryViewModel = MusicLibraryViewModel.shared
@@ -15,6 +16,8 @@ struct VisualizationView:View {
     @State var counter = 0.00
     @State var counterOn = false
     @State var colorToggle = false
+    
+    var visualizationView = VisualizationSpriteView()
 
     var body: some View {
         ZStack {
@@ -23,8 +26,8 @@ struct VisualizationView:View {
             
 //            CircleVisualization(radius: 400, values: analysisVM.visualizationValues)
             
-            VisualizationSpriteView().ignoresSafeArea()
             
+            visualizationView
             
             // Song data
             if (playerVM.currentTrack != nil) {
@@ -44,6 +47,14 @@ struct VisualizationView:View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading)
                     
+                    Button ("Save") {
+                        let renderer = ImageRenderer(content: visualizationView)
+                        if let image = renderer.uiImage {
+                            let imageSaver = ImageSaver()
+                            imageSaver.writeImage(image: image)
+                            
+                        }
+                    }
 
                 }
             }
@@ -82,3 +93,15 @@ struct Animation_Previews: PreviewProvider {
         VisualizationView()
     }
 }
+
+class ImageSaver :NSObject {
+    func writeImage(image:UIImage) {
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveCompleted), nil)
+    }
+    
+    @objc func saveCompleted(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        print("saved")
+    }
+}
+
+

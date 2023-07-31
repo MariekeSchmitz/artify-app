@@ -8,16 +8,22 @@
 import Foundation
 import SpriteKit
 
+
+
 func drawCircle(radius:CGFloat, posX:CGFloat, posY:CGFloat, fillColor:SKColor) -> SKShapeNode {
     
     var Circle = SKShapeNode(circleOfRadius: radius)
     
     Circle.position = CGPointMake(posX, posY)
     Circle.fillColor = fillColor
+    Circle.lineWidth = 0
 
     return Circle
     
 }
+
+
+
 
 
 func getX(angle: Double, step:Int, radius:Double) -> CGFloat {
