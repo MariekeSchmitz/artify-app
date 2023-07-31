@@ -94,7 +94,6 @@ struct CircleElement : View, Equatable{
     
     @Binding var beatsDetected : Bool
     
-    
     var body: some View {
         if(beatsDetected){
             GeometryReader { geometry in

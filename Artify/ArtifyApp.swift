@@ -16,7 +16,8 @@ struct ArtifyApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationView()
+            ContentTestView()
+//            NavigationView()
 //            CircleVisualization()
 //            ContentView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)

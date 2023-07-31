@@ -23,6 +23,8 @@ struct VisualizationView:View {
             
             CircleVisualization(radius: 400, values: analysisVM.visualizationValues)
             
+            
+            
             // Song data
             if (playerVM.currentTrack != nil) {
                 VStack {
