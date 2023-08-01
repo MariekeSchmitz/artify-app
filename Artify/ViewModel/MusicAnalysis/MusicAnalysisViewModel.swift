@@ -52,6 +52,8 @@ class MusicAnalysisViewModel : ObservableObject {
         var numBeats = 0
         var currentSegmentCounter = 0
         var currentSectionCounter = 0
+        var currentBarCounter = 0
+
         counterBeatsDetected = 0
         
         visualizationValues = [VisualizationElement](repeating: VisualizationElement(), count: audioAnalysis.beats.count)
@@ -60,9 +62,13 @@ class MusicAnalysisViewModel : ObservableObject {
         for beat in audioAnalysis.beats {
             
             visualizationValues[numBeats] = VisualizationElement()
-            
-            currentSegmentCounter = getPitchData(beatStart: beat.start, numBeats: numBeats, currentSegmentCounter: currentSegmentCounter)
+            visualizationValues[numBeats].beatConfidence = beat.confidence
+            visualizationValues[numBeats].beatLength = beat.duration
+
+
+            currentSegmentCounter = getPitchTimbreData(beatStart: beat.start, numBeats: numBeats, currentSegmentCounter: currentSegmentCounter)
             currentSectionCounter = getSectionData(beatStart: beat.start, numBeats: numBeats, currentSectionCounter: currentSectionCounter)
+            currentBarCounter = getBarData(beatStart: beat.start, numBeats: numBeats, currentBarCounter: currentBarCounter)
             
             numBeats += 1
             
@@ -80,7 +86,7 @@ class MusicAnalysisViewModel : ObservableObject {
 //
     }
     
-    private func getPitchData(beatStart:Double, numBeats:Int, currentSegmentCounter:Int) -> Int{
+    private func getPitchTimbreData(beatStart:Double, numBeats:Int, currentSegmentCounter:Int) -> Int{
         
         let segments = audioAnalysis.segments
         
@@ -97,6 +103,12 @@ class MusicAnalysisViewModel : ObservableObject {
                 let pitches = segment.pitches
                 visualizationValues[numBeats].pitches = pitches
                 
+                let timbre = segment.timbre
+                visualizationValues[numBeats].timbre = timbre
+                
+                visualizationValues[numBeats].segmentLoudness = segment.loudness_max
+
+
                 // return current segmentIndex as new starting point for next segment search
                 return i
             }
@@ -121,6 +133,8 @@ class MusicAnalysisViewModel : ObservableObject {
                 
                 visualizationValues[numBeats].sectionCounter = i
                 visualizationValues[numBeats].sectionChange = (i != currentSectionCounter)
+                visualizationValues[numBeats].sectionKey = section.key
+                visualizationValues[numBeats].sectionTempo = section.tempo
                 
                 // return current segmentIndex as new starting point for next segment search
                 return i
@@ -128,6 +142,31 @@ class MusicAnalysisViewModel : ObservableObject {
         }
         
         return currentSectionCounter
+        
+    }
+    
+    private func getBarData(beatStart:Double, numBeats:Int, currentBarCounter:Int) -> Int {
+        
+        let bars = audioAnalysis.bars
+        
+        for i in currentBarCounter..<bars.count {
+            
+            let bar = bars[i]
+            let barStart = bar.start
+            let barEnd = bar.start + bar.duration
+            
+            // if beat lies within segment, add pitches from this segment to visualitationValues
+            if (beatStart >= barStart && beatStart < barEnd) {
+                
+                visualizationValues[numBeats].barCounter = i
+                visualizationValues[numBeats].barChange = (i != currentBarCounter)
+                
+                // return current segmentIndex as new starting point for next segment search
+                return i
+            }
+        }
+        
+        return currentBarCounter
         
     }
     

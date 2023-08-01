@@ -48,12 +48,7 @@ struct VisualizationView:View {
                         .padding(.leading)
                     
                     Button ("Save") {
-                        let renderer = ImageRenderer(content: visualizationView)
-                        if let image = renderer.uiImage {
-                            let imageSaver = ImageSaver()
-                            imageSaver.writeImage(image: image)
-                            
-                        }
+                        visualizationView.takeScreenshot()
                     }
 
                 }

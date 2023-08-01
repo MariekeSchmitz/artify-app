@@ -79,6 +79,8 @@
 		19CF2DDD2A76BC710038855E /* VisualizationElementVm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2DDC2A76BC710038855E /* VisualizationElementVm.swift */; };
 		19CF2E212A77B4F80038855E /* VisualizationSpriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E202A77B4F80038855E /* VisualizationSpriteView.swift */; };
 		19CF2E232A77E3AD0038855E /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E222A77E3AD0038855E /* Shapes.swift */; };
+		19CF2E282A78F1E50038855E /* VisualizationSceneA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E272A78F1E50038855E /* VisualizationSceneA.swift */; };
+		19CF2E2A2A78F20B0038855E /* VisualizationSceneB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E292A78F20B0038855E /* VisualizationSceneB.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,6 +169,8 @@
 		19CF2DDC2A76BC710038855E /* VisualizationElementVm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationElementVm.swift; sourceTree = "<group>"; };
 		19CF2E202A77B4F80038855E /* VisualizationSpriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationSpriteView.swift; sourceTree = "<group>"; };
 		19CF2E222A77E3AD0038855E /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
+		19CF2E272A78F1E50038855E /* VisualizationSceneA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationSceneA.swift; sourceTree = "<group>"; };
+		19CF2E292A78F20B0038855E /* VisualizationSceneB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationSceneB.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -470,10 +474,20 @@
 		19CF2E1D2A77B4C00038855E /* SpriteKit */ = {
 			isa = PBXGroup;
 			children = (
+				19CF2E262A78F1CB0038855E /* VisualizationScenes */,
 				19CF2E202A77B4F80038855E /* VisualizationSpriteView.swift */,
 				19CF2E222A77E3AD0038855E /* Shapes.swift */,
 			);
 			path = SpriteKit;
+			sourceTree = "<group>";
+		};
+		19CF2E262A78F1CB0038855E /* VisualizationScenes */ = {
+			isa = PBXGroup;
+			children = (
+				19CF2E272A78F1E50038855E /* VisualizationSceneA.swift */,
+				19CF2E292A78F20B0038855E /* VisualizationSceneB.swift */,
+			);
+			path = VisualizationScenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -627,6 +641,7 @@
 				194791A62A24B8FD00FD2604 /* MusicLibraryOld.swift in Sources */,
 				197212CA2A211181007225BB /* AlbumListViewModel.swift in Sources */,
 				1972127E2A0E533E007225BB /* Persistence.swift in Sources */,
+				19CF2E2A2A78F20B0038855E /* VisualizationSceneB.swift in Sources */,
 				192A632C2A28DF0C00F1DDB8 /* TrackList.swift in Sources */,
 				190DF77A2A73E5EE008F050D /* CircleVisualization.swift in Sources */,
 				1985B42C2A277FA600F65B30 /* SpotifyPlayerService.swift in Sources */,
@@ -647,6 +662,7 @@
 				197212812A0E533E007225BB /* Artify.xcdatamodeld in Sources */,
 				1919388A2A361A04009B1743 /* PlaylistViewModel.swift in Sources */,
 				195170682A409CAC00789099 /* VisualizationView.swift in Sources */,
+				19CF2E282A78F1E50038855E /* VisualizationSceneA.swift in Sources */,
 				192A632E2A28E56E00F1DDB8 /* SavedTrackObject.swift in Sources */,
 				1919388C2A3623D7009B1743 /* TrackView.swift in Sources */,
 				197212BB2A1B6DE0007225BB /* SpotifyURLService.swift in Sources */,
