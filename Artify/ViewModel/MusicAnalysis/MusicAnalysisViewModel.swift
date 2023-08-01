@@ -67,9 +67,9 @@ class MusicAnalysisViewModel : ObservableObject {
 
 
             currentSegmentCounter = getPitchTimbreData(beatStart: beat.start, numBeats: numBeats, currentSegmentCounter: currentSegmentCounter)
-            currentSectionCounter = getSectionData(beatStart: beat.start, numBeats: numBeats, currentSectionCounter: currentSectionCounter)
             currentBarCounter = getBarData(beatStart: beat.start, numBeats: numBeats, currentBarCounter: currentBarCounter)
-            
+            currentSectionCounter = getSectionData(beatStart: beat.start, numBeats: numBeats, currentSectionCounter: currentSectionCounter)
+
             numBeats += 1
             
             let roundedBeatStart = round(beat.start * 100) / 100.00

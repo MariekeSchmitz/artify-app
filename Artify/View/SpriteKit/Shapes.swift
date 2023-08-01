@@ -12,17 +12,28 @@ import SpriteKit
 
 func drawCircle(radius:CGFloat, posX:CGFloat, posY:CGFloat, fillColor:SKColor) -> SKShapeNode {
     
-    var Circle = SKShapeNode(circleOfRadius: radius)
+    var c = SKShapeNode(circleOfRadius: radius)
     
-    Circle.position = CGPointMake(posX, posY)
-    Circle.fillColor = fillColor
-    Circle.lineWidth = 0
+    c.position = CGPointMake(posX, posY)
+    c.fillColor = fillColor
+    c.lineWidth = 0
 
-    return Circle
+    return c
     
 }
 
-
+func drawLine(startPoint: CGPoint, endPoint: CGPoint, lineWidth: CGFloat = 1, lineColor: SKColor = SKColor.white) -> SKShapeNode {
+    
+    let newLine = SKShapeNode()
+    let pathToDraw = CGMutablePath()
+    pathToDraw.move(to: startPoint)
+    pathToDraw.addLine(to: endPoint)
+    newLine.path = pathToDraw
+    newLine.strokeColor = lineColor
+    newLine.lineWidth = lineWidth
+    
+    return newLine
+}
 
 
 
@@ -40,5 +51,38 @@ func getY(angle: Double, step:Int, radius:Double) -> CGFloat {
     let y = radius * sin(CGFloat(angleForStep))
 
     return y
+}
+
+extension SKColor {
+    static var random: SKColor {
+        return SKColor(
+            red: .random(in: 0...1),
+            green: .random(in: 0...1),
+            blue: .random(in: 0...1),
+            alpha: 1.0
+        )
+    }
+}
+
+extension SKColor {
+    static var randomTransparent: SKColor {
+        return SKColor(
+            red: .random(in: 0...1),
+            green: .random(in: 0...1),
+            blue: .random(in: 0...1),
+            alpha: 0.3
+        )
+    }
+}
+
+extension SKColor {
+    static var whiteTransparent: SKColor {
+        return SKColor(
+            red: 1,
+            green: 1,
+            blue: 1,
+            alpha: 0.3
+        )
+    }
 }
 

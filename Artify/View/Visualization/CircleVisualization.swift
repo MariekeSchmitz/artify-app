@@ -24,20 +24,21 @@ struct CircleVisualization: View {
     
     var body: some View {
         ZStack {
+            Text("HI")
             
-            ForEach(0..<vm.visualizationValues.count, id: \.self) { i in
-
-                // Start of Section
-                if (vm.visualizationValues[i].sectionChange) {
-                    EquatableView(content: CircleElement(width: 200, height:  200, opacity: 0.1, color: Color.yellow, posX: getX(step: i, radius: radius), posY: getY(step: i, radius: radius), step: i, beatsDetected: $vmP.visualizationValues[i].beatPlayed))
-                    
-                }
-
-                // Pitches
-                let pitches = vm.visualizationValues[i].pitches
-                ForEach(0..<12) { j in
-                    EquatableView(content: CircleElement(width: 30 * pitches[j], height:  30 * pitches[j], opacity: 1, color: Color.random, posX: getX(step: i, radius: pitchRadius[j]), posY: getY(step: i, radius: pitchRadius[j]), step: i, beatsDetected: $vmP.visualizationValues[i].beatPlayed))
-                }
+//            ForEach(0..<vm.visualizationValues.count, id: \.self) { i in
+//
+//                // Start of Section
+//                if (vm.visualizationValues[i].sectionChange) {
+//                    EquatableView(content: CircleElement(width: 200, height:  200, opacity: 0.1, color: Color.yellow, posX: getX(step: i, radius: radius), posY: getY(step: i, radius: radius), step: i, beatsDetected: $vmP.visualizationValues[i].beatPlayed))
+//                    
+//                }
+//
+//                // Pitches
+//                let pitches = vm.visualizationValues[i].pitches
+//                ForEach(0..<12) { j in
+//                    EquatableView(content: CircleElement(width: 30 * pitches[j], height:  30 * pitches[j], opacity: 1, color: Color.random, posX: getX(step: i, radius: pitchRadius[j]), posY: getY(step: i, radius: pitchRadius[j]), step: i, beatsDetected: $vmP.visualizationValues[i].beatPlayed))
+//                }
                 
                 
 //                CircleElement(width: 20, height:  20, opacity: 1, color: Color.yellow, posX: getX(step: i, radius: radius), posY: getY(step: i, radius: radius))
@@ -46,7 +47,7 @@ struct CircleVisualization: View {
                 
 
 
-            }
+            
         }.onAppear(){
             self.angle = Float(2 * Double.pi) / Float(values.count - 1)
 

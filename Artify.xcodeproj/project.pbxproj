@@ -81,6 +81,7 @@
 		19CF2E232A77E3AD0038855E /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E222A77E3AD0038855E /* Shapes.swift */; };
 		19CF2E282A78F1E50038855E /* VisualizationSceneA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E272A78F1E50038855E /* VisualizationSceneA.swift */; };
 		19CF2E2A2A78F20B0038855E /* VisualizationSceneB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E292A78F20B0038855E /* VisualizationSceneB.swift */; };
+		19CF2E2C2A79599E0038855E /* VisualizationSceneC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E2B2A79599E0038855E /* VisualizationSceneC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +172,7 @@
 		19CF2E222A77E3AD0038855E /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		19CF2E272A78F1E50038855E /* VisualizationSceneA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationSceneA.swift; sourceTree = "<group>"; };
 		19CF2E292A78F20B0038855E /* VisualizationSceneB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationSceneB.swift; sourceTree = "<group>"; };
+		19CF2E2B2A79599E0038855E /* VisualizationSceneC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationSceneC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -486,6 +488,7 @@
 			children = (
 				19CF2E272A78F1E50038855E /* VisualizationSceneA.swift */,
 				19CF2E292A78F20B0038855E /* VisualizationSceneB.swift */,
+				19CF2E2B2A79599E0038855E /* VisualizationSceneC.swift */,
 			);
 			path = VisualizationScenes;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 				194791A62A24B8FD00FD2604 /* MusicLibraryOld.swift in Sources */,
 				197212CA2A211181007225BB /* AlbumListViewModel.swift in Sources */,
 				1972127E2A0E533E007225BB /* Persistence.swift in Sources */,
+				19CF2E2C2A79599E0038855E /* VisualizationSceneC.swift in Sources */,
 				19CF2E2A2A78F20B0038855E /* VisualizationSceneB.swift in Sources */,
 				192A632C2A28DF0C00F1DDB8 /* TrackList.swift in Sources */,
 				190DF77A2A73E5EE008F050D /* CircleVisualization.swift in Sources */,

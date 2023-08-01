@@ -11,11 +11,11 @@ import UIKit
 
 struct VisualizationSpriteView:View {
     
-    var scene: VisualizationSceneA
+    var scene: VisualizationSceneC
     var spriteView:SpriteView
     
     init() {
-        scene = VisualizationSceneA()
+        scene = VisualizationSceneC()
         scene.size = CGSize(width: 1000, height: 1000)
         scene.scaleMode = .aspectFill
         scene.backgroundColor = UIColor.black
@@ -35,11 +35,11 @@ struct VisualizationSpriteView:View {
     
     func takeScreenshot() {
         let bounds = self.scene.view?.bounds
-        let scale = self.scene.view?.window?.screen.scale
+//        let scale = self.scene.view?.window?.screen.scale
         UIGraphicsBeginImageContextWithOptions(bounds!.size, false, 10)
         self.scene.view?.drawHierarchy(in: CGRect(origin: CGPoint(x: 0, y: 0), size: bounds!.size), afterScreenUpdates: true)
 
-        var screenshotImage = UIGraphicsGetImageFromCurrentImageContext()
+        let screenshotImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 
         UIImageWriteToSavedPhotosAlbum(screenshotImage!, nil, nil, nil)
@@ -52,24 +52,4 @@ struct VisualizationSpriteView:View {
 
 
 
-extension SKColor {
-    static var random: SKColor {
-        return SKColor(
-            red: .random(in: 0...1),
-            green: .random(in: 0...1),
-            blue: .random(in: 0...1),
-            alpha: 1.0
-        )
-    }
-}
 
-extension SKColor {
-    static var randomTransparent: SKColor {
-        return SKColor(
-            red: .random(in: 0...1),
-            green: .random(in: 0...1),
-            blue: .random(in: 0...1),
-            alpha: 0.3
-        )
-    }
-}

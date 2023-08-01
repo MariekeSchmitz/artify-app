@@ -14,34 +14,103 @@ class VisualizationSceneB: SKScene {
     private var startTime: TimeInterval = 0.0
     private var musicAnalysisVM = MusicAnalysisViewModel.shared
     private var angle:Double = 0
+    private var timbreRadius:Double = 0
     private var pitchRadius = [Double](repeating:0, count: 12)
-    private var radius:Double = 300
+    private var prevPitchLinePos = [CGPoint](repeating:CGPoint(), count: 12)
+    private var pitchColors = [SKColor](repeating:SKColor(), count: 12)
+    
+    private var prevTimbreLinePos = [CGPoint](repeating:CGPoint(), count: 12)
+    private var stepsPerPitch = [Int](repeating: 0, count: 12)
+    private var stepsPerTimbre = [Int](repeating: 0, count: 12)
+
+
+
+
+    private var radius:Double = 350
         
     override func didMove(to view: SKView) {
 
+        
 //        self.anchorPoint
         let values = musicAnalysisVM.visualizationValues
         
         angle = 2 * .pi / Double(values.count)
+        timbreRadius = radius/3
+
+        
+        if (values.count != 0 ) {
+            for i in 0..<prevPitchLinePos.count {
+                stepsPerPitch[i] = .random(in: 0..<values.count)
+                stepsPerTimbre[i] = .random(in: 0..<values.count)
+
+                let startXPitchLines = getX(angle: angle, step: stepsPerPitch[i], radius: radius) + frame.midX
+                let startYPitchLines = getY(angle: angle, step: stepsPerPitch[i], radius: radius) + frame.midY
+                
+                let startXTimbreLines = getX(angle: angle, step: stepsPerTimbre[i], radius: timbreRadius) + frame.midX
+                let startYTimbreLines = getY(angle: angle, step: stepsPerTimbre[i], radius: timbreRadius) + frame.midY
+                
+                prevPitchLinePos[i] = CGPoint(x: startXPitchLines, y:startYPitchLines)
+                pitchColors[i] = SKColor.random
+                
+                prevTimbreLinePos[i] = CGPoint(x: startXTimbreLines, y:startYTimbreLines)
+                
+            }
+        }
+
+        
+        
+        
         for i in 0..<pitchRadius.count {
             pitchRadius[i] = radius/12 * Double(i)
         }
         
-        
-        
 //        for i in 0..<values.count {
 //
-//            if (values[i].sectionChange) {
-//                var circle = drawCircle(radius: 100, posX: getX(angle: angle, step: i, radius: 100) + frame.midX , posY: getY(angle: angle, step: i, radius: 100) + frame.midY, fillColor: SKColor.white)
-//                    self.addChild(circle)
+//            let pitches = values[i].pitches
+//
+//            for j in 0..<pitches.count {
+//
+//                var pitch = pitches[j]
+//
+//                if pitch > 0.9 {
+//                    pitch += .random(in: 0...0.5)
+//                }
+//
+//                radius = pitchRadius[j]
+//
+//                let newX = getX(angle: angle, step: i, radius: radius*1/2 + radius/2 * pitch) + frame.midX
+//                let newY = getY(angle: angle, step: i, radius: radius*1/2 + radius/2 * pitch) + frame.midY
+//
+//                let line = drawLine(startPoint: prevPitchLinePos[j], endPoint: CGPoint(x: newX, y: newY), lineColor: pitchColors[j])
+//                self.addChild(line)
+//
+//                prevPitchLinePos[j] = CGPoint(x: newX, y: newY)
 //            }
 //
-//            let pitches = values[i].pitches
-//            print(pitches)
-//            for j in 0..<pitches.count {
-//                var circle = drawCircle(radius: 10 * pitches[j], posX: getX(angle: angle, step: i, radius: pitchRadius[j]) + frame.midX , posY: getY(angle: angle, step: i, radius: pitchRadius[j]) + frame.midY, fillColor: SKColor.random)
-//                    self.addChild(circle)
+//
+//            let timbre = values[i].timbre
+//
+//            for j in 0..<timbre.count {
+//
+//                var timbre = pitches[j]
+//
+//                if timbre > 0.9 {
+//                    timbre += .random(in: 0...0.1)
+//                }
+//
+//                let newX = getX(angle: angle, step: i, radius: timbreRadius*1/2 + timbreRadius/2 * timbre) + frame.midX
+//                let newY = getY(angle: angle, step: i, radius: timbreRadius*1/2 + timbreRadius/2 * timbre) + frame.midY
+//
+//                let line = drawLine(startPoint: prevTimbreLinePos[j], endPoint: CGPoint(x: newX, y: newY), lineColor: SKColor(white: 1, alpha: 0.3))
+//                self.addChild(line)
+//
+//                prevTimbreLinePos[j] = CGPoint(x: newX, y: newY)
 //            }
+//
+//
+//        }
+        
+
             
             
         print("You are in the game scene!")
@@ -58,20 +127,69 @@ class VisualizationSceneB: SKScene {
 
             let numBeat = musicAnalysisVM.counterBeatsDetected
             let visualizationData = musicAnalysisVM.visualizationValues[numBeat]
-            
-            
-            if (visualizationData.sectionChange) {
-                var circle = drawCircle(radius: 100, posX: getX(angle: angle, step: numBeat, radius: 100) + frame.midX , posY: getY(angle: angle, step: numBeat, radius: 100) + frame.midY, fillColor: SKColor.randomTransparent)
-                    self.addChild(circle)
-            }
-            
-            let pitches = visualizationData.pitches
-            print(pitches)
-            for j in 0..<pitches.count {
-                var circle = drawCircle(radius: 10 * pitches[j], posX: getX(angle: angle, step: numBeat, radius: pitchRadius[j]) + frame.midX , posY: getY(angle: angle, step: numBeat, radius: pitchRadius[j]) + frame.midY, fillColor: SKColor.random)
-                    self.addChild(circle)
-            }
 
+            let pitches = visualizationData.pitches
+            let timbre = visualizationData.timbre
+
+            for j in 0..<pitches.count {
+
+                var pitch = pitches[j]
+                var timbre = pitches[j]
+
+                if pitch > 0.9 {
+                    pitch += .random(in: 0...0.5)
+                }
+
+                if timbre > 0.9 {
+                    timbre += .random(in: 0...0.1)
+                }
+                
+                radius = pitchRadius[j]
+
+                let newXPitch = getX(angle: angle, step: stepsPerPitch[j], radius: radius*1/2 + radius/2 * pitch) + frame.midX
+                let newYPitch = getY(angle: angle, step: stepsPerPitch[j], radius: radius*1/2 + radius/2 * pitch) + frame.midY
+
+                var line = drawLine(startPoint: prevPitchLinePos[j], endPoint: CGPoint(x: newXPitch, y: newYPitch), lineColor: pitchColors[j])
+                self.addChild(line)
+
+                let newXTimbre = getX(angle: angle, step: stepsPerTimbre[j], radius: timbreRadius*1/2 + timbreRadius/2 * timbre) + frame.midX
+                let newYTimbre = getY(angle: angle, step: stepsPerTimbre[j], radius: timbreRadius*1/2 + timbreRadius/2 * timbre) + frame.midY
+
+                line = drawLine(startPoint: prevTimbreLinePos[j], endPoint: CGPoint(x: newXTimbre, y: newYTimbre), lineColor: SKColor(white: 1, alpha: 0.3))
+                self.addChild(line)
+
+                prevPitchLinePos[j] = CGPoint(x: newXPitch, y: newYPitch)
+                prevTimbreLinePos[j] = CGPoint(x: newXTimbre, y: newYTimbre)
+
+                if (j % 2 == 0) {
+                    stepsPerPitch[j] += 1
+                    stepsPerTimbre[j] += 1
+
+                    if stepsPerPitch[j] == musicAnalysisVM.visualizationValues.count {
+                        stepsPerPitch[j] = 0
+                    }
+
+                    if stepsPerTimbre[j] == musicAnalysisVM.visualizationValues.count {
+                        stepsPerTimbre[j] = 0
+                    }
+
+                } else {
+                    stepsPerPitch[j] -= 1
+                    stepsPerTimbre[j] -= 1
+
+                    if stepsPerPitch[j] < 0 {
+                        stepsPerPitch[j] = musicAnalysisVM.visualizationValues.count - 1
+                    }
+
+                    if stepsPerTimbre[j] < 0 {
+                        stepsPerTimbre[j] =  musicAnalysisVM.visualizationValues.count - 1
+                    }
+                }
+                
+                
+            }
+            
+          
 
         }
         
