@@ -14,7 +14,7 @@ class SpotifyLibraryService {
     
     func getTrackById(trackId:String) async -> Track?{
         var urlRequest:URLRequest?
-        urlRequest = urlService.getURLforRequest(type: .getTrackByID, id:trackId)
+        urlRequest = urlService.getURLforRequest(type: .getTrackByID, data:trackId)
         return await getData(urlRequest: urlRequest)
     }
     
@@ -32,7 +32,7 @@ class SpotifyLibraryService {
     
     func getPlaylistById(playlistId:String) async -> Playlist? {
         var urlRequest:URLRequest?
-        urlRequest = urlService.getURLforRequest(type: .getPlaylistById, id:playlistId)
+        urlRequest = urlService.getURLforRequest(type: .getPlaylistById, data:playlistId)
         return await getData(urlRequest: urlRequest)
     }
     

@@ -19,6 +19,8 @@ class VisualizationSceneA: SKScene {
     private var radius:Double = 300
     private var offsetToBeVisualized:Bool = false
     var timerDelegate: VisualizationTimerDelegate? = nil
+    var beatsBeforeOffsetNeeded:Bool = false
+
 
         
     override func didMove(to view: SKView) {
@@ -31,7 +33,6 @@ class VisualizationSceneA: SKScene {
             pitchRadius[i] = radius/12 * Double(i)
         }
         
-        offsetToBeVisualized = (playVM.offset != 0)
         
         
         
@@ -55,25 +56,37 @@ class VisualizationSceneA: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         
-        if (playVM.songForwarded) {
-            playVM.songForwarded = false
-            let nextScene = VisualizationSceneA(size: self.scene!.size)
-            nextScene.scaleMode = self.scaleMode
-            nextScene.backgroundColor = self.backgroundColor
-            self.view?.presentScene(nextScene, transition: SKTransition.fade(with: UIColor.black, duration: 1.5))
-        } 
-        
         if self.startTime == 0.0 { self.startTime = currentTime }
+        
+        if (playVM.songForwarded) {
+//            print("StartTime before: ", startTime)
+
+            self.startTime = currentTime
+            print("Scene reset")
+            removeAllChildren()
+//            playVM.currentTimeAllowsChange = true
+//            let nextScene = VisualizationSceneA(size: self.scene!.size)
+//            nextScene.scaleMode = self.scaleMode
+//            nextScene.backgroundColor = self.backgroundColor
+//            self.view?.presentScene(nextScene, transition: SKTransition.fade(with: UIColor.black, duration: 0))
+            playVM.songForwarded = false
+            beatsBeforeOffsetNeeded = true
+            playVM.currentTimeAllowsChange = true
+
+            
+        } 
         
         let timePassed = currentTime - self.startTime + playVM.offset
         let roundedTimer = round(timePassed*100)/100
         
         self.passTime(time:roundedTimer)
-        
+
         
         if(musicAnalysisVM.checkIfBeatDetected(time: roundedTimer)) {
+            print("BEAT FOUND")
+            print(beatsBeforeOffsetNeeded)
 
-            if (offsetToBeVisualized) {
+            if (beatsBeforeOffsetNeeded) {
                 
                 var offsetBeatNum = musicAnalysisVM.numBeatsPerTimestamp[roundedTimer]
                 
@@ -89,10 +102,10 @@ class VisualizationSceneA: SKScene {
 
                 }
                 
-                offsetToBeVisualized = false
+                beatsBeforeOffsetNeeded = false
+
                 
             } else {
-                
                 
                 let numBeat = musicAnalysisVM.counterBeatsDetected
                 let visualizationData = musicAnalysisVM.visualizationValues[numBeat]
@@ -173,7 +186,6 @@ extension VisualizationSceneA {
 }
 
 extension VisualizationSceneA {
-    
     
     private func passTime(time:Double) {
         if var timerDelegate = self.timerDelegate {

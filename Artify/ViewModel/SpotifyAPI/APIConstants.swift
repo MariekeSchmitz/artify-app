@@ -15,7 +15,7 @@ enum APIConstants {
     static let clientSecret = "8eb495076dfd49d5b254077b469a6c8b"
     static let redirectURL = "https://www.google.de/"
     static let responseType = "token"
-    static let scopes = "streaming user-library-read"
+    static let scopes = "streaming user-library-read user-modify-playback-state"
     static let scheme = "https"
     static let authorizePath = "/authorize"
     

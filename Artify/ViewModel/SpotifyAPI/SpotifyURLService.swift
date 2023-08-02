@@ -30,7 +30,7 @@ class SpotifyURLService {
         return URLRequest(url: url)
     }
     
-    func getURLforRequest(type:RequestTypes, id:String = "") -> URLRequest? {
+    func getURLforRequest(type:RequestTypes, data:String = "") -> URLRequest? {
         
         var components = URLComponents()
         var urlRequest: URLRequest
@@ -55,6 +55,9 @@ class SpotifyURLService {
         case .previousTrack:
             components.path = "/v1/me/player/previous"
             
+        case .seekPosInTrack:
+            components.path = "/v1/me/player/seek"
+            
         case .getAllPlaylists:
             components.path = "/v1/me/playlists"
             
@@ -62,16 +65,16 @@ class SpotifyURLService {
             components.path = "/v1/me/tracks"
             
         case .getTrackByID:
-            components.path = "/v1/tracks/\(id)"
+            components.path = "/v1/tracks/\(data)"
             
         case .getPlaylistById:
-            components.path = "/v1/playlists/\(id)/tracks"
+            components.path = "/v1/playlists/\(data)/tracks"
             
         case .audioFeatures:
-            components.path = "/v1/audio-features/\(id)"
+            components.path = "/v1/audio-features/\(data)"
             
         case .audioAnalysis:
-            components.path = "/v1/audio-analysis/\(id)"
+            components.path = "/v1/audio-analysis/\(data)"
             
         }
         
@@ -92,12 +95,18 @@ class SpotifyURLService {
         case .playTrack:
             urlRequest.httpMethod = HTTPmethods.put
             
-            let body = ["uris": ["\(id)"]]
+            let body = ["uris": ["\(data)"]]
             let bodyData = try? JSONSerialization.data(
                 withJSONObject: body,
                 options: []
             )
             urlRequest.httpBody = bodyData
+        
+        case .seekPosInTrack:
+            urlRequest.httpMethod = HTTPmethods.put
+            var queries = URLQueryItem(name: "position_ms", value: data)
+            
+            urlRequest.url?.append(queryItems: [queries])
 
         case .pauseTrack, .resumeTrack:
             urlRequest.httpMethod = HTTPmethods.put

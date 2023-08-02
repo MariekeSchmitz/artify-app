@@ -18,14 +18,14 @@ struct PlayView:View {
     @Binding var settingViewOn:Bool
     
         
-    var visualizationSpriteView = VisualizationView()
+    @State var visualizationView = VisualizationView()
     
     
 
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
-            visualizationSpriteView
+            visualizationView
             
             VStack{
                 HStack{
@@ -40,7 +40,7 @@ struct PlayView:View {
                     Spacer()
                     
                     Button {
-                        visualizationSpriteView.takeScreenshot()
+                        visualizationView.takeScreenshot()
                     } label: {
                         Image("screenshot")
                     }
@@ -51,6 +51,7 @@ struct PlayView:View {
 //                        }
 //                    }
                 }.padding()
+                
                 
                 Spacer()
                 
@@ -94,21 +95,18 @@ struct PlayView:View {
                                 Image("play")
                             }
                         }
-                        
+
                         
                         if (playerVM.currentTrack != nil) {
                             Slider(value: $playerVM.currentTIme, in: 0...Double(playerVM.currentTrack!.duration_ms)/1000.0) { editingChange in
+                                print(editingChange)
                                 if (editingChange) {
                                     playerVM.currentTimeAllowsChange = false
-                                    print("CURRENT TIME SLIDER: ",playerVM.currentTIme)
                                 } else {
                                     if (!playerVM.currentTimeAllowsChange) {
                                         print("CURRENT TIME SLIDER END: ",playerVM.currentTIme)
-
-                                        playerVM.offset = playerVM.currentTIme
-                                        playerVM.songForwarded = true
-                                        playerVM.currentTimeAllowsChange = true
-                                        
+                                        print(playerVM.currentTrack!.duration_ms)
+                                        playerVM.seekToPositionInTrack(time_s: playerVM.currentTIme)
                                     }
                                 }
                             }

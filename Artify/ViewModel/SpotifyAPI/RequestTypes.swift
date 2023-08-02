@@ -13,6 +13,7 @@ enum RequestTypes {
     case pauseTrack
     case resumeTrack
     case nextTrack
+    case seekPosInTrack
     case previousTrack
     case getTrackByID
     case getAllPlaylists

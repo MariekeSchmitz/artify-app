@@ -17,7 +17,11 @@ class SpotifyPlayerService {
     }
     
     func playTrack(trackURI:String) {
-        sendURLRequest(urlRequest:urlService.getURLforRequest(type: .playTrack, id:trackURI))
+        sendURLRequest(urlRequest:urlService.getURLforRequest(type: .playTrack, data:trackURI))
+    }
+    
+    func seekToPositionInTrack(time_ms:String) {
+        sendURLRequest(urlRequest:urlService.getURLforRequest(type: .seekPosInTrack, data:time_ms))
     }
     
     func pauseTrack() {

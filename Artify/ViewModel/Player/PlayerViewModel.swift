@@ -29,8 +29,19 @@ class PlayerViewModel : ObservableObject {
     }
     
     func playTrack(id:String) {
+        currentTimeAllowsChange = true
         isPlayling = true
+        offset = 0
+        songForwarded = false
         player.playTrack(trackURI:id)
+    }
+    
+    func seekToPositionInTrack(time_s:Double) {
+        offset = time_s
+        songForwarded = true
+//        currentTimeAllowsChange = true
+        let time_ms = Int(time_s * 1000)
+        player.seekToPositionInTrack(time_ms: String(time_ms))
     }
     
     func pauseTrack() {
@@ -53,7 +64,7 @@ class PlayerViewModel : ObservableObject {
     
     func setCurrentTime(time:Double) {
         if currentTimeAllowsChange {
-            currentTIme = time + self.offset
+            currentTIme = time
         }
              
     }

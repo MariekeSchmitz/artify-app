@@ -13,11 +13,11 @@ class SpotifyAnalysisService {
     let urlService = SpotifyURLService.shared
 
     func getAudioFeatures(trackId:String) async -> AudioFeatures? {
-        return await getData(urlRequest: urlService.getURLforRequest(type: .audioFeatures, id: trackId))
+        return await getData(urlRequest: urlService.getURLforRequest(type: .audioFeatures, data: trackId))
     }
     
     func getAudioAnalysis(trackId:String) async -> AudioAnalysis? {
-        return await getData(urlRequest: urlService.getURLforRequest(type: .audioAnalysis, id: trackId))
+        return await getData(urlRequest: urlService.getURLforRequest(type: .audioAnalysis, data: trackId))
     }
     
     

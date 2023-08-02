@@ -23,6 +23,7 @@ struct VisualizationView:View, VisualizationTimerDelegate {
         scene.backgroundColor = UIColor.black
         spriteView = SpriteView(scene: scene)
         scene.timerDelegate = self
+        print("init called")
     }
     
     var body: some View {
@@ -50,6 +51,8 @@ struct VisualizationView:View, VisualizationTimerDelegate {
 
         UIImageWriteToSavedPhotosAlbum(screenshotImage!, nil, nil, nil)
     }
+    
+
     
  
    
