@@ -9,36 +9,37 @@ import Foundation
 
 class PlayerViewModel : ObservableObject {
     
+    static let shared = PlayerViewModel()
     @Published var currentTrack:Track?
+    @Published var isPlayling:Bool = false
+    @Published var currentTIme:Double = 0
+    var currentTimeAllowsChange: Bool = true
+    var offset:Double = 0
+    var songForwarded:Bool = false
+    
     var currentPlaylist:Playlist?
     let player:SpotifyPlayerService = SpotifyPlayerService.shared
-    static let shared = PlayerViewModel()
-    
-    
-    
-    
-//    func startTimer () {
-//        DispatchQueue.global(qos: .background).async {
-//            <#code#>
-//        }
-//    }
     
     
     func playCurrentTrack() {
+        isPlayling = true
         if let t = currentTrack {
             playTrack(id: t.uri)
         }
     }
     
     func playTrack(id:String) {
+        isPlayling = true
         player.playTrack(trackURI:id)
     }
     
     func pauseTrack() {
+        isPlayling = false
         player.pauseTrack()
     }
     
     func resumeTrack() {
+        isPlayling = true
         player.resumeTrack()
     }
     
@@ -48,6 +49,13 @@ class PlayerViewModel : ObservableObject {
     
     func playPreviousTrack() {
         player.playPreviousTrack()
+    }
+    
+    func setCurrentTime(time:Double) {
+        if currentTimeAllowsChange {
+            currentTIme = time + self.offset
+        }
+             
     }
     
 }

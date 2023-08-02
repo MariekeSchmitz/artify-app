@@ -78,7 +78,6 @@ class MusicAnalysisViewModel : ObservableObject {
         }
         
         print(visualizationValues)
-        print(visualizationValues.count)
         
 //        let sortedByValueDictionary = numBeatsPerTimestamp.sorted { $0.1 < $1.1 }
 //
@@ -195,8 +194,6 @@ class MusicAnalysisViewModel : ObservableObject {
                 beatDetectedPerTimeStamp[time] = true
                 counterBeatsDetected += 1
                 
-                print("beat detected: \(time)")
-                print("total num beats detected: \(counterBeatsDetected)")
                 
                 return true
             }
@@ -208,9 +205,6 @@ class MusicAnalysisViewModel : ObservableObject {
             if (!(beatDetectedPerTimeStamp[previousTime]!)) {
                 beatDetectedPerTimeStamp[previousTime] = true
                 counterBeatsDetected += 1
-
-                print("beat detected: \(previousTime)")
-                print("total num beats detected: \(counterBeatsDetected)")
 
                 return true
             }

@@ -13,6 +13,7 @@ struct Track: Decodable, Hashable {
     var name: String = ""
     var uri: String = ""
     var artists: [Artist] = []
+    var duration_ms: Int = 0
     
    
     enum CodingKeys: String, CodingKey {
@@ -20,5 +21,7 @@ struct Track: Decodable, Hashable {
         case uri
         case artists
         case id
+        case duration_ms
+
     }
 }
