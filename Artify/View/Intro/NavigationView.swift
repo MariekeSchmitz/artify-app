@@ -22,7 +22,7 @@ struct NavigationView: View {
             ZStack{
                 Color.darkGrayBG.ignoresSafeArea()
                 VStack {
-                    IntroView().padding(.bottom, introTimePassed ? 300 : 0).task(delayIntro)
+                    IntroView().padding(.bottom, introTimePassed ? 50 : 0).task(delayIntro)
                     
                     if (introTimePassed && !loginVM.loginState.loggedIn) {
                         

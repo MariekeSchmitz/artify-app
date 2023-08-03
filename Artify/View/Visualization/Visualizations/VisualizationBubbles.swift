@@ -46,9 +46,9 @@ class VisualizationBubbles : Visualization{
             
             if (highValue && .random(in: 0...50) == 1) {
                 let duration:Double = .random(in:8...10)
-                let ScalePBup = SKAction.scale(to: 10 * pitches[j], duration: duration)
+//                let ScalePBup = SKAction.scale(to: 10 * pitches[j], duration: duration)
 //                let ScalePBdown = SKAction.scale(to: -10 * pitches[j], duration: duration)
-                circle.run(ScalePBup)
+//                circle.run(ScalePBup)
             }
  
             scene.addChild(circle)

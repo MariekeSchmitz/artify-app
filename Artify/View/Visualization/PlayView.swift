@@ -17,7 +17,6 @@ struct PlayView:View {
     @Binding var musicLibraryViewOn:Bool
     @Binding var settingViewOn:Bool
     
-        
     @State var visualizationView = VisualizationView()
     
     var visualizationTypes:[VisualizationType] = VisualizationType.allCases.map { $0 }
@@ -112,12 +111,17 @@ struct PlayView:View {
                                 }
                             }.tint(Color.white).padding(.horizontal,30)
                             
+                            
                             Picker("Selection", selection: $analysisVM.visualizationType) {
                                             ForEach(visualizationTypes, id: \.self) { i in
                                                 Text(i.description)
 //                                                    .rotationEffect(Angle(degrees: 90))
                                             }
-                            }.pickerStyle(.menu)
+                            }
+                            
+                            .pickerStyle(.menu)
+                                .accentColor(.white)
+                                .font(Font.custom("Poppins-Regular", size: 15))
                                 .onChange(of: analysisVM.visualizationType) { change in
                                     playerVM.songForwarded = true
                                     playerVM.offset = playerVM.currentTIme
@@ -146,16 +150,35 @@ struct PlayView:View {
             }
             let thumbImage = UIImage(systemName: "circle")
             UISlider.appearance().setThumbImage(thumbImage, for: .normal)
+            
         }
         .ignoresSafeArea()
     }
     
-    private func sliderEditingChanged(editingStarted: Bool) {
-        if editingStarted {
-            // timeraktualisierung pausieren
-        } else {
+
+    
+    private func createSplittedStrings(title:String) -> [String] {
+        
+        let words = title.components(separatedBy: " ")
+        let numWords = words.count
+
+        var lines = [String](repeating: "", count: numWords)
+        let maxLengthPerLine = 11
+        
+        var lineCount = 0
+        
+        for word in words {
             
+            var combinedWord = word + " " + lines[lineCount]
+            if combinedWord.count >= maxLengthPerLine {
+                lineCount += 1
+            }
+            
+            lines[lineCount] += (word + " ")
         }
+        
+        return lines
+        
     }
     
     

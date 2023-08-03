@@ -11,6 +11,7 @@ struct PlaylistView: View {
     
     @StateObject var playlistViewmodel = PlaylistViewModel()
     @Binding var musicLibraryViewOn:Bool
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
 
     var playerVM = PlayerViewModel.shared
     var playlistID : String
@@ -32,8 +33,16 @@ struct PlaylistView: View {
         }
         .onAppear() {
             playlistViewmodel.getAllTracksInPlaylist(playlistId: playlistID)
-        }.background(Color.black).ignoresSafeArea()
-        
+        }
+        .background(Color.black)
+        .ignoresSafeArea()
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button {
+                self.mode.wrappedValue.dismiss()
+        } label: {
+                Image("back")
+            }.padding(.top, 85))
+
     }
 }
 

@@ -28,6 +28,7 @@ class VisualizationScene: SKScene {
 
         visualization = Visualization()
         musicAnalysisVM = MusicAnalysisViewModel.shared
+        visualizationType = musicAnalysisVM.visualizationType
         visualizationValues = musicAnalysisVM.visualizationValues
         centerX = frame.midX - 20
         centerY = frame.midY + 100
@@ -37,6 +38,7 @@ class VisualizationScene: SKScene {
             visualization = VisualizationBubbles(visualitationValues: visualizationValues, centerX: centerX, centerY: centerY)
             break
         case .Lines:
+            visualization = VisualizationLines(visualitationValues: visualizationValues, centerX: centerX, centerY: centerY)
             break
         }
             
@@ -67,7 +69,9 @@ class VisualizationScene: SKScene {
         switch visualizationType {
         case .Bubble:
             visualization = VisualizationBubbles( visualitationValues: visualizationValues, centerX: centerX, centerY: centerY)
+            break
         case .Lines:
+            visualization = VisualizationLines(visualitationValues: visualizationValues, centerX: centerX, centerY: centerY)
             break
         }
     }

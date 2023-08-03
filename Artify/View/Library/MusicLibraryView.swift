@@ -19,16 +19,19 @@ struct MusicLibraryView: View {
                 Color.darkGrayBG.ignoresSafeArea()
                 VStack(spacing:0){
                     HStack{
-                        Button("Zurück") {
+                        Button {
                             withAnimation {
                                 musicLibraryViewOn.toggle()
                             }
-                        }
+                        } label: {
+                            Image("close")
+                        }.padding(.top, -25)
+
                         Text("Tracks")
                             .font(Font.custom("DMSerifDisplay-Regular", size: 80))
                             .frame(maxWidth: .infinity, alignment: .trailing)
                             .foregroundColor(Color.white)
-                            .padding(.top, 50)
+                            .padding(.top, 35)
                             .padding(.trailing, 20)
                     }
                     
