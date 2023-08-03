@@ -22,7 +22,6 @@ class VisualizationSceneD: SKScene {
     private var prevTimbreLinePos = [CGPoint](repeating:CGPoint(), count: 12)
 
 
-
     private var radius:Double = 1
         
     override func didMove(to view: SKView) {

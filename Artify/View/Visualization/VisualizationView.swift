@@ -11,13 +11,13 @@ import UIKit
 
 struct VisualizationView:View, VisualizationTimerDelegate {
     
-    var scene: VisualizationSceneA
+    var scene: VisualizationScene
     var spriteView:SpriteView
     var playerVM: PlayerViewModel = PlayerViewModel.shared
     @State var time: Double = 0
     
     init() {
-        scene = VisualizationSceneA()
+        scene = VisualizationScene()
         scene.size = CGSize(width: 1000, height: 1000)
         scene.scaleMode = .aspectFill
         scene.backgroundColor = UIColor.black

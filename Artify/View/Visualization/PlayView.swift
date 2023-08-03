@@ -20,8 +20,7 @@ struct PlayView:View {
         
     @State var visualizationView = VisualizationView()
     
-    var colors = ["Bubbles", "Lines", "Circles", "Tartan"]
-    @State private var selectedColor = "Bubbles"
+    var visualizationTypes:[VisualizationType] = VisualizationType.allCases.map { $0 }
     
 
     var body: some View {
@@ -81,7 +80,6 @@ struct PlayView:View {
                 HStack {
                     VStack {
                         
-                        
                         if (playerVM.currentTrack != nil) {
                             
                             if (playerVM.isPlayling) {
@@ -114,12 +112,16 @@ struct PlayView:View {
                                 }
                             }.tint(Color.white).padding(.horizontal,30)
                             
-                            Picker("Selection", selection: $selectedColor) {
-                                            ForEach(colors, id: \.self) {
-                                                Text($0)
+                            Picker("Selection", selection: $analysisVM.visualizationType) {
+                                            ForEach(visualizationTypes, id: \.self) { i in
+                                                Text(i.description)
 //                                                    .rotationEffect(Angle(degrees: 90))
                                             }
                             }.pickerStyle(.menu)
+                                .onChange(of: analysisVM.visualizationType) { change in
+                                    playerVM.songForwarded = true
+                                    playerVM.offset = playerVM.currentTIme
+                                }
 //                                .rotationEffect(Angle(degrees: -90))
 //                                .frame(maxHeight: 100)
 //                                .clipped()
@@ -143,7 +145,7 @@ struct PlayView:View {
                 playerVM.playCurrentTrack()
             }
             let thumbImage = UIImage(systemName: "circle")
-            UISlider.appearance().setThumbImage(thumbImage, for: .normal)           
+            UISlider.appearance().setThumbImage(thumbImage, for: .normal)
         }
         .ignoresSafeArea()
     }

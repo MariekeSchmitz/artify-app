@@ -17,6 +17,8 @@
 		192A632A2A28C89E00F1DDB8 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192A63292A28C89E00F1DDB8 /* File.swift */; };
 		192A632C2A28DF0C00F1DDB8 /* TrackList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192A632B2A28DF0C00F1DDB8 /* TrackList.swift */; };
 		192A632E2A28E56E00F1DDB8 /* SavedTrackObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192A632D2A28E56E00F1DDB8 /* SavedTrackObject.swift */; };
+		194650352A7BEE0E00CE8D96 /* Visualization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194650342A7BEE0E00CE8D96 /* Visualization.swift */; };
+		194650372A7BEE7A00CE8D96 /* VisualizationLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194650362A7BEE7A00CE8D96 /* VisualizationLines.swift */; };
 		194791552A22006E00FD2604 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791542A22006E00FD2604 /* LoginView.swift */; };
 		194791572A2200CA00FD2604 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791562A2200CA00FD2604 /* LoginViewModel.swift */; };
 		194791592A22010900FD2604 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791582A22010900FD2604 /* APIConstants.swift */; };
@@ -79,11 +81,13 @@
 		19CF2DDD2A76BC710038855E /* VisualizationElementVm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2DDC2A76BC710038855E /* VisualizationElementVm.swift */; };
 		19CF2E212A77B4F80038855E /* VisualizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E202A77B4F80038855E /* VisualizationView.swift */; };
 		19CF2E232A77E3AD0038855E /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E222A77E3AD0038855E /* Shapes.swift */; };
-		19CF2E282A78F1E50038855E /* VisualizationSceneA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E272A78F1E50038855E /* VisualizationSceneA.swift */; };
+		19CF2E282A78F1E50038855E /* VisualizationScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E272A78F1E50038855E /* VisualizationScene.swift */; };
 		19CF2E2A2A78F20B0038855E /* VisualizationSceneB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E292A78F20B0038855E /* VisualizationSceneB.swift */; };
 		19CF2E2C2A79599E0038855E /* VisualizationSceneC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E2B2A79599E0038855E /* VisualizationSceneC.swift */; };
 		19CF2E2E2A79713C0038855E /* VisualizationSceneD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E2D2A79713C0038855E /* VisualizationSceneD.swift */; };
 		19CF2E302A7A6F0C0038855E /* VisualizationTimerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E2F2A7A6F0C0038855E /* VisualizationTimerDelegate.swift */; };
+		19CF2E342A7BCEED0038855E /* VisualizationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E332A7BCEED0038855E /* VisualizationType.swift */; };
+		19CF2E362A7BD9F00038855E /* VisualizationBubbles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E352A7BD9F00038855E /* VisualizationBubbles.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +118,8 @@
 		192A63292A28C89E00F1DDB8 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		192A632B2A28DF0C00F1DDB8 /* TrackList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackList.swift; sourceTree = "<group>"; };
 		192A632D2A28E56E00F1DDB8 /* SavedTrackObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTrackObject.swift; sourceTree = "<group>"; };
+		194650342A7BEE0E00CE8D96 /* Visualization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visualization.swift; sourceTree = "<group>"; };
+		194650362A7BEE7A00CE8D96 /* VisualizationLines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationLines.swift; sourceTree = "<group>"; };
 		194791542A22006E00FD2604 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		194791562A2200CA00FD2604 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		194791582A22010900FD2604 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
@@ -172,11 +178,13 @@
 		19CF2DDC2A76BC710038855E /* VisualizationElementVm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationElementVm.swift; sourceTree = "<group>"; };
 		19CF2E202A77B4F80038855E /* VisualizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationView.swift; sourceTree = "<group>"; };
 		19CF2E222A77E3AD0038855E /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
-		19CF2E272A78F1E50038855E /* VisualizationSceneA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationSceneA.swift; sourceTree = "<group>"; };
+		19CF2E272A78F1E50038855E /* VisualizationScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationScene.swift; sourceTree = "<group>"; };
 		19CF2E292A78F20B0038855E /* VisualizationSceneB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationSceneB.swift; sourceTree = "<group>"; };
 		19CF2E2B2A79599E0038855E /* VisualizationSceneC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationSceneC.swift; sourceTree = "<group>"; };
 		19CF2E2D2A79713C0038855E /* VisualizationSceneD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationSceneD.swift; sourceTree = "<group>"; };
 		19CF2E2F2A7A6F0C0038855E /* VisualizationTimerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationTimerDelegate.swift; sourceTree = "<group>"; };
+		19CF2E332A7BCEED0038855E /* VisualizationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationType.swift; sourceTree = "<group>"; };
+		19CF2E352A7BD9F00038855E /* VisualizationBubbles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationBubbles.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +217,7 @@
 			children = (
 				197212A72A178BD5007225BB /* MusicLibraryViewModel.swift */,
 				191938892A361A04009B1743 /* PlaylistViewModel.swift */,
+				19CF2E332A7BCEED0038855E /* VisualizationType.swift */,
 			);
 			path = MusicLibrary;
 			sourceTree = "<group>";
@@ -280,7 +289,8 @@
 			isa = PBXGroup;
 			children = (
 				195170672A409CAC00789099 /* PlayView.swift */,
-				19CF2E262A78F1CB0038855E /* VisualizationScenes */,
+				19CF2E262A78F1CB0038855E /* Visualizations */,
+				19CF2E272A78F1E50038855E /* VisualizationScene.swift */,
 				19CF2E202A77B4F80038855E /* VisualizationView.swift */,
 				19CF2E222A77E3AD0038855E /* Shapes.swift */,
 				190DF7792A73E5EE008F050D /* CircleVisualization.swift */,
@@ -480,15 +490,17 @@
 			path = Player;
 			sourceTree = "<group>";
 		};
-		19CF2E262A78F1CB0038855E /* VisualizationScenes */ = {
+		19CF2E262A78F1CB0038855E /* Visualizations */ = {
 			isa = PBXGroup;
 			children = (
-				19CF2E272A78F1E50038855E /* VisualizationSceneA.swift */,
 				19CF2E292A78F20B0038855E /* VisualizationSceneB.swift */,
 				19CF2E2B2A79599E0038855E /* VisualizationSceneC.swift */,
 				19CF2E2D2A79713C0038855E /* VisualizationSceneD.swift */,
+				19CF2E352A7BD9F00038855E /* VisualizationBubbles.swift */,
+				194650342A7BEE0E00CE8D96 /* Visualization.swift */,
+				194650362A7BEE7A00CE8D96 /* VisualizationLines.swift */,
 			);
-			path = VisualizationScenes;
+			path = Visualizations;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -644,6 +656,7 @@
 				197212CA2A211181007225BB /* AlbumListViewModel.swift in Sources */,
 				1972127E2A0E533E007225BB /* Persistence.swift in Sources */,
 				19CF2E2C2A79599E0038855E /* VisualizationSceneC.swift in Sources */,
+				194650352A7BEE0E00CE8D96 /* Visualization.swift in Sources */,
 				19CF2E2A2A78F20B0038855E /* VisualizationSceneB.swift in Sources */,
 				192A632C2A28DF0C00F1DDB8 /* TrackList.swift in Sources */,
 				190DF77A2A73E5EE008F050D /* CircleVisualization.swift in Sources */,
@@ -664,19 +677,22 @@
 				194791A42A24AAD900FD2604 /* SettingsView.swift in Sources */,
 				197212812A0E533E007225BB /* Artify.xcdatamodeld in Sources */,
 				1919388A2A361A04009B1743 /* PlaylistViewModel.swift in Sources */,
+				194650372A7BEE7A00CE8D96 /* VisualizationLines.swift in Sources */,
 				195170682A409CAC00789099 /* PlayView.swift in Sources */,
-				19CF2E282A78F1E50038855E /* VisualizationSceneA.swift in Sources */,
+				19CF2E282A78F1E50038855E /* VisualizationScene.swift in Sources */,
 				192A632E2A28E56E00F1DDB8 /* SavedTrackObject.swift in Sources */,
 				19CF2E302A7A6F0C0038855E /* VisualizationTimerDelegate.swift in Sources */,
 				1919388C2A3623D7009B1743 /* TrackView.swift in Sources */,
 				197212BB2A1B6DE0007225BB /* SpotifyURLService.swift in Sources */,
 				191938872A36195D009B1743 /* PlaylistView.swift in Sources */,
 				192A632A2A28C89E00F1DDB8 /* File.swift in Sources */,
+				19CF2E342A7BCEED0038855E /* VisualizationType.swift in Sources */,
 				198741F52A3B649000853D12 /* ColorExtension.swift in Sources */,
 				197212752A0E533C007225BB /* ArtifyApp.swift in Sources */,
 				1919387F2A35DAEA009B1743 /* Artists.swift in Sources */,
 				19CF2E212A77B4F80038855E /* VisualizationView.swift in Sources */,
 				192A63282A28737E00F1DDB8 /* PlayerViewModel.swift in Sources */,
+				19CF2E362A7BD9F00038855E /* VisualizationBubbles.swift in Sources */,
 				1985B42A2A277ED600F65B30 /* SpotifyLibraryService.swift in Sources */,
 				1947915B2A22012A00FD2604 /* NetworkError.swift in Sources */,
 				199BA90C2A3F022A00B1CB90 /* NavigationView.swift in Sources */,

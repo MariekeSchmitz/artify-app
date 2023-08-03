@@ -12,7 +12,6 @@ struct ArtifyApp: App {
     let persistenceController = PersistenceController.shared
 //    var network = Network()
     
-
     
     var body: some Scene {
         WindowGroup {

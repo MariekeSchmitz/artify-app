@@ -16,10 +16,11 @@ class MusicAnalysisViewModel : ObservableObject {
     var songTimer: Double = 0.00
 
     @Published var visualizationValues:[VisualizationElement] = []
+    
+    @Published var visualizationType:VisualizationType = .Bubble
+    
     var numBeatsPerTimestamp = [Double:Int]()
     var beatDetectedPerTimeStamp = [Double:Bool]()
-
-    
     var counterBeatsDetected: Int = 0
     
 
