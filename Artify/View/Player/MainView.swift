@@ -24,7 +24,7 @@ struct MainView: View {
                 
                 Color.black.opacity(0.5).ignoresSafeArea()
                 
-                MusicLibraryView(musicLibraryViewOn: $musicLibraryViewOn).transition(.move(edge: .trailing))
+                MusicLibraryView(musicLibraryViewOn: $musicLibraryViewOn).transition(.move(edge: .leading ))
               
 //                GeometryReader{ geometry in
 //                    

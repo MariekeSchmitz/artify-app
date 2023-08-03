@@ -33,23 +33,25 @@ class VisualizationBubbles : Visualization{
         let pitches = visualisationData.pitches
         for j in 0..<pitches.count {
             
-            let highValue = pitches[j] == 1
-            var circleRadius = 0.0
+//            let highValue = pitches[j] == 1
+//            var circleRadius = 0.0
+//
+//            if (highValue) {
+//                circleRadius = 5
+//            } else {
+//                circleRadius = 10 * pitches[j]
+//            }
             
-            if (highValue) {
-                circleRadius = 5
-            } else {
-                circleRadius = 10 * pitches[j]
-            }
+            let circle = drawCircle(radius: 10 * pitches[j], posX: getX(angle: angle, step: step, radius: pitchRadius[j]) + centerX , posY: getY(angle: angle, step: step, radius: pitchRadius[j]) + centerY, fillColor: SKColor.random)
             
-            let circle = drawCircle(radius: circleRadius, posX: getX(angle: angle, step: step, radius: pitchRadius[j]) + centerX , posY: getY(angle: angle, step: step, radius: pitchRadius[j]) + centerY, fillColor: SKColor.random)
+//            if (highValue && .random(in: 0...50) == 1) {
+//                let duration:Double = .random(in:8...10)
+////                let ScalePBup = SKAction.scale(to: 10 * pitches[j], duration: duration)
+////                let ScalePBdown = SKAction.scale(to: -10 * pitches[j], duration: duration)
+////                circle.run(ScalePBup)
+//            }
             
-            if (highValue && .random(in: 0...50) == 1) {
-                let duration:Double = .random(in:8...10)
-//                let ScalePBup = SKAction.scale(to: 10 * pitches[j], duration: duration)
-//                let ScalePBdown = SKAction.scale(to: -10 * pitches[j], duration: duration)
-//                circle.run(ScalePBup)
-            }
+            circle.physicsBody = SKPhysicsBody(circleOfRadius: 10)
  
             scene.addChild(circle)
         }

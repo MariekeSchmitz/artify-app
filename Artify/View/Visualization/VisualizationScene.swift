@@ -142,28 +142,69 @@ class VisualizationScene: SKScene {
 
 extension VisualizationScene {
 
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         // Gets the first touch object in the set of touches
         guard let touch = touches.first else { return }
         // Gets the position of the touch in the game scene
         let touchPosition = touch.location(in: self)
 
-        // 1. Checks if there is a SKShapeNode where the player touched.
-        if let selectedNode = nodes(at: touchPosition).first as? SKShapeNode {
-            // 2. If so, calls a function to destroy the node
-//            selectedNode.position.x += 50
-//            selectedNode.position.y += 50
-
-            selectedNode.physicsBody = SKPhysicsBody(circleOfRadius: 10)
-            selectedNode.physicsBody?.affectedByGravity
-
+        for child in self.children {
+            
+            var dist = CGPointDistanceSquared(from: child.position, to: touchPosition)
+            
+            if (dist < 400) {
+                
+//                var angle = angleBetweenPoints(child.position, touchPosition)
+                var newPoint = newPointAfterMoving(child.position, angle: angleBetweenPoints(child.position, touchPosition), distance: -50)
+//                child.position = newPoint
+                let moveAnimation = SKAction.move(to: newPoint, duration: 0.5)
+                child.run(moveAnimation)
+//                var scaleFactor = ((400 - dist)/200) + 1
+//
+//                let scaleAnimation = SKAction.scale(by: scaleFactor, duration: 0.5)
+//                child.run(scaleAnimation)
+                
+                
+            }
+            
         }
+        
+//        // 1. Checks if there is a SKShapeNode where the player touched.
+//        if let selectedNode = nodes(at: touchPosition).first as? SKShapeNode {
+//            // 2. If so, calls a function to destroy the node
+////            selectedNode.position.x += 50
+////            selectedNode.position.y += 50
+//
+//            selectedNode.physicsBody = SKPhysicsBody(circleOfRadius: 10)
+//            selectedNode.physicsBody?.affectedByGravity
+//
+//        }
         
     }
     
     private func destroy(_ square: SKShapeNode) {
             square.removeFromParent()
         }
+
+//    func CGPointDistance(from: CGPoint, to: CGPoint) -> CGFloat {
+//        return sqrt(CGPointDistanceSquared(from: from, to: to))
+//        Distance
+//    }
+    
+    func CGPointDistanceSquared(from: CGPoint, to: CGPoint) -> CGFloat {
+        return (from.x - to.x) * (from.x - to.x) + (from.y - to.y) * (from.y - to.y)
+    }
+    
+    func angleBetweenPoints(_ point1: CGPoint, _ point2: CGPoint) -> Angle {
+            return point1.angle(to: point2)
+        }
+        
+    func newPointAfterMoving(_ point: CGPoint, angle: Angle, distance: CGFloat) -> CGPoint {
+        return point.move(by: angle, distance: distance)
+    }
+    
+    
     
 }
 
@@ -175,5 +216,20 @@ extension VisualizationScene {
         }
     }
     
+}
+
+extension CGPoint {
+    func angle(to point: CGPoint) -> Angle {
+        let deltaX = point.x - self.x
+        let deltaY = point.y - self.y
+        let radians = atan2(deltaY, deltaX)
+        return Angle(radians: Double(radians))
+    }
+    
+    func move(by angle: Angle, distance: CGFloat) -> CGPoint {
+        let deltaX = cos(CGFloat(angle.radians)) * distance
+        let deltaY = sin(CGFloat(angle.radians)) * distance
+        return CGPoint(x: self.x + deltaX, y: self.y + deltaY)
+    }
 }
 
