@@ -20,6 +20,8 @@ struct PlayView:View {
         
     @State var visualizationView = VisualizationView()
     
+    var colors = ["Bubbles", "Lines", "Circles", "Tartan"]
+    @State private var selectedColor = "Bubbles"
     
 
     var body: some View {
@@ -79,57 +81,69 @@ struct PlayView:View {
                 HStack {
                     VStack {
                         
-                        if (playerVM.isPlayling) {
-                            Button {
-                                playerVM.pauseTrack()
-                                print("Track to be paused")
-                            } label: {
-                                Image("pause")
-                            }
-                        } else {
-                            Button {
-                                playerVM.resumeTrack()
-                                print("Track to be played")
-
-                            } label: {
-                                Image("play")
-                            }
-                        }
-
                         
                         if (playerVM.currentTrack != nil) {
+                            
+                            if (playerVM.isPlayling) {
+                                Button {
+                                    playerVM.pauseTrack()
+                                    print("Track to be paused")
+                                } label: {
+                                    Image("pause")
+                                }
+                            } else {
+                                Button {
+                                    playerVM.resumeTrack()
+                                    print("Track to be played")
+
+                                } label: {
+                                    Image("play")
+                                }
+                            }
+                            
                             Slider(value: $playerVM.currentTIme, in: 0...Double(playerVM.currentTrack!.duration_ms)/1000.0) { editingChange in
                                 print(editingChange)
                                 if (editingChange) {
-                                    playerVM.currentTimeAllowsChange = false
+                                    playerVM.timeOnHold = false
                                 } else {
-                                    if (!playerVM.currentTimeAllowsChange) {
+                                    if (!playerVM.timeOnHold) {
                                         print("CURRENT TIME SLIDER END: ",playerVM.currentTIme)
                                         print(playerVM.currentTrack!.duration_ms)
-                                        playerVM.seekToPositionInTrack(time_s: playerVM.currentTIme)
+                                        playerVM.seekToPositionInTrack()
                                     }
                                 }
-                            }
+                            }.tint(Color.white).padding(.horizontal,30)
+                            
+                            Picker("Selection", selection: $selectedColor) {
+                                            ForEach(colors, id: \.self) {
+                                                Text($0)
+//                                                    .rotationEffect(Angle(degrees: 90))
+                                            }
+                            }.pickerStyle(.menu)
+//                                .rotationEffect(Angle(degrees: -90))
+//                                .frame(maxHeight: 100)
+//                                .clipped()
                                 
+                        } else {
+                            Text("Select a song")
+                                .foregroundColor(.white)
+                                .font(Font.custom("DMSerifDisplay-Regular", size: 40))
+                                .multilineTextAlignment(.leading)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.leading)
+                                .lineSpacing(0)
                         }
                         
                         
-                        Text("\(playerVM.currentTIme)")
-                            .foregroundColor(.white)
-                            .font(Font.custom("Poppins-Italic", size: 20))
-                            .multilineTextAlignment(.leading)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.leading)
-                        
                     }
                 }
-            }.padding()
+            }.padding(20).padding(.vertical, 50)
         }.onAppear{
             if (playerVM.currentTrack != nil) {
                 playerVM.playCurrentTrack()
             }
-
-           
+            let thumbImage = UIImage(systemName: "circle")
+            UISlider.appearance().setThumbImage(thumbImage, for: .normal)           
         }
         .ignoresSafeArea()
     }

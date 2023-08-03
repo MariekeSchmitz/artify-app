@@ -20,6 +20,8 @@ class VisualizationSceneA: SKScene {
     private var offsetToBeVisualized:Bool = false
     var timerDelegate: VisualizationTimerDelegate? = nil
     var beatsBeforeOffsetNeeded:Bool = false
+    var centerX:Double = 0
+    var centerY:Double = 0
 
 
         
@@ -32,6 +34,9 @@ class VisualizationSceneA: SKScene {
         for i in 0..<pitchRadius.count {
             pitchRadius[i] = radius/12 * Double(i)
         }
+        
+        centerX = frame.midX - 20
+        centerY = frame.midY + 100
         
         
         
@@ -56,79 +61,80 @@ class VisualizationSceneA: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         
-        if self.startTime == 0.0 { self.startTime = currentTime }
-        
-        if (playVM.songForwarded) {
-//            print("StartTime before: ", startTime)
+        if (playVM.isPlayling) {
+            if self.startTime == 0.0 { self.startTime = currentTime }
+            
+            if (playVM.songForwarded) {
+    //            print("StartTime before: ", startTime)
 
-            self.startTime = currentTime
-            print("Scene reset")
-            removeAllChildren()
-//            playVM.currentTimeAllowsChange = true
-//            let nextScene = VisualizationSceneA(size: self.scene!.size)
-//            nextScene.scaleMode = self.scaleMode
-//            nextScene.backgroundColor = self.backgroundColor
-//            self.view?.presentScene(nextScene, transition: SKTransition.fade(with: UIColor.black, duration: 0))
-            playVM.songForwarded = false
-            beatsBeforeOffsetNeeded = true
-            playVM.currentTimeAllowsChange = true
+                self.startTime = currentTime
+                print("Scene reset")
+    //            playVM.currentTimeAllowsChange = true
+    //            let nextScene = VisualizationSceneA(size: self.scene!.size)
+    //            nextScene.scaleMode = self.scaleMode
+    //            nextScene.backgroundColor = self.backgroundColor
+    //            self.view?.presentScene(nextScene, transition: SKTransition.fade(with: UIColor.black, duration: 0))
+                playVM.songForwarded = false
+                beatsBeforeOffsetNeeded = true
+                playVM.timeOnHold = true
+
+                
+            }
+            
+            let timePassed = currentTime - self.startTime + playVM.offset
+            let roundedTimer = round(timePassed*100)/100
+            
+            self.passTime(time:roundedTimer)
 
             
-        } 
-        
-        let timePassed = currentTime - self.startTime + playVM.offset
-        let roundedTimer = round(timePassed*100)/100
-        
-        self.passTime(time:roundedTimer)
+            if(musicAnalysisVM.checkIfBeatDetected(time: roundedTimer)) {
+                print("BEAT FOUND")
+                print(beatsBeforeOffsetNeeded)
 
-        
-        if(musicAnalysisVM.checkIfBeatDetected(time: roundedTimer)) {
-            print("BEAT FOUND")
-            print(beatsBeforeOffsetNeeded)
+                if (beatsBeforeOffsetNeeded) {
+                    removeAllChildren()
 
-            if (beatsBeforeOffsetNeeded) {
-                
-                var offsetBeatNum = musicAnalysisVM.numBeatsPerTimestamp[roundedTimer]
-                
-                if let numBeats = offsetBeatNum {
-                    musicAnalysisVM.counterBeatsDetected = numBeats
-                    visualizeBeatsBeforeOffset(offsetBeatNum: numBeats)
+                    var offsetBeatNum = musicAnalysisVM.numBeatsPerTimestamp[roundedTimer]
+                    
+                    if let numBeats = offsetBeatNum {
+                        musicAnalysisVM.counterBeatsDetected = numBeats
+                        visualizeBeatsBeforeOffset(offsetBeatNum: numBeats)
 
+                    } else {
+                        let previousTime = round((roundedTimer - 0.01)*100)/100
+                        offsetBeatNum = musicAnalysisVM.numBeatsPerTimestamp[previousTime]
+                        musicAnalysisVM.counterBeatsDetected = offsetBeatNum!
+                        visualizeBeatsBeforeOffset(offsetBeatNum: offsetBeatNum!)
+
+                    }
+                    
+                    beatsBeforeOffsetNeeded = false
+
+                    
                 } else {
-                    let previousTime = round((roundedTimer - 0.01)*100)/100
-                    offsetBeatNum = musicAnalysisVM.numBeatsPerTimestamp[previousTime]
-                    musicAnalysisVM.counterBeatsDetected = offsetBeatNum!
-                    visualizeBeatsBeforeOffset(offsetBeatNum: offsetBeatNum!)
-
+                    
+                    let numBeat = musicAnalysisVM.counterBeatsDetected
+                    let visualizationData = musicAnalysisVM.visualizationValues[numBeat]
+                    
+                    visualizeBeat(step: numBeat, visualisationData: visualizationData)
                 }
-                
-                beatsBeforeOffsetNeeded = false
 
-                
-            } else {
-                
-                let numBeat = musicAnalysisVM.counterBeatsDetected
-                let visualizationData = musicAnalysisVM.visualizationValues[numBeat]
-                
-                visualizeBeat(step: numBeat, visualisationData: visualizationData)
+    //            if (visualizationData.sectionChange) {
+    //                var circle = drawCircle(radius: 100, posX: getX(angle: angle, step: numBeat, radius: 100) + frame.midX , posY: getY(angle: angle, step: numBeat, radius: 100) + frame.midY, fillColor: SKColor.randomTransparent)
+    //                    self.addChild(circle)
+    //            }
+    //
+    //            let pitches = visualizationData.pitches
+    //            print(pitches)
+    //            for j in 0..<pitches.count {
+    //                var circle = drawCircle(radius: 10 * pitches[j], posX: getX(angle: angle, step: numBeat, radius: pitchRadius[j]) + frame.midX , posY: getY(angle: angle, step: numBeat, radius: pitchRadius[j]) + frame.midY, fillColor: SKColor.random)
+    //                    self.addChild(circle)
+    //            }
+
+
             }
-
-//            if (visualizationData.sectionChange) {
-//                var circle = drawCircle(radius: 100, posX: getX(angle: angle, step: numBeat, radius: 100) + frame.midX , posY: getY(angle: angle, step: numBeat, radius: 100) + frame.midY, fillColor: SKColor.randomTransparent)
-//                    self.addChild(circle)
-//            }
-//
-//            let pitches = visualizationData.pitches
-//            print(pitches)
-//            for j in 0..<pitches.count {
-//                var circle = drawCircle(radius: 10 * pitches[j], posX: getX(angle: angle, step: numBeat, radius: pitchRadius[j]) + frame.midX , posY: getY(angle: angle, step: numBeat, radius: pitchRadius[j]) + frame.midY, fillColor: SKColor.random)
-//                    self.addChild(circle)
-//            }
-
-
         }
         
-
     }
     
     func visualizeBeatsBeforeOffset(offsetBeatNum: Int) {
@@ -141,15 +147,42 @@ class VisualizationSceneA: SKScene {
     }
     
     func visualizeBeat(step:Int, visualisationData:VisualizationElement) {
+        
+//        let ScalePBup = SKAction.scale(x:50, y:50 , duration: 2)
+//        let ScalePBdown = SKAction.scale(x:-50, y: -50,  duration: 2)
+        
+
+        
         if (visualisationData.sectionChange) {
-            var circle = drawCircle(radius: 100, posX: getX(angle: angle, step: step, radius: 100) + frame.midX , posY: getY(angle: angle, step: step, radius: 100) + frame.midY, fillColor: SKColor.randomTransparent)
-                self.addChild(circle)
+            var circle = drawCircle(radius: 100, posX: getX(angle: angle, step: step, radius: 100) + centerX , posY: getY(angle: angle, step: step, radius: 100) + centerY, fillColor: SKColor.randomTransparent)
+//            circle.run(SKAction.repeatForever(SKAction.sequence([ScalePBup,ScalePBdown])))
+            self.addChild(circle)
         }
         
         let pitches = visualisationData.pitches
         for j in 0..<pitches.count {
-            var circle = drawCircle(radius: 10 * pitches[j], posX: getX(angle: angle, step: step, radius: pitchRadius[j]) + frame.midX , posY: getY(angle: angle, step: step, radius: pitchRadius[j]) + frame.midY, fillColor: SKColor.random)
-                self.addChild(circle)
+            
+            var highValue = pitches[j] == 1
+            var circleRadius = 0.0
+            
+            if (highValue) {
+                circleRadius = 5
+            } else {
+                circleRadius = 10 * pitches[j]
+            }
+            
+            var circle = drawCircle(radius: circleRadius, posX: getX(angle: angle, step: step, radius: pitchRadius[j]) + centerX , posY: getY(angle: angle, step: step, radius: pitchRadius[j]) + centerY, fillColor: SKColor.random)
+            
+            if (highValue && .random(in: 0...50) == 1) {
+                var duration:Double = .random(in:8...10)
+                let ScalePBup = SKAction.scale(to: 10 * pitches[j], duration: duration)
+                let ScalePBdown = SKAction.scale(to: -10 * pitches[j], duration: duration)
+                circle.run(ScalePBup)
+            }
+            
+            
+            
+            self.addChild(circle)
         }
     }
     

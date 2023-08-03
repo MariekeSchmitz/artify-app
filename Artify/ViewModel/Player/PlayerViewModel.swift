@@ -13,7 +13,7 @@ class PlayerViewModel : ObservableObject {
     @Published var currentTrack:Track?
     @Published var isPlayling:Bool = false
     @Published var currentTIme:Double = 0
-    var currentTimeAllowsChange: Bool = true
+    var timeOnHold: Bool = true
     var offset:Double = 0
     var songForwarded:Bool = false
     
@@ -29,29 +29,41 @@ class PlayerViewModel : ObservableObject {
     }
     
     func playTrack(id:String) {
-        currentTimeAllowsChange = true
+        timeOnHold = true
         isPlayling = true
         offset = 0
         songForwarded = false
         player.playTrack(trackURI:id)
     }
     
-    func seekToPositionInTrack(time_s:Double) {
-        offset = time_s
+    func seekToPositionInTrack() {
+        if (!isPlayling) {
+            playCurrentTrack()
+        }
+        
+        offset = currentTIme
         songForwarded = true
+        isPlayling = true
 //        currentTimeAllowsChange = true
-        let time_ms = Int(time_s * 1000)
+        let time_ms = Int(currentTIme * 1000)
         player.seekToPositionInTrack(time_ms: String(time_ms))
     }
     
     func pauseTrack() {
         isPlayling = false
+        timeOnHold = true
+
+        offset = currentTIme
         player.pauseTrack()
     }
     
     func resumeTrack() {
         isPlayling = true
+        timeOnHold = false
+        songForwarded = true
+
         player.resumeTrack()
+        
     }
     
     func playNextTrack() {
@@ -63,7 +75,7 @@ class PlayerViewModel : ObservableObject {
     }
     
     func setCurrentTime(time:Double) {
-        if currentTimeAllowsChange {
+        if timeOnHold {
             currentTIme = time
         }
              
