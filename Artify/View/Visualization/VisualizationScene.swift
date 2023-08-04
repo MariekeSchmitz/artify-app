@@ -22,6 +22,7 @@ class VisualizationScene: SKScene {
     var visualizationValues: [VisualizationElement] = []
     var visualizationType:VisualizationType = VisualizationType.Bubble
     var visualization:Visualization = Visualization()
+    let delay:Double = 0.5
     
   
     override func didMove(to view: SKView) {
@@ -39,6 +40,9 @@ class VisualizationScene: SKScene {
             break
         case .Lines:
             visualization = VisualizationLines(visualitationValues: visualizationValues, centerX: centerX, centerY: centerY)
+            break
+        case .Loudness:
+            visualization = VisualizationLoudness(visualitationValues: visualizationValues, centerX: centerX, centerY: centerY)
             break
         }
             
@@ -73,6 +77,9 @@ class VisualizationScene: SKScene {
         case .Lines:
             visualization = VisualizationLines(visualitationValues: visualizationValues, centerX: centerX, centerY: centerY)
             break
+        case .Loudness:
+            visualization = VisualizationLoudness(visualitationValues: visualizationValues, centerX: centerX, centerY: centerY)
+            break
         }
     }
     
@@ -84,8 +91,10 @@ class VisualizationScene: SKScene {
                 resetScene(currentTime)
             }
             
-            let timePassed = currentTime - self.startTime + playVM.offset
+            let timePassed = currentTime - self.startTime + playVM.offset - self.delay
             let roundedTimer = round(timePassed*100)/100
+            
+//            print(roundedTimer)
             
             // delegate time for view-updates
             self.passTime(time:roundedTimer)
@@ -96,8 +105,12 @@ class VisualizationScene: SKScene {
                     visualizeBeatsBeforeOffset(roundedTimer)
                 } else {
                     let numBeat = musicAnalysisVM.counterBeatsDetected
-                    let visualizationData = visualizationValues[numBeat]
-                    visualization.visualizeBeat(scene:self, step: numBeat, visualisationData: visualizationData)
+                    
+                    if (numBeat < visualizationValues.count) {
+                        let visualizationData = visualizationValues[numBeat]
+                        visualization.visualizeBeat(scene:self, step: numBeat, visualisationData: visualizationData)
+                    }
+                                        
                 }
 
             }
@@ -151,12 +164,12 @@ extension VisualizationScene {
 
         for child in self.children {
             
-            var dist = CGPointDistanceSquared(from: child.position, to: touchPosition)
+            let dist = CGPointDistanceSquared(from: child.position, to: touchPosition)
             
             if (dist < 400) {
                 
 //                var angle = angleBetweenPoints(child.position, touchPosition)
-                var newPoint = newPointAfterMoving(child.position, angle: angleBetweenPoints(child.position, touchPosition), distance: -50)
+                let newPoint = newPointAfterMoving(child.position, angle: angleBetweenPoints(child.position, touchPosition), distance: -50)
 //                child.position = newPoint
                 let moveAnimation = SKAction.move(to: newPoint, duration: 0.5)
                 child.run(moveAnimation)

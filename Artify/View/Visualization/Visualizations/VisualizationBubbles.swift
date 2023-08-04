@@ -51,7 +51,7 @@ class VisualizationBubbles : Visualization{
 ////                circle.run(ScalePBup)
 //            }
             
-            circle.physicsBody = SKPhysicsBody(circleOfRadius: 10)
+//            circle.physicsBody = SKPhysicsBody(circleOfRadius: 10)
  
             scene.addChild(circle)
         }

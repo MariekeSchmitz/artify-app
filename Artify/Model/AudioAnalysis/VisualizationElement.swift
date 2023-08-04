@@ -20,6 +20,7 @@ struct VisualizationElement{
     var sectionCounter: Int = 0
     var sectionKey:Int = 0
     var sectionTempo: Double = 0
+    var sectionLoudness: Double = 0
     
     var barChange: Bool = false
     var barCounter: Int = 0

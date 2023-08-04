@@ -155,6 +155,20 @@ struct PlayView:View {
             
         }
         .ignoresSafeArea()
+//        .task {
+//            try? await Task.sleep(nanoseconds: 4_000_000_000)
+//            if (playerVM.currentTrack != nil) {
+//                playerVM.playCurrentTrack()
+//            }
+//        }
+    }
+    
+    private func delayPlaying() async {
+        try? await Task.sleep(nanoseconds: 1_000_000_000)
+        if (playerVM.currentTrack != nil) {
+            playerVM.playCurrentTrack()
+        }
+
     }
     
 

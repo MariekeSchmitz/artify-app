@@ -22,30 +22,12 @@ class MusicAnalysisViewModel : ObservableObject {
     var numBeatsPerTimestamp = [Double:Int]()
     var beatDetectedPerTimeStamp = [Double:Bool]()
     var counterBeatsDetected: Int = 0
+    var maxSegmentLoudness:Double = 0
+    var minSegmentLoudness: Double = 0
     
-
-//    var timerVisualization: Timer?
+    var maxSectionLoudness:Double = 0
+    var minSectionLoudness: Double = 0
     
-//    let timer = Timer
-//        .publish(every: 0.01, on: .main, in: .common)
-//        .autoconnect()
-    
-    
-//    func setupTimer () {
-//
-//        if let t = timerVisualization {
-//            t.invalidate()
-//        }
-//
-//        counterBeatsDetected = 0
-//
-//        timerVisualization = Timer.scheduledTimer(
-//                timeInterval: 0.01,
-//                target: self,
-//                selector: #selector(handleTimerExecution),
-//                userInfo: nil,
-//                repeats: true)
-//    }
     
     
     private func setupVisualizationData() {
@@ -54,6 +36,9 @@ class MusicAnalysisViewModel : ObservableObject {
         var currentSegmentCounter = 0
         var currentSectionCounter = 0
         var currentBarCounter = 0
+        
+        maxSegmentLoudness = 0
+        minSegmentLoudness = 0
 
         counterBeatsDetected = 0
         
@@ -66,7 +51,6 @@ class MusicAnalysisViewModel : ObservableObject {
             visualizationValues[numBeats].beatConfidence = beat.confidence
             visualizationValues[numBeats].beatLength = beat.duration
 
-
             currentSegmentCounter = getPitchTimbreData(beatStart: beat.start, numBeats: numBeats, currentSegmentCounter: currentSegmentCounter)
             currentBarCounter = getBarData(beatStart: beat.start, numBeats: numBeats, currentBarCounter: currentBarCounter)
             currentSectionCounter = getSectionData(beatStart: beat.start, numBeats: numBeats, currentSectionCounter: currentSectionCounter)
@@ -77,6 +61,8 @@ class MusicAnalysisViewModel : ObservableObject {
             numBeatsPerTimestamp[roundedBeatStart] = numBeats
             beatDetectedPerTimeStamp[roundedBeatStart] = false
         }
+        
+        
         
         print(visualizationValues)
         
@@ -106,7 +92,21 @@ class MusicAnalysisViewModel : ObservableObject {
                 let timbre = segment.timbre
                 visualizationValues[numBeats].timbre = timbre
                 
-                visualizationValues[numBeats].segmentLoudness = segment.loudness_max
+                let loudness = segment.loudness_max
+                visualizationValues[numBeats].segmentLoudness = loudness
+                
+                if (minSegmentLoudness == 0 && maxSegmentLoudness == 0){
+                    minSegmentLoudness = loudness
+                    maxSegmentLoudness = loudness
+                }
+                
+                if loudness < minSegmentLoudness {
+                    minSegmentLoudness = loudness
+                }
+                
+                if loudness > maxSegmentLoudness {
+                    maxSegmentLoudness = loudness
+                }
 
 
                 // return current segmentIndex as new starting point for next segment search
@@ -135,6 +135,23 @@ class MusicAnalysisViewModel : ObservableObject {
                 visualizationValues[numBeats].sectionChange = (i != currentSectionCounter)
                 visualizationValues[numBeats].sectionKey = section.key
                 visualizationValues[numBeats].sectionTempo = section.tempo
+                visualizationValues[numBeats].sectionLoudness = section.loudness
+                
+                let loudness = section.loudness
+                visualizationValues[numBeats].sectionLoudness = loudness
+                
+                if (minSectionLoudness == 0 && maxSectionLoudness == 0){
+                    minSectionLoudness = loudness
+                    maxSectionLoudness = loudness
+                }
+                
+                if loudness < minSectionLoudness {
+                    minSectionLoudness = loudness
+                }
+                
+                if loudness > maxSectionLoudness {
+                    maxSectionLoudness = loudness
+                }
                 
                 // return current segmentIndex as new starting point for next segment search
                 return i

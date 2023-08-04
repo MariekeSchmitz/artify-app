@@ -19,6 +19,7 @@
 		192A632E2A28E56E00F1DDB8 /* SavedTrackObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 192A632D2A28E56E00F1DDB8 /* SavedTrackObject.swift */; };
 		194650352A7BEE0E00CE8D96 /* Visualization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194650342A7BEE0E00CE8D96 /* Visualization.swift */; };
 		194650372A7BEE7A00CE8D96 /* VisualizationLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194650362A7BEE7A00CE8D96 /* VisualizationLines.swift */; };
+		194650392A7CD08400CE8D96 /* VisualizationLoudness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194650382A7CD08400CE8D96 /* VisualizationLoudness.swift */; };
 		194791552A22006E00FD2604 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791542A22006E00FD2604 /* LoginView.swift */; };
 		194791572A2200CA00FD2604 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791562A2200CA00FD2604 /* LoginViewModel.swift */; };
 		194791592A22010900FD2604 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791582A22010900FD2604 /* APIConstants.swift */; };
@@ -78,7 +79,6 @@
 		19C87BE42A446BCA00C75E1F /* DMSerifDisplay-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 198741FD2A3B65D300853D12 /* DMSerifDisplay-Italic.ttf */; };
 		19C87BE52A446BCB00C75E1F /* DMSerifDisplay-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 198741FD2A3B65D300853D12 /* DMSerifDisplay-Italic.ttf */; };
 		19CF2DD92A7674070038855E /* VisualizationElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2DD82A7674070038855E /* VisualizationElement.swift */; };
-		19CF2DDD2A76BC710038855E /* VisualizationElementVm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2DDC2A76BC710038855E /* VisualizationElementVm.swift */; };
 		19CF2E212A77B4F80038855E /* VisualizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E202A77B4F80038855E /* VisualizationView.swift */; };
 		19CF2E232A77E3AD0038855E /* Shapes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E222A77E3AD0038855E /* Shapes.swift */; };
 		19CF2E282A78F1E50038855E /* VisualizationScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CF2E272A78F1E50038855E /* VisualizationScene.swift */; };
@@ -120,6 +120,7 @@
 		192A632D2A28E56E00F1DDB8 /* SavedTrackObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTrackObject.swift; sourceTree = "<group>"; };
 		194650342A7BEE0E00CE8D96 /* Visualization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Visualization.swift; sourceTree = "<group>"; };
 		194650362A7BEE7A00CE8D96 /* VisualizationLines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationLines.swift; sourceTree = "<group>"; };
+		194650382A7CD08400CE8D96 /* VisualizationLoudness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationLoudness.swift; sourceTree = "<group>"; };
 		194791542A22006E00FD2604 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		194791562A2200CA00FD2604 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		194791582A22010900FD2604 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
@@ -175,7 +176,6 @@
 		199BA9172A3F842E00B1CB90 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		19C87BDB2A446ACE00C75E1F /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		19CF2DD82A7674070038855E /* VisualizationElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationElement.swift; sourceTree = "<group>"; };
-		19CF2DDC2A76BC710038855E /* VisualizationElementVm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationElementVm.swift; sourceTree = "<group>"; };
 		19CF2E202A77B4F80038855E /* VisualizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationView.swift; sourceTree = "<group>"; };
 		19CF2E222A77E3AD0038855E /* Shapes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shapes.swift; sourceTree = "<group>"; };
 		19CF2E272A78F1E50038855E /* VisualizationScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationScene.swift; sourceTree = "<group>"; };
@@ -217,7 +217,6 @@
 			children = (
 				197212A72A178BD5007225BB /* MusicLibraryViewModel.swift */,
 				191938892A361A04009B1743 /* PlaylistViewModel.swift */,
-				19CF2E332A7BCEED0038855E /* VisualizationType.swift */,
 			);
 			path = MusicLibrary;
 			sourceTree = "<group>";
@@ -280,7 +279,6 @@
 			isa = PBXGroup;
 			children = (
 				195170642A4096F200789099 /* MusicAnalysisViewModel.swift */,
-				19CF2DDC2A76BC710038855E /* VisualizationElementVm.swift */,
 			);
 			path = MusicAnalysis;
 			sourceTree = "<group>";
@@ -295,6 +293,7 @@
 				19CF2E222A77E3AD0038855E /* Shapes.swift */,
 				190DF7792A73E5EE008F050D /* CircleVisualization.swift */,
 				19CF2E2F2A7A6F0C0038855E /* VisualizationTimerDelegate.swift */,
+				19CF2E332A7BCEED0038855E /* VisualizationType.swift */,
 			);
 			path = Visualization;
 			sourceTree = "<group>";
@@ -499,6 +498,7 @@
 				19CF2E352A7BD9F00038855E /* VisualizationBubbles.swift */,
 				194650342A7BEE0E00CE8D96 /* Visualization.swift */,
 				194650362A7BEE7A00CE8D96 /* VisualizationLines.swift */,
+				194650382A7CD08400CE8D96 /* VisualizationLoudness.swift */,
 			);
 			path = Visualizations;
 			sourceTree = "<group>";
@@ -669,6 +669,7 @@
 				195170652A4096F200789099 /* MusicAnalysisViewModel.swift in Sources */,
 				197212772A0E533C007225BB /* ContentView.swift in Sources */,
 				1951705B2A406A9300789099 /* IntroView.swift in Sources */,
+				194650392A7CD08400CE8D96 /* VisualizationLoudness.swift in Sources */,
 				1951705D2A4084DF00789099 /* SpotifyAnalysisService.swift in Sources */,
 				197212A62A178BBB007225BB /* Playlist.swift in Sources */,
 				19C87BDC2A446ACE00C75E1F /* RoundedButton.swift in Sources */,
@@ -707,7 +708,6 @@
 				191938812A35DB0F009B1743 /* Artist.swift in Sources */,
 				1951706C2A40AC1600789099 /* AudioAnalysis.swift in Sources */,
 				19CF2E232A77E3AD0038855E /* Shapes.swift in Sources */,
-				19CF2DDD2A76BC710038855E /* VisualizationElementVm.swift in Sources */,
 				194791642A24999800FD2604 /* SpotifyLoginView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
