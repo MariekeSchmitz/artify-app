@@ -31,6 +31,8 @@ class MusicAnalysisViewModel : ObservableObject {
     var maxSectionLoudness:Double = 0
     var minSectionLoudness: Double = 0
     
+    var audioFeatureType:AudioFeatureColors = .Slow
+    
     var beatsPerSection = [Int:Int]()
     
     
@@ -66,6 +68,21 @@ class MusicAnalysisViewModel : ObservableObject {
             numBeatsPerTimestamp[roundedBeatStart] = numBeats
             beatDetectedPerTimeStamp[roundedBeatStart] = false
         }
+        
+        
+        
+  
+        if (audioFeatures.energy > 0.7 && audioFeatures.danceability>0.7) {
+            audioFeatureType = .HighEnergy
+        } else if (audioFeatures.energy > 0.4 && audioFeatures.danceability>0.4)  {
+            audioFeatureType = .MidEnergy
+        } else {
+            audioFeatureType = .Slow
+        }
+        
+        print("energy: ", audioFeatures.energy)
+        print("danceability: ", audioFeatures.danceability)
+
         
         
         

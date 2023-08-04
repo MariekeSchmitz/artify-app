@@ -14,8 +14,8 @@
             filePath = "Artify/ViewModel/MusicAnalysis/MusicAnalysisViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "126"
-            endingLineNumber = "126"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "getSectionData(beatStart:numBeats:currentSectionCounter:)"
             landmarkType = "7">
          </BreakpointContent>

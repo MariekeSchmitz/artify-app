@@ -85,8 +85,10 @@ class VisualizationNet : Visualization {
 //            UIColor(red: 141, green: 236, blue: 250, alpha: 1),
 //            UIColor(red: 162, green: 240, blue: 217, alpha: 1)
 //        ]
+        
+        var audioFeatureType = musicAnalysisVM.audioFeatureType
 
-        colorPerPitch = UIColor(red: 0, green: 0.2, blue: 0.2, alpha: 1).generateVariations(count: 12)
+        colorPerPitch = audioFeatureType.color.generateVariations(count: 12)
         
         for i in 0..<numSections {
             let x:Double = .random(in: (centerX - width/7)...(centerX + width/7))
