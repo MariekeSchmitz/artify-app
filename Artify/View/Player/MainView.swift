@@ -21,18 +21,8 @@ struct MainView: View {
         ZStack {
             
             if musicLibraryViewOn {
-                
                 Color.black.opacity(0.5).ignoresSafeArea()
-                
-                MusicLibraryView(musicLibraryViewOn: $musicLibraryViewOn).transition(.move(edge: .leading ))
-              
-//                GeometryReader{ geometry in
-//                    
-//                    MusicLibraryView(musicLibraryViewOn: $musicLibraryViewOn)
-//                        .frame(width: geometry.size.width * 0.9, alignment: .center)
-//
-//                }.transition(.move(edge: .trailing))
-                
+                MusicLibraryView(musicLibraryViewOn: $musicLibraryViewOn).transition(.move(edge: .leading))
             } else if settingViewOn {
                 SettingsView(settingsViewOn: $settingViewOn).transition(.move(edge: .trailing))
             } else {

@@ -45,8 +45,7 @@ struct PlayView:View {
                 Spacer()
             }
             
-                
-            
+
             
             if (showInfo) {
                 VStack{
@@ -70,11 +69,6 @@ struct PlayView:View {
                             Image(screenshotSavingSuccess ? "check" : "screenshot")
                         }
                         
-    //                    Button("Settings") {
-    //                        withAnimation {
-    //                            settingViewOn.toggle()
-    //                        }
-    //                    }
                     }.padding()
                     
                     
@@ -106,15 +100,12 @@ struct PlayView:View {
                                 if (playerVM.isPlayling) {
                                     Button {
                                         playerVM.pauseTrack()
-                                        print("Track to be paused")
                                     } label: {
                                         Image("pause")
                                     }
                                 } else {
                                     Button {
                                         playerVM.resumeTrack()
-                                        print("Track to be played")
-
                                     } label: {
                                         Image("play")
                                     }
@@ -126,8 +117,6 @@ struct PlayView:View {
                                         playerVM.timeOnHold = false
                                     } else {
                                         if (!playerVM.timeOnHold) {
-                                            print("CURRENT TIME SLIDER END: ",playerVM.currentTIme)
-                                            print(playerVM.currentTrack!.duration_ms)
                                             playerVM.seekToPositionInTrack()
                                         }
                                     }
@@ -157,10 +146,7 @@ struct PlayView:View {
                                 }.pickerStyle(.menu)
                                     .accentColor(.white)
                                     .font(Font.custom("Poppins-Regular", size: 15))
-    //                                .onChange(of: analysisVM.visualizationType) { change in
-    //                                    playerVM.songForwarded = true
-    //                                }
-                                
+
                                 Picker("Selection", selection: $analysisVM.audioFeatureColor) {
                                     ForEach(audioFeatureColors, id: \.self) { i in
                                         Text(i.description)
@@ -174,10 +160,7 @@ struct PlayView:View {
                                         print(analysisVM.audioFeatureColor)
                                     }
                             }
-                            
-                            
-                            
-                            
+      
                         } else {
                             VStack {
                                 
@@ -190,9 +173,7 @@ struct PlayView:View {
                             }.task(delayInstruction)
 
                         }
-                        
-                        
-                        
+  
                     }
                 }.padding(20).padding(.vertical, 50)
             }
@@ -207,12 +188,7 @@ struct PlayView:View {
             
         }
         .ignoresSafeArea()
-//        .task {
-//            try? await Task.sleep(nanoseconds: 4_000_000_000)
-//            if (playerVM.currentTrack != nil) {
-//                playerVM.playCurrentTrack()
-//            }
-//        }
+
     }
     
     private func delayInstruction() async {
@@ -275,41 +251,8 @@ struct PlayView:View {
         
     }
     
-    
-//    private func createSplittedStrings(title:String) -> [String] {
-//
-//        let words = title.components(separatedBy: " ")
-//        let numWords = words.count
-//
-//        var lines = [String](repeating: "", count: numWords)
-//
-//        longTitle = title.count > 30
-//        let maxLengthPerLine = longTitle ? 16 : 11
-//
-//        var lineCount = 0
-//
-//        for word in words {
-//
-//            var combinedWord = word + " " + lines[lineCount]
-//            if combinedWord.count >= maxLengthPerLine {
-//                lineCount += 1
-//            }
-//
-//            lines[lineCount] += (word + " ")
-//        }
-//
-//        return lines
-//
-//    }
-//
+
     
 }
-
-
-
-
-
-
-
 
 

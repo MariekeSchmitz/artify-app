@@ -53,8 +53,6 @@ struct SpotifyWebView: UIViewRepresentable {
             playViewOn.toggle()
 
             loginVM.loginState.loggedIn.toggle()
-//            loginVM.loginState.token = token
-//            loginVM.loginState.setToken(token)
             
             print(loginVM.loginState.loggedIn)
             print("Token: \(token)")

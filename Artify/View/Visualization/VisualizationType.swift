@@ -25,10 +25,10 @@ enum VisualizationType : CustomStringConvertible, CaseIterable {
     
     var description: String {
         switch self {
-        case .Bubble: return "Bubble"
+        case .Bubble: return "Bubbles"
         case .Lines: return "Lines"
         case .Loudness: return "Loudness"
-        case .Net: return "Net"
+        case .Net: return "Web"
         }
     }
 }

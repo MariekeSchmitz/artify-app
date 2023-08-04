@@ -57,19 +57,6 @@ class VisualizationScene: SKScene {
             
     }
     
-//    private func initalizeValues() {
-//
-//        visualizationType = musicAnalysisVM.visualizationType
-//
-//        switch visualizationType {
-//        case .Bubble:
-//            initalizeBubble()
-//            break
-//        case .Lines:
-//            break
-//        }
-//    }
-    
     private func resetScene(_ currentTime:Double) {
         print("Scene reset")
         self.startTime = currentTime
@@ -98,21 +85,7 @@ class VisualizationScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         
-
-        
-        
-        
-        
         if (playVM.isPlayling) {
-            
-//            if let t = playVM.currentTrack {
-//                var duration = t.duration_ms/1000
-//                print(roundedTimer)
-//                print(duration)
-//                if (Int(roundedTimer) > duration) {
-//                    playVM.endTrack()
-//                }
-//            }
             
             let numBeat = musicAnalysisVM.counterBeatsDetected
             if numBeat == visualizationValues.count - 1{
@@ -127,7 +100,6 @@ class VisualizationScene: SKScene {
             let timePassed = currentTime - self.startTime + playVM.offset - self.delay
             roundedTimer = round(timePassed*100)/100
             
-//            print(roundedTimer)
             
             // delegate time for view-updates
             self.passTime(time:roundedTimer)
@@ -148,12 +120,9 @@ class VisualizationScene: SKScene {
 
             }
         }
-        
-        
-        
+
     }
     
-   
     
     private func visualizeBeatsBeforeOffset(_ roundedTimer: Double) {
         
@@ -177,12 +146,7 @@ class VisualizationScene: SKScene {
         }
 
         beatsBeforeOffsetNeeded = false
-        
-
     }
-    
-
-    
 
 }
 
@@ -204,9 +168,7 @@ extension VisualizationScene {
             switch musicAnalysisVM.visualizationModifier {
             case .Move:
                 if (dist < 400) {
-                    
                     let newPoint = newPointAfterMoving(child.position, angle: angleBetweenPoints(child.position, touchPosition), distance: -50)
-    //                child.position = newPoint
                     let moveAnimation = SKAction.move(to: newPoint, duration: 0.1)
                     child.run(moveAnimation)
                 }
@@ -228,33 +190,11 @@ extension VisualizationScene {
                     child.run(scaleAnimation)
                 }
             
-            case .Remove:
-                break
-                
-//                if (dist < 10) {
-//                    child.physicsBody = SKPhysicsBody(circleOfRadius: 10)
-//                }
             }
-            
-            
-        
-            
-            
-            
-            
-            
+
         }
         
-//        // 1. Checks if there is a SKShapeNode where the player touched.
-//        if let selectedNode = nodes(at: touchPosition).first as? SKShapeNode {
-//            // 2. If so, calls a function to destroy the node
-////            selectedNode.position.x += 50
-////            selectedNode.position.y += 50
-//
-//            selectedNode.physicsBody = SKPhysicsBody(circleOfRadius: 10)
-//            selectedNode.physicsBody?.affectedByGravity
-//
-//        }
+
         
     }
     
@@ -262,10 +202,6 @@ extension VisualizationScene {
             square.removeFromParent()
         }
 
-//    func CGPointDistance(from: CGPoint, to: CGPoint) -> CGFloat {
-//        return sqrt(CGPointDistanceSquared(from: from, to: to))
-//        Distance
-//    }
     
     func CGPointDistanceSquared(from: CGPoint, to: CGPoint) -> CGFloat {
         return (from.x - to.x) * (from.x - to.x) + (from.y - to.y) * (from.y - to.y)
@@ -280,19 +216,14 @@ extension VisualizationScene {
     }
     
     func scaleFactor(for distance: CGFloat) -> CGFloat {
-        // Define your distance limits
+
         let minDistance: CGFloat = 0
-        let maxDistance: CGFloat = 400 // You can adjust this
+        let maxDistance: CGFloat = 400
         
-        // Calculate the scale factor
         let scaleFactor = (distance - minDistance) / (maxDistance - minDistance)
-        
-        // Make sure the scale factor is within the valid range
         return max(0, min(1, scaleFactor))
     }
-    
-    
-    
+  
 }
 
 extension VisualizationScene {
@@ -318,7 +249,6 @@ extension CGPoint {
         let deltaY = sin(CGFloat(angle.radians)) * distance
         return CGPoint(x: self.x + deltaX, y: self.y + deltaY)
     }
-    
     
 }
 

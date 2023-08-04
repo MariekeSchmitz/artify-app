@@ -21,8 +21,7 @@ struct MusicLibraryView: View {
             ZStack {
                 
                 Color.darkGrayBG.ignoresSafeArea()
-                
-                
+ 
                 
                 VStack(spacing:0){
                     HStack{
@@ -159,9 +158,4 @@ struct LoadingView: View {
 }
 
 
-//struct MusicLibraryView_Previews: PreviewProvider {
-//
-//    static var previews: some View {
-////        MusicLibraryView(musicLibraryVM: MusicLibraryViewModel.shared, path:PlayView(loginVM: LoginViewModel.shared, musicLibraryVM:MusicLibraryViewModel.shared, playerVM: PlayerViewModel.shared).$path)
-//    }
-//}
+

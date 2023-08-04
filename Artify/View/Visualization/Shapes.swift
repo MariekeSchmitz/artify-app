@@ -12,7 +12,7 @@ import SpriteKit
 
 func drawCircle(radius:CGFloat, posX:CGFloat, posY:CGFloat, fillColor:SKColor = SKColor.white, strokeColor:SKColor = SKColor.white, outline:Bool = false) -> SKShapeNode {
     
-    var c = SKShapeNode(circleOfRadius: radius)
+    let c = SKShapeNode(circleOfRadius: radius)
     
     c.position = CGPointMake(posX, posY)
     
@@ -25,8 +25,7 @@ func drawCircle(radius:CGFloat, posX:CGFloat, posY:CGFloat, fillColor:SKColor = 
         c.lineWidth = 1
     }
     
-    
-    
+
     return c
     
 }

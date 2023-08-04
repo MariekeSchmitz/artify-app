@@ -42,7 +42,6 @@ struct VisualizationView:View, VisualizationTimerDelegate {
     
     func takeScreenshot() {
         let bounds = self.scene.view?.bounds
-//        let scale = self.scene.view?.window?.screen.scale
         UIGraphicsBeginImageContextWithOptions(bounds!.size, false, 10)
         self.scene.view?.drawHierarchy(in: CGRect(origin: CGPoint(x: 0, y: 0), size: bounds!.size), afterScreenUpdates: true)
 
@@ -53,9 +52,6 @@ struct VisualizationView:View, VisualizationTimerDelegate {
     }
     
 
-    
- 
-   
     
 }
 
