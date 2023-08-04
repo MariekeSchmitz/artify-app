@@ -260,17 +260,7 @@ class VisualizationNet : Visualization {
 
 
     
-    func mapValue(_ value: Double) -> Double {
-        // Assuming your input range is 0.3 to 0.8
-        let minValue = 0.3
-        let maxValue = 0.8
-        
-        // Normalize the value to the range 0 to 1
-        let normalizedValue = (value - minValue) / (maxValue - minValue)
-        
-        // Make sure the normalized value is within the valid range
-        return max(0, min(1, normalizedValue))
-    }
+    
     
 }
 

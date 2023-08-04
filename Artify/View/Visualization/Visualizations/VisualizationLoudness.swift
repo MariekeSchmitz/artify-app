@@ -43,6 +43,28 @@ class VisualizationLoudness : Visualization {
         
         if (audioFeatureColor == .Colors) {
             colorVariations = colorfulColors
+            print(colorVariations)
+            for i in 0..<colorVariations.count {
+                
+                var color = colorVariations[i]
+                
+                var red: CGFloat = 0
+                var green: CGFloat = 0
+                var blue: CGFloat = 0
+                var alpha: CGFloat = 0
+                
+                var factor:CGFloat = 10
+                
+                if color.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
+                    let newRed = max(0, red/factor)
+                    let newGreen = max(0, green/factor)
+                    let newBlue = max(0, blue/factor)
+                    
+                    colorVariations[i] = UIColor(red: Double(newRed), green: Double(newGreen), blue: Double(newBlue), alpha: Double(alpha))
+                }
+            }
+            print(colorVariations)
+
         } else {
             colorVariations = audioFeatureColor.color.generateVariations(count: 12, step: 0.1)
         }
@@ -75,6 +97,15 @@ class VisualizationLoudness : Visualization {
         }
         
         
+        var alpha:Double = 0
+        
+        if (audioFeatureColor == .Colors) {
+            alpha = normalizedLoudnessTo1 < 0.5 ? 0.5 : 0.003
+        } else {
+            alpha = normalizedLoudnessTo1 < 0.5 ? 1 : 0.05
+        }
+        
+        
         let line = drawLine(
             startPoint: CGPoint(x: centerX, y: centerY),
             endPoint: CGPoint(x: getX(angle: angle, step: step, radius: radius/100 * intenseLoudness) + centerX ,
@@ -86,7 +117,7 @@ class VisualizationLoudness : Visualization {
             radius: normalizedLoudnessTo1 < 0.5 ? normalizedLoudnessTo1*10 : 0.7 * intenseLoudness,
             posX: getX(angle: angle, step: step, radius: radius*2/3 + radius * pitches[0]) + centerX ,
             posY: getY(angle: angle, step: step, radius: radius*2/3 + radius * pitches[0]) + centerY,
-            fillColor: colorVariations[.random(in: 0..<12)].withAlphaComponent(normalizedLoudnessTo1 < 0.5 ? 1 : 0.05)
+            fillColor: colorVariations[.random(in: 0..<12)].withAlphaComponent(alpha)
             
         )
         

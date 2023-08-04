@@ -34,5 +34,13 @@ class Visualization {
     func visualizeBeat(scene:VisualizationScene, step:Int, visualisationData:VisualizationElement) {
     }
     
+    func mapValue(_ value: Double, minValue:Double = 0.3, maxValue:Double = 0.8) -> Double {
+ 
+        
+        let normalizedValue = (value - minValue) / (maxValue - minValue)
+        
+        return max(0, min(1, normalizedValue))
+    }
+    
     
 }
