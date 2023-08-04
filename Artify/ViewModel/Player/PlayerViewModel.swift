@@ -44,7 +44,6 @@ class PlayerViewModel : ObservableObject {
         offset = currentTIme
         songForwarded = true
         isPlayling = true
-//        currentTimeAllowsChange = true
         let time_ms = Int(currentTIme * 1000)
         player.seekToPositionInTrack(time_ms: String(time_ms))
     }

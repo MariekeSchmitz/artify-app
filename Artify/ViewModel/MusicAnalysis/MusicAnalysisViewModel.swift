@@ -34,9 +34,7 @@ class MusicAnalysisViewModel : ObservableObject {
     
     
     var beatsPerSection = [Int:Int]()
-    
-    
-    
+ 
     private func setupVisualizationData() {
         
         var numBeats = 0
@@ -69,29 +67,7 @@ class MusicAnalysisViewModel : ObservableObject {
             beatDetectedPerTimeStamp[roundedBeatStart] = false
         }
         
-        
-        
-  
-//        if (audioFeatures.energy > 0.7 && audioFeatures.danceability>0.7) {
-//            audioFeatureType = .Green
-//        } else if (audioFeatures.energy > 0.4 && audioFeatures.danceability>0.4)  {
-//            audioFeatureType = .Blue
-//        } else {
-//            audioFeatureType = .Colors
-//        }
-//
-//        print("energy: ", audioFeatures.energy)
-//        print("danceability: ", audioFeatures.danceability)
 
-        
-        
-        
-        print(visualizationValues)
-        
-//        let sortedByValueDictionary = numBeatsPerTimestamp.sorted { $0.1 < $1.1 }
-//
-//        print(sortedByValueDictionary)
-//
     }
     
     private func getPitchTimbreData(beatStart:Double, numBeats:Int, currentSegmentCounter:Int) -> Int{
@@ -129,7 +105,6 @@ class MusicAnalysisViewModel : ObservableObject {
                 if loudness > maxSegmentLoudness {
                     maxSegmentLoudness = loudness
                 }
-
 
                 // return current segmentIndex as new starting point for next segment search
                 return i
@@ -216,19 +191,7 @@ class MusicAnalysisViewModel : ObservableObject {
         
     }
     
-//    @objc private func handleTimerExecution() {
-//
-//        songTimer += 0.01
-//        let roundedTimer = round(songTimer*100)/100
-////        if checkBeats(time: roundedTimer) {
-////            print("beat detected")
-//////            addToVisualizationValues(index: counterBeatsDetected)
-////            colorToggle.toggle()
-////        }
-//        checkIfBeatDetected(time: roundedTimer)
-//
-//    }
-    
+
     
     
     func checkIfBeatDetected(time:Double) -> Bool{
@@ -240,19 +203,14 @@ class MusicAnalysisViewModel : ObservableObject {
             if (!(beatDetectedPerTimeStamp[time]!)) {
                 beatDetectedPerTimeStamp[time] = true
                 counterBeatsDetected += 1
-                
-                
                 return true
             }
-        
-            
             
         } else if (numBeatsPerTimestamp.keys.contains(previousTime)) {
 
             if (!(beatDetectedPerTimeStamp[previousTime]!)) {
                 beatDetectedPerTimeStamp[previousTime] = true
                 counterBeatsDetected += 1
-
                 return true
             }
         }
@@ -261,49 +219,20 @@ class MusicAnalysisViewModel : ObservableObject {
     
         return false
         
-//        print("______")
-//
-//        for v in visualizationValues {
-//            print(v.beatPlayed)
-//        }
-//
-//        print("______")
-
-        
-//        let beats = audioAnalysis.beats
-//        for beat in beats {
-//            let roundedBeatStart = round(beat.start * 100) / 100.00
-//            if roundedBeatStart == time {
-//                counterBeatsDetected += 1
-//                return true
-//            }
-//        }
-//        return false
     }
     
-//    func addToVisualizationValues(index:Int) {
-//        visualizationValues[index - 1] = audioAnalysis.beats[index - 1]
-//        print(visualizationValues)
-//    }
-    
-    
-//    @MainActor
+
     func getTracksAudioFeatures(id: String) async {
         
-//        Task {
             let features:AudioFeatures? = await analysisService.getAudioFeatures(trackId: id)
             if let f = features {
                 self.audioFeatures = f
                 print(self.audioFeatures)
             }
-//        }
-        
     }
     
-//    @MainActor
     func getTracksAudioAnalysis(id: String) async {
         
-//        Task {
             let analysis:AudioAnalysis? = await analysisService.getAudioAnalysis(trackId: id)
             if let a = analysis {
                 self.audioAnalysis = a
@@ -311,13 +240,7 @@ class MusicAnalysisViewModel : ObservableObject {
             }
         
         setupVisualizationData()
-        
-//        }
-        
     }
-    
-  
-    
-    
+   
     
 }

@@ -11,13 +11,11 @@ class MusicLibraryViewModel : ObservableObject {
     
     static let shared = MusicLibraryViewModel()
     
-    
     let libraryService = SpotifyLibraryService.shared
     @Published var track:Track = Track()
     @Published var favoriteTracks:TrackList = TrackList()
     @Published var playlistLibrary:PlaylistLibrary = PlaylistLibrary()
     
-
     @MainActor
     func getTrackById(id:String) {
         Task {
