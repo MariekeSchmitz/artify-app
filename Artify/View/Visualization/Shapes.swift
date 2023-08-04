@@ -10,7 +10,7 @@ import SpriteKit
 
 
 
-func drawCircle(radius:CGFloat, posX:CGFloat, posY:CGFloat, fillColor:SKColor = SKColor.white, strokeColor:SKColor = SKColor.white, outline:Bool = false) -> SKShapeNode {
+func drawCircle(radius:CGFloat, posX:CGFloat, posY:CGFloat, fillColor:SKColor = SKColor.white, strokeColor:SKColor = SKColor.white, outline:Bool = false, glow:Bool = false) -> SKShapeNode {
     
     let c = SKShapeNode(circleOfRadius: radius)
     
@@ -19,13 +19,15 @@ func drawCircle(radius:CGFloat, posX:CGFloat, posY:CGFloat, fillColor:SKColor = 
     if outline {
         c.strokeColor = strokeColor
         c.lineWidth = 1
-    } else {
+    } else if (glow) {
         c.fillColor = fillColor
         c.strokeColor = fillColor
         c.lineWidth = 1
+    } else {
+        c.fillColor = fillColor
+        c.lineWidth = 0
     }
     
-
     return c
     
 }

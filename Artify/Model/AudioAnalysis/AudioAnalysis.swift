@@ -38,13 +38,9 @@ struct AudioAnalysisTrack : Decodable, Hashable {
     var key_confidence: Double = 0
     var mode: Int = 0
     var mode_confidence: Double = 0
-//    var codestring: String = ""
     var code_version: Double = 0
-//    var echoprintstring: String = ""
     var echoprint_version: Double = 0
-//    var synchstring: String = ""
     var synch_version: Double = 0
-//    var rhythmstring: String = ""
     var rhythm_version: Double = 0
     
 }

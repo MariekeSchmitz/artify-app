@@ -58,7 +58,6 @@ class VisualizationScene: SKScene {
     }
     
     private func resetScene(_ currentTime:Double) {
-        print("Scene reset")
         self.startTime = currentTime
         playVM.songForwarded = false
         beatsBeforeOffsetNeeded = true

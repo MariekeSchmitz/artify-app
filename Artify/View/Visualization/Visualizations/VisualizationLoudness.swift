@@ -42,7 +42,6 @@ class VisualizationLoudness : Visualization {
         
         if (audioFeatureColor == .Colors) {
             colorVariations = colorfulColors
-            print(colorVariations)
             for i in 0..<colorVariations.count {
                 
                 let color = colorVariations[i]
@@ -62,7 +61,6 @@ class VisualizationLoudness : Visualization {
                     colorVariations[i] = UIColor(red: Double(newRed), green: Double(newGreen), blue: Double(newBlue), alpha: Double(alpha))
                 }
             }
-            print(colorVariations)
 
         } else {
             colorVariations = audioFeatureColor.color.generateVariations(count: 12, step: 0.1)

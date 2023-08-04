@@ -13,7 +13,5 @@ struct LoginState {
     var token:String = ""
     
     static let shared = LoginState()
-    
-    
 
 }

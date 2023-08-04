@@ -27,7 +27,6 @@ class VisualizationBubbles : Visualization{
         
         if (audioFeatureColor == .Colors) {
             colorVariations = colorfulColors
-            print(colorVariations)
             for i in 0..<colorVariations.count {
                 
                 let color = colorVariations[i]
@@ -47,7 +46,6 @@ class VisualizationBubbles : Visualization{
                     colorVariations[i] = UIColor(red: Double(newRed), green: Double(newGreen), blue: Double(newBlue), alpha: Double(0.2))
                 }
             }
-            print(colorVariations)
 
         } else {
             colorVariations = audioFeatureColor.color.generateVariations(count: 12, step: 0.2)

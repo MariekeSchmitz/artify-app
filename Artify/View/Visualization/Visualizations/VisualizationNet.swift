@@ -70,9 +70,6 @@ class VisualizationNet : Visualization {
         
         for i in 0..<numSections {
             let x:Double = .random(in: (centerX - width/7)...(centerX + width/7))
-            print(width)
-            print(centerX)
-            print(x)
             let y:Double = .random(in: (centerY - height/4)...(centerY + height/4))
             
             let p = CGPoint(x: x, y: y)
@@ -154,7 +151,7 @@ class VisualizationNet : Visualization {
         let color = colorPerPitch[findDominantPitch(pitches: pitches)]
         
         let curve = drawCurve(startPoint: startPoint, endPoint: endPoint, controlPoint1: controlPoint1, controlPoint2: controlPoint2, lineColor: color)
-        let circle = drawCircle(radius: 2, posX: endPoint.x, posY: endPoint.y, fillColor: color)
+        let circle = drawCircle(radius: 2, posX: endPoint.x, posY: endPoint.y, fillColor: color, glow: true)
         circle.glowWidth = 2
         
         scene.addChild(curve)
@@ -175,7 +172,6 @@ class VisualizationNet : Visualization {
                 maxIndex = i
             }
         }
-        print(maxIndex)
         return maxIndex
  
     }

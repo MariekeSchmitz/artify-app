@@ -41,7 +41,7 @@ struct MusicLibraryView: View {
                             .padding(.trailing, 20)
                     }
                     
-                    Text("Deine Playlists")
+                    Text("Playlists")
                         .font(Font.custom("DMSerifDisplay-Regular", size: 32))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(Color.white)
@@ -50,7 +50,7 @@ struct MusicLibraryView: View {
                         
                     PlaylistsView(playlists: musicLibraryVM.playlistLibrary.items, musicLibraryViewOn: $musicLibraryViewOn, loadingIndicatorOn: $loadingIndicatorOn).padding(0)
                     
-                    Text("Deine Top-Tracks")
+                    Text("Top Tracks")
                         .font(Font.custom("DMSerifDisplay-Regular", size: 32))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .foregroundColor(Color.white)

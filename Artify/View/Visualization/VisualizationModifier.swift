@@ -23,7 +23,7 @@ enum VisualizationModifier : CustomStringConvertible, CaseIterable {
     var description: String {
         switch self {
         case .ScaleUp: return "Scale up"
-        case .ScaleDown: return "Scale up"
+        case .ScaleDown: return "Scale down"
         case .Move: return "Move"
         }
     }

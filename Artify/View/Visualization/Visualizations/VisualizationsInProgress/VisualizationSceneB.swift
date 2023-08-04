@@ -113,7 +113,6 @@ class VisualizationSceneB: SKScene {
 
             
             
-        print("You are in the game scene!")
     }
     
     override func update(_ currentTime: TimeInterval) {

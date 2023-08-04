@@ -112,7 +112,6 @@ struct PlayView:View {
                                 }
                                 
                                 Slider(value: $playerVM.currentTIme, in: 0...Double(playerVM.currentTrack!.duration_ms)/1000.0) { editingChange in
-                                    print(editingChange)
                                     if (editingChange) {
                                         playerVM.timeOnHold = false
                                     } else {
@@ -157,7 +156,6 @@ struct PlayView:View {
                                     .onChange(of: analysisVM.audioFeatureColor) { change in
                                         playerVM.songForwarded = true
                                         playerVM.offset = playerVM.currentTIme
-                                        print(analysisVM.audioFeatureColor)
                                     }
                             }
       
