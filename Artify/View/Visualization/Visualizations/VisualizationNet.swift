@@ -71,24 +71,15 @@ class VisualizationNet : Visualization {
         
         positionPerSection = [CGPoint](repeating: CGPoint(), count: numSections)
         anglePerSection = [Double](repeating: Double(), count: numSections)
-//        colorPerPitch = [
-//            UIColor(red: 0.1, green: 0.3, blue: 0.2, alpha: 1),
-//            UIColor(red: 0.1, green: 0.3, blue: 0.2, alpha: 1),
-//            UIColor(red: 0.1, green: 0.3, blue: 0.2, alpha: 1),
-//            UIColor(red: 0.1, green: 0.3, blue: 0.2, alpha: 1),
-//            UIColor(red: 0.1, green: 0.3, blue: 0.2, alpha: 1),
-//            UIColor(red: 0.1, green: 0.3, blue: 0.2, alpha: 1),
-//            UIColor(red: 190 , green: 210, blue: 230, alpha: 1),
-//            UIColor(red: 160, green: 230, blue: 230, alpha: 1),
-//            UIColor(red: 188, green: 224, blue: 230, alpha: 1),
-//            UIColor(red: 197, green: 238, blue: 240, alpha: 1),
-//            UIColor(red: 141, green: 236, blue: 250, alpha: 1),
-//            UIColor(red: 162, green: 240, blue: 217, alpha: 1)
-//        ]
-        
-        var audioFeatureType = musicAnalysisVM.audioFeatureType
 
-        colorPerPitch = audioFeatureType.color.generateVariations(count: 12)
+        
+        var audioFeatureType = musicAnalysisVM.audioFeatureColor
+        
+        if(audioFeatureType == .Colors) {
+            colorPerPitch = UIColor().getColorful()
+        } else {
+            colorPerPitch = audioFeatureType.color.generateVariations(count: 12)
+        }
         
         for i in 0..<numSections {
             let x:Double = .random(in: (centerX - width/7)...(centerX + width/7))
@@ -281,43 +272,6 @@ class VisualizationNet : Visualization {
         return max(0, min(1, normalizedValue))
     }
     
-}
-
-
-extension UIColor {
-    func generateVariations(count: Int) -> [UIColor] {
-        var variations: [UIColor] = []
-        let step: CGFloat = 0.3
-        
-        for i in 0..<count {
-            let red = self.rgbComponents.red + CGFloat(i) * step
-            let green = self.rgbComponents.green + CGFloat(i) * step
-            let blue = self.rgbComponents.blue + CGFloat(i) * step
-            
-            // Calculate the average of RGB components
-            let averageComponent = (red + green + blue) / 3
-            
-            // Adjust each component equally based on the average
-            let adjustedRed = max(0, red - CGFloat(i) * step * (averageComponent - 0.5))
-            let adjustedGreen = max(0, green - CGFloat(i) * step * (averageComponent - 0.5))
-            let adjustedBlue = max(0, blue - CGFloat(i) * step * (averageComponent - 0.5))
-            
-            let variation = UIColor(red: min(1, adjustedRed), green: min(1, adjustedGreen), blue: min(1, adjustedBlue), alpha: 1)
-            variations.append(variation)
-        }
-        
-        return variations
-    }
-    
-    var rgbComponents: (red: CGFloat, green: CGFloat, blue: CGFloat) {
-        var r: CGFloat = 0
-        var g: CGFloat = 0
-        var b: CGFloat = 0
-        var a: CGFloat = 0
-        
-        self.getRed(&r, green: &g, blue: &b, alpha: &a)
-        return (r, g, b)
-    }
 }
 
 

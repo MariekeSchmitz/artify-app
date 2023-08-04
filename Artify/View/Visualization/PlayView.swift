@@ -26,6 +26,7 @@ struct PlayView:View {
     
     var visualizationTypes:[VisualizationType] = VisualizationType.allCases.map { $0 }
     var visualizationModifiers:[VisualizationModifier] = VisualizationModifier.allCases.map { $0 }
+    var audioFeatureColors:[AudioFeatureColors] = AudioFeatureColors.allCases.map { $0 }
 
 
     var body: some View {
@@ -159,6 +160,19 @@ struct PlayView:View {
     //                                .onChange(of: analysisVM.visualizationType) { change in
     //                                    playerVM.songForwarded = true
     //                                }
+                                
+                                Picker("Selection", selection: $analysisVM.audioFeatureColor) {
+                                    ForEach(audioFeatureColors, id: \.self) { i in
+                                        Text(i.description)
+                                    }
+                                }.pickerStyle(.menu)
+                                    .accentColor(.white)
+                                    .font(Font.custom("Poppins-Regular", size: 15))
+                                    .onChange(of: analysisVM.audioFeatureColor) { change in
+                                        playerVM.songForwarded = true
+                                        playerVM.offset = playerVM.currentTIme
+                                        print(analysisVM.audioFeatureColor)
+                                    }
                             }
                             
                             
