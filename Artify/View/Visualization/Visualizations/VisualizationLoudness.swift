@@ -10,19 +10,19 @@ import SpriteKit
 
 class VisualizationLoudness : Visualization {
     
-    var maxSegmentLoudness:Double = 0
-    var minSegmentLoudness:Double = 0
-    var segmentLoudnessRange:Double = 0
+    private var maxSegmentLoudness:Double = 0
+    private var minSegmentLoudness:Double = 0
+    private var segmentLoudnessRange:Double = 0
     
-    var maxSectionLoudness:Double = 0
-    var minSectionLoudness:Double = 0
-    var sectionLoudnessRange:Double = 0
+    private var maxSectionLoudness:Double = 0
+    private var minSectionLoudness:Double = 0
+    private var sectionLoudnessRange:Double = 0
     
-    var sectionToggle: Bool = false
+    private var sectionToggle: Bool = false
     
-    var audioFeatureColor:AudioFeatureColors = AudioFeatureColors.Colors
-    var colorfulColors = UIColor().getColorful()
-    var colorVariations:[UIColor] = []
+    private var audioFeatureColor:AudioFeatureColors = AudioFeatureColors.Colors
+    private var colorfulColors = UIColor().getColorful()
+    private var colorVariations:[UIColor] = []
     
     override init(visualitationValues:[VisualizationElement], centerX:Double, centerY:Double, width:Double, height:Double) {
         super.init(visualitationValues: visualitationValues, centerX: centerX, centerY: centerY, width:width, height:height)
@@ -36,7 +36,6 @@ class VisualizationLoudness : Visualization {
         
         maxSectionLoudness = musicAnalysisVM.maxSectionLoudness
         minSectionLoudness = musicAnalysisVM.minSectionLoudness
-        
         sectionLoudnessRange = maxSectionLoudness - minSectionLoudness
         
         audioFeatureColor = musicAnalysisVM.audioFeatureColor
@@ -46,14 +45,14 @@ class VisualizationLoudness : Visualization {
             print(colorVariations)
             for i in 0..<colorVariations.count {
                 
-                var color = colorVariations[i]
+                let color = colorVariations[i]
                 
                 var red: CGFloat = 0
                 var green: CGFloat = 0
                 var blue: CGFloat = 0
                 var alpha: CGFloat = 0
                 
-                var factor:CGFloat = 10
+                let factor:CGFloat = 10
                 
                 if color.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
                     let newRed = max(0, red/factor)
@@ -80,14 +79,9 @@ class VisualizationLoudness : Visualization {
         let normalizedLoudnessTo10 = positiveLoudness/(segmentLoudnessRange/10)
         let normalizedLoudnessTo1 = positiveLoudness/(segmentLoudnessRange)
 
-        let mappedValue = mapValue(normalizedLoudnessTo1)
         
         let intenseLoudness = normalizedLoudnessTo10 * normalizedLoudnessTo10
-        
-        let beatConfidence = visualisationData.beatConfidence
-        let sectionloudness = visualisationData.sectionLoudness
-        let sectionKey = visualisationData.sectionKey
-        let sectionTempo = visualisationData.sectionTempo
+    
         let newSection = visualisationData.sectionChange
         let pitches = visualisationData.pitches
         
@@ -95,7 +89,6 @@ class VisualizationLoudness : Visualization {
         if (newSection) {
             sectionToggle.toggle()
         }
-        
         
         var alpha:Double = 0
         
@@ -109,7 +102,9 @@ class VisualizationLoudness : Visualization {
         let line = drawLine(
             startPoint: CGPoint(x: centerX, y: centerY),
             endPoint: CGPoint(x: getX(angle: angle, step: step, radius: radius/100 * intenseLoudness) + centerX ,
-                              y: getY(angle: angle, step: step, radius: radius/100 * intenseLoudness) + centerY),
+                              y: getY(angle: angle,
+                                      step: step,
+                                      radius: radius/100 * intenseLoudness) + centerY),
             lineColor: colorVariations[.random(in: 0..<12)].withAlphaComponent(0.3))
         scene.addChild(line)
 
@@ -121,28 +116,9 @@ class VisualizationLoudness : Visualization {
             
         )
         
-        
-        
-        
-        
-        
         scene.addChild(circle)
-        print("Loudness: ", sectionloudness, "Key: ", sectionKey, "     sectionTempo: ", sectionTempo)
-
-//        print("Normalized: ", normalizedLoudnessTo1, "Intense: ", intenseLoudness, "     Loudness Segment: ", loudness)
-        print(mappedValue)
     }
     
-    func mapValue(_ value: Double) -> Double {
-        // Assuming your input range is 0.3 to 0.8
-        let minValue = 0.3
-        let maxValue = 0.8
-        
-        // Normalize the value to the range 0 to 1
-        let normalizedValue = (value - minValue) / (maxValue - minValue)
-        
-        // Make sure the normalized value is within the valid range
-        return max(0, min(1, normalizedValue))
-    }
+    
     
 }

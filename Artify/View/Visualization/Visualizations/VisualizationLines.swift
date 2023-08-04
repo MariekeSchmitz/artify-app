@@ -68,13 +68,15 @@ class VisualizationLines : Visualization{
     
     override func visualizeBeat(scene:VisualizationScene, step:Int, visualisationData:VisualizationElement) {
                 
+        // bar-visualization
         if(visualisationData.barChange) {
-            var circle = drawCircle(radius: 2, posX: getX(angle: angle, step: step, radius: radius*9/20) + centerX , posY: getY(angle: angle, step: step, radius: radius*9/20) + centerY, fillColor: SKColor.white)
+            let circle = drawCircle(radius: 2, posX: getX(angle: angle, step: step, radius: radius*9/20) + centerX , posY: getY(angle: angle, step: step, radius: radius*9/20) + centerY, fillColor: SKColor.white)
             scene.addChild(circle)
         }
         
+        // section-visualization
         if(visualisationData.sectionChange) {
-            var circle = drawCircle(
+            let circle = drawCircle(
                 radius: 30,
                 posX: getX(angle: angle, step: step, radius: radius*9/20) + centerX ,
                 posY: getY(angle: angle, step: step, radius: radius*9/20) + centerY,
@@ -82,6 +84,7 @@ class VisualizationLines : Visualization{
             scene.addChild(circle)
         }
         
+        // pitch-visualization
         let pitches = visualisationData.pitches
 
         for j in 0..<pitches.count {
@@ -101,6 +104,7 @@ class VisualizationLines : Visualization{
             prevPitchLinePos[j] = CGPoint(x: newX, y: newY)
         }
         
+        // timbre-visualization
         let timbre = visualisationData.timbre
 
         for j in 0..<timbre.count {
