@@ -21,8 +21,11 @@ func drawCircle(radius:CGFloat, posX:CGFloat, posY:CGFloat, fillColor:SKColor = 
         c.lineWidth = 1
     } else {
         c.fillColor = fillColor
-        c.lineWidth = 0
+        c.strokeColor = fillColor
+        c.lineWidth = 1
     }
+    
+    
     
     return c
     
@@ -34,11 +37,25 @@ func drawLine(startPoint: CGPoint, endPoint: CGPoint, lineWidth: CGFloat = 1, li
     let pathToDraw = CGMutablePath()
     pathToDraw.move(to: startPoint)
     pathToDraw.addLine(to: endPoint)
+    
     newLine.path = pathToDraw
     newLine.strokeColor = lineColor
     newLine.lineWidth = lineWidth
     
     return newLine
+}
+
+func drawCurve(startPoint: CGPoint, endPoint: CGPoint, controlPoint1: CGPoint, controlPoint2: CGPoint, lineWidth: CGFloat = 0.5, lineColor: SKColor = SKColor.white) -> SKShapeNode {
+    
+    let path = UIBezierPath()
+    path.move(to: startPoint)
+    path.addCurve(to: endPoint, controlPoint1: controlPoint1, controlPoint2: controlPoint2)
+    
+    let curve = SKShapeNode(path: path.cgPath)
+    curve.strokeColor = lineColor
+    curve.lineWidth = lineWidth
+    
+    return curve
 }
 
 

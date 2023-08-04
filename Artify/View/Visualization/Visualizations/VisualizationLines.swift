@@ -22,8 +22,8 @@ class VisualizationLines : Visualization{
     private var startXTimbreLines:Double = 0
     private var startYTimbreLines:Double = 0
     
-    override init(visualitationValues:[VisualizationElement], centerX:Double, centerY:Double) {
-        super.init(visualitationValues: visualitationValues, centerX: centerX, centerY: centerY)
+    override init(visualitationValues:[VisualizationElement], centerX:Double, centerY:Double, width:Double, height:Double) {
+        super.init(visualitationValues: visualitationValues, centerX: centerX, centerY: centerY, width:width, height:height)
         
         angle = 2 * .pi / Double(visualitationValues.count)
         radius = 350

@@ -11,8 +11,8 @@ import SpriteKit
 
 class VisualizationBubbles : Visualization{
     
-    override init(visualitationValues:[VisualizationElement], centerX:Double, centerY:Double) {
-        super.init( visualitationValues: visualitationValues, centerX: centerX, centerY: centerY)
+    override init(visualitationValues:[VisualizationElement], centerX:Double, centerY:Double, width:Double, height:Double) {
+        super.init(visualitationValues: visualitationValues, centerX: centerX, centerY: centerY, width:width, height:height)
         angle = 2 * .pi / Double(visualizationValues.count)
         for i in 0..<pitchRadius.count {
             pitchRadius[i] = radius/12 * Double(i)

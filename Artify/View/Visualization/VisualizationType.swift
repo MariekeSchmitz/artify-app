@@ -11,12 +11,14 @@ enum VisualizationType : CustomStringConvertible, CaseIterable {
     case Bubble
     case Lines
     case Loudness
+    case Net 
     
     init?(id : Int) {
         switch id {
         case 1: self = .Bubble
         case 2: self = .Lines
         case 3: self = .Loudness
+        case 4: self = .Net
         default: return nil
         }
     }
@@ -26,6 +28,7 @@ enum VisualizationType : CustomStringConvertible, CaseIterable {
         case .Bubble: return "Bubble"
         case .Lines: return "Lines"
         case .Loudness: return "Loudness"
+        case .Net: return "Net"
         }
     }
 }

@@ -21,6 +21,8 @@
 		194650372A7BEE7A00CE8D96 /* VisualizationLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194650362A7BEE7A00CE8D96 /* VisualizationLines.swift */; };
 		194650392A7CD08400CE8D96 /* VisualizationLoudness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194650382A7CD08400CE8D96 /* VisualizationLoudness.swift */; };
 		1946503B2A7D012C00CE8D96 /* VisualizationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1946503A2A7D012C00CE8D96 /* VisualizationModifier.swift */; };
+		1946503D2A7D355F00CE8D96 /* VisualizationNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1946503C2A7D355F00CE8D96 /* VisualizationNet.swift */; };
+		1946503F2A7D58E700CE8D96 /* PitchColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1946503E2A7D58E700CE8D96 /* PitchColors.swift */; };
 		194791552A22006E00FD2604 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791542A22006E00FD2604 /* LoginView.swift */; };
 		194791572A2200CA00FD2604 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791562A2200CA00FD2604 /* LoginViewModel.swift */; };
 		194791592A22010900FD2604 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791582A22010900FD2604 /* APIConstants.swift */; };
@@ -123,6 +125,8 @@
 		194650362A7BEE7A00CE8D96 /* VisualizationLines.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationLines.swift; sourceTree = "<group>"; };
 		194650382A7CD08400CE8D96 /* VisualizationLoudness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationLoudness.swift; sourceTree = "<group>"; };
 		1946503A2A7D012C00CE8D96 /* VisualizationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationModifier.swift; sourceTree = "<group>"; };
+		1946503C2A7D355F00CE8D96 /* VisualizationNet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationNet.swift; sourceTree = "<group>"; };
+		1946503E2A7D58E700CE8D96 /* PitchColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchColors.swift; sourceTree = "<group>"; };
 		194791542A22006E00FD2604 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		194791562A2200CA00FD2604 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		194791582A22010900FD2604 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
@@ -293,6 +297,7 @@
 				19CF2E272A78F1E50038855E /* VisualizationScene.swift */,
 				19CF2E202A77B4F80038855E /* VisualizationView.swift */,
 				19CF2E222A77E3AD0038855E /* Shapes.swift */,
+				1946503E2A7D58E700CE8D96 /* PitchColors.swift */,
 				190DF7792A73E5EE008F050D /* CircleVisualization.swift */,
 				19CF2E2F2A7A6F0C0038855E /* VisualizationTimerDelegate.swift */,
 				19CF2E332A7BCEED0038855E /* VisualizationType.swift */,
@@ -502,6 +507,7 @@
 				194650342A7BEE0E00CE8D96 /* Visualization.swift */,
 				194650362A7BEE7A00CE8D96 /* VisualizationLines.swift */,
 				194650382A7CD08400CE8D96 /* VisualizationLoudness.swift */,
+				1946503C2A7D355F00CE8D96 /* VisualizationNet.swift */,
 			);
 			path = Visualizations;
 			sourceTree = "<group>";
@@ -654,6 +660,7 @@
 				194791572A2200CA00FD2604 /* LoginViewModel.swift in Sources */,
 				197212C22A210984007225BB /* APIManager.swift in Sources */,
 				197212A82A178BD5007225BB /* MusicLibraryViewModel.swift in Sources */,
+				1946503D2A7D355F00CE8D96 /* VisualizationNet.swift in Sources */,
 				197212BE2A20A167007225BB /* AuthManager.swift in Sources */,
 				197212AF2A1B6B81007225BB /* Track.swift in Sources */,
 				194791A62A24B8FD00FD2604 /* MusicLibraryOld.swift in Sources */,
@@ -674,6 +681,7 @@
 				197212772A0E533C007225BB /* ContentView.swift in Sources */,
 				1951705B2A406A9300789099 /* IntroView.swift in Sources */,
 				194650392A7CD08400CE8D96 /* VisualizationLoudness.swift in Sources */,
+				1946503F2A7D58E700CE8D96 /* PitchColors.swift in Sources */,
 				1951705D2A4084DF00789099 /* SpotifyAnalysisService.swift in Sources */,
 				197212A62A178BBB007225BB /* Playlist.swift in Sources */,
 				19C87BDC2A446ACE00C75E1F /* RoundedButton.swift in Sources */,

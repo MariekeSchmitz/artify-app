@@ -15,15 +15,20 @@ class Visualization {
     var visualizationValues: [VisualizationElement] = []
     var centerX:Double = 0
     var centerY:Double = 0
+    var width:Double = 0
+    var height:Double = 0
 
     init() {
         
     }
     
-    init(visualitationValues:[VisualizationElement], centerX:Double, centerY:Double) {
+    init(visualitationValues:[VisualizationElement], centerX:Double, centerY:Double, width:Double, height:Double) {
         self.visualizationValues = visualitationValues
         self.centerX = centerX
         self.centerY = centerY
+        self.width = width
+        self.height = height
+
     }
     
     func visualizeBeat(scene:VisualizationScene, step:Int, visualisationData:VisualizationElement) {

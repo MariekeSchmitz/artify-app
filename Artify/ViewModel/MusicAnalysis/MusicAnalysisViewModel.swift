@@ -17,18 +17,21 @@ class MusicAnalysisViewModel : ObservableObject {
 
     @Published var visualizationValues:[VisualizationElement] = []
     
-    @Published var visualizationType:VisualizationType = .Bubble
+    @Published var visualizationType:VisualizationType = .Net
     @Published var visualizationModifier:VisualizationModifier = .Move
 
     
     var numBeatsPerTimestamp = [Double:Int]()
     var beatDetectedPerTimeStamp = [Double:Bool]()
+    
     var counterBeatsDetected: Int = 0
     var maxSegmentLoudness:Double = 0
     var minSegmentLoudness: Double = 0
     
     var maxSectionLoudness:Double = 0
     var minSectionLoudness: Double = 0
+    
+    var beatsPerSection = [Int:Int]()
     
     
     
@@ -154,6 +157,13 @@ class MusicAnalysisViewModel : ObservableObject {
                 if loudness > maxSectionLoudness {
                     maxSectionLoudness = loudness
                 }
+                
+                if beatsPerSection.keys.contains(currentSectionCounter) {
+                    beatsPerSection[currentSectionCounter]! += 1
+                } else {
+                    beatsPerSection[currentSectionCounter] = 1
+                }
+                
                 
                 // return current segmentIndex as new starting point for next segment search
                 return i

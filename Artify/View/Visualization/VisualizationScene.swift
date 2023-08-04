@@ -20,6 +20,8 @@ class VisualizationScene: SKScene {
     var beatsBeforeOffsetNeeded:Bool = false
     var centerX:Double = 0
     var centerY:Double = 0
+    var width:Double = 0
+    var height:Double = 0
     var visualizationValues: [VisualizationElement] = []
     var visualizationType:VisualizationType = VisualizationType.Bubble
     var visualization:Visualization = Visualization()
@@ -34,16 +36,22 @@ class VisualizationScene: SKScene {
         visualizationValues = musicAnalysisVM.visualizationValues
         centerX = frame.midX - 20
         centerY = frame.midY + 100
+        width = frame.maxX
+        height = frame.maxY
+
         
         switch visualizationType {
         case .Bubble:
-            visualization = VisualizationBubbles(visualitationValues: visualizationValues, centerX: centerX, centerY: centerY)
+            visualization = VisualizationBubbles(visualitationValues: visualizationValues, centerX: centerX, centerY: centerY, width: width, height:height)
             break
         case .Lines:
-            visualization = VisualizationLines(visualitationValues: visualizationValues, centerX: centerX, centerY: centerY)
+            visualization = VisualizationLines(visualitationValues: visualizationValues, centerX: centerX, centerY: centerY, width: width, height:height)
             break
         case .Loudness:
-            visualization = VisualizationLoudness(visualitationValues: visualizationValues, centerX: centerX, centerY: centerY)
+            visualization = VisualizationLoudness(visualitationValues: visualizationValues, centerX: centerX, centerY: centerY, width: width, height:height)
+            break
+        case .Net:
+            visualization = VisualizationNet(visualitationValues: visualizationValues, centerX: centerX, centerY: centerY, width: width, height:height)
             break
         }
             
@@ -73,15 +81,19 @@ class VisualizationScene: SKScene {
         
         switch visualizationType {
         case .Bubble:
-            visualization = VisualizationBubbles( visualitationValues: visualizationValues, centerX: centerX, centerY: centerY)
+            visualization = VisualizationBubbles(visualitationValues: visualizationValues, centerX: centerX, centerY: centerY, width: width, height:height)
             break
         case .Lines:
-            visualization = VisualizationLines(visualitationValues: visualizationValues, centerX: centerX, centerY: centerY)
+            visualization = VisualizationLines(visualitationValues: visualizationValues, centerX: centerX, centerY: centerY, width: width, height:height)
             break
         case .Loudness:
-            visualization = VisualizationLoudness(visualitationValues: visualizationValues, centerX: centerX, centerY: centerY)
+            visualization = VisualizationLoudness(visualitationValues: visualizationValues, centerX: centerX, centerY: centerY, width: width, height:height)
+            break
+        case .Net:
+            visualization = VisualizationNet(visualitationValues: visualizationValues, centerX: centerX, centerY: centerY, width: width, height:height)
             break
         }
+            
     }
     
     override func update(_ currentTime: TimeInterval) {
