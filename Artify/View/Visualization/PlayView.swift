@@ -21,6 +21,8 @@ struct PlayView:View {
     
     @State var longTitle:Bool = false
     @State var showInfo:Bool = true
+    @State var screenshotSavingSuccess:Bool = false
+    @State var instructionsTimePassed:Bool = false
     
     var visualizationTypes:[VisualizationType] = VisualizationType.allCases.map { $0 }
     var visualizationModifiers:[VisualizationModifier] = VisualizationModifier.allCases.map { $0 }
@@ -60,8 +62,11 @@ struct PlayView:View {
                         
                         Button {
                             visualizationView.takeScreenshot()
+                            screenshotSavingSuccess = true
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {screenshotSavingSuccess = false}
                         } label: {
-                            Image("screenshot")
+                            Image(screenshotSavingSuccess ? "check" : "screenshot")
                         }
                         
     //                    Button("Settings") {
@@ -160,13 +165,16 @@ struct PlayView:View {
                             
                             
                         } else {
-                            Text("Select a song")
-                                .foregroundColor(.white)
-                                .font(Font.custom("DMSerifDisplay-Regular", size: 40))
-                                .multilineTextAlignment(.leading)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.leading)
-                                .lineSpacing(0)
+                            VStack {
+                                
+                                if (instructionsTimePassed) {
+                                    Image("export")
+                                } else {
+                                    Image("choose")
+                                }
+                                Spacer()
+                            }.task(delayInstruction)
+
                         }
                         
                         
@@ -193,10 +201,10 @@ struct PlayView:View {
 //        }
     }
     
-    private func delayPlaying() async {
-        try? await Task.sleep(nanoseconds: 1_000_000_000)
-        if (playerVM.currentTrack != nil) {
-            playerVM.playCurrentTrack()
+    private func delayInstruction() async {
+        try? await Task.sleep(nanoseconds: 2_000_000_000)
+        withAnimation {
+            instructionsTimePassed = true
         }
 
     }
