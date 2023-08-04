@@ -71,21 +71,22 @@ class VisualizationNet : Visualization {
         
         positionPerSection = [CGPoint](repeating: CGPoint(), count: numSections)
         anglePerSection = [Double](repeating: Double(), count: numSections)
-        colorPerPitch = [
-            UIColor(red: 232, green: 255, blue: 72, alpha: 1),
-            UIColor(red: 106 , green: 255, blue: 96, alpha: 1),
-            UIColor(red: 96, green: 255, blue: 202, alpha: 1),
-            UIColor(red: 94, green: 249, blue: 255, alpha: 1),
-            UIColor(red: 22, green: 138, blue: 255, alpha: 1),
-            UIColor(red: 152, green: 77, blue: 255, alpha: 1),
-            UIColor(red: 242, green: 65, blue: 255, alpha: 1),
-            UIColor(red: 255, green: 60, blue: 147, alpha: 1),
-            UIColor(red: 255, green: 82, blue: 65, alpha: 1),
-            UIColor(red: 255, green: 136, blue: 62, alpha: 1),
-            UIColor(red: 255, green: 172, blue: 0, alpha: 1),
-            UIColor(red: 233, green: 255, blue: 212, alpha: 1)
-        ]
+//        colorPerPitch = [
+//            UIColor(red: 0.1, green: 0.3, blue: 0.2, alpha: 1),
+//            UIColor(red: 0.1, green: 0.3, blue: 0.2, alpha: 1),
+//            UIColor(red: 0.1, green: 0.3, blue: 0.2, alpha: 1),
+//            UIColor(red: 0.1, green: 0.3, blue: 0.2, alpha: 1),
+//            UIColor(red: 0.1, green: 0.3, blue: 0.2, alpha: 1),
+//            UIColor(red: 0.1, green: 0.3, blue: 0.2, alpha: 1),
+//            UIColor(red: 190 , green: 210, blue: 230, alpha: 1),
+//            UIColor(red: 160, green: 230, blue: 230, alpha: 1),
+//            UIColor(red: 188, green: 224, blue: 230, alpha: 1),
+//            UIColor(red: 197, green: 238, blue: 240, alpha: 1),
+//            UIColor(red: 141, green: 236, blue: 250, alpha: 1),
+//            UIColor(red: 162, green: 240, blue: 217, alpha: 1)
+//        ]
 
+        colorPerPitch = UIColor(red: 0, green: 0.2, blue: 0.2, alpha: 1).generateVariations(count: 12)
         
         for i in 0..<numSections {
             let x:Double = .random(in: (centerX - width/7)...(centerX + width/7))
@@ -149,6 +150,20 @@ class VisualizationNet : Visualization {
 
             scene.addChild(effectNode)
             
+            if (sectionNum > 0) {
+                print("Strich")
+                let startPoint = positionPerSection[sectionNum - 1]
+                let endPoint = positionPerSection[sectionNum]
+                
+                let middlePoint =  CGPoint(x: (startPoint.x + endPoint.x) / 2, y: (startPoint.y + endPoint.y) / 2)
+                let controls = findControlPoints(angle: anglePerSection[sectionNum]*Double(counterBeatsVisualizedInCurrentSegment), middle: middlePoint, distance: 100)
+                let controlPoint1 = controls[0]
+                let controlPoint2 = controls[1]
+                let connectionCurve = drawCurve(startPoint: startPoint, endPoint: endPoint, controlPoint1: controlPoint1, controlPoint2: controlPoint2, lineColor: SKColor.white)
+                scene.addChild(connectionCurve)
+            }
+            
+            
 
         } else {
             counterBeatsVisualizedInCurrentSegment += 1
@@ -175,7 +190,7 @@ class VisualizationNet : Visualization {
                                y: getY(angle: anglePerSection[sectionNum], step: counterBeatsVisualizedInCurrentSegment, radius: radiusPerSection * intenseLoudness) + startPoint.y)
         
         let middlePoint =  CGPoint(x: (startPoint.x + endPoint.x) / 2, y: (startPoint.y + endPoint.y) / 2)
-        let controls = findControlPoints(angle: anglePerSection[sectionNum] * Double(counterBeatsVisualizedInCurrentSegment), middle: middlePoint, distance: 5 * intenseLoudness)
+        let controls = findControlPoints(angle: anglePerSection[sectionNum] * Double(counterBeatsVisualizedInCurrentSegment), middle: middlePoint, distance: 1 * intenseLoudness)
         
         
         let controlPoint1 = controls[0]
@@ -185,7 +200,6 @@ class VisualizationNet : Visualization {
         let pitches = visualisationData.pitches
         
         var color = colorPerPitch[findDominantPitch(pitches: pitches)]
-        print(color)
         
         let curve = drawCurve(startPoint: startPoint, endPoint: endPoint, controlPoint1: controlPoint1, controlPoint2: controlPoint2, lineColor: color)
         let circle = drawCircle(radius: 2, posX: endPoint.x, posY: endPoint.y, fillColor: color)
@@ -196,21 +210,6 @@ class VisualizationNet : Visualization {
         
         
         
-        if (counterBeatsVisualizedInCurrentSegment == 0 && sectionNum > 0) {
-            
-            let startPoint = positionPerSection[sectionNum - 1]
-            let endPoint = positionPerSection[sectionNum - 1]
-            
-            let middlePoint =  CGPoint(x: (startPoint.x + endPoint.x) / 2, y: (startPoint.y + endPoint.y) / 2)
-            let controls = findControlPoints(angle: anglePerSection[sectionNum], middle: middlePoint, distance: 100)
-            let controlPoint1 = controls[0]
-            let controlPoint2 = controls[1]
-            let connectionCurve = drawCurve(startPoint: startPoint, endPoint: endPoint, controlPoint1: controlPoint1, controlPoint2: controlPoint2, lineColor: SKColor.white)
-            scene.addChild(connectionCurve)
-
-        }
-        
-
 
     }
     
@@ -253,12 +252,12 @@ class VisualizationNet : Visualization {
     
     func findControlPoints (angle:CGFloat, middle:CGPoint, distance:CGFloat) -> [CGPoint]{
         
-        let xOffset1 = CGFloat(50) * cos(angle + .pi/2)
-        let yOffset1 = CGFloat(50) * sin(angle + .pi/2)
+        let xOffset1 = distance * cos(angle + .pi/2)
+        let yOffset1 = distance * sin(angle + .pi/2)
         let point1 = CGPoint(x: middle.x + xOffset1, y: middle.y + yOffset1)
         
-        let xOffset2 = -CGFloat(50) * cos(angle + .pi/2)
-        let yOffset2 = -CGFloat(50) * sin(angle + .pi/2)
+        let xOffset2 = -distance * cos(angle + .pi/2)
+        let yOffset2 = -distance * sin(angle + .pi/2)
         let point2 = CGPoint(x: middle.x + xOffset2, y: middle.y + yOffset2)
              
         return [point1, point2]
@@ -280,6 +279,43 @@ class VisualizationNet : Visualization {
         return max(0, min(1, normalizedValue))
     }
     
+}
+
+
+extension UIColor {
+    func generateVariations(count: Int) -> [UIColor] {
+        var variations: [UIColor] = []
+        let step: CGFloat = 0.3
+        
+        for i in 0..<count {
+            let red = self.rgbComponents.red + CGFloat(i) * step
+            let green = self.rgbComponents.green + CGFloat(i) * step
+            let blue = self.rgbComponents.blue + CGFloat(i) * step
+            
+            // Calculate the average of RGB components
+            let averageComponent = (red + green + blue) / 3
+            
+            // Adjust each component equally based on the average
+            let adjustedRed = max(0, red - CGFloat(i) * step * (averageComponent - 0.5))
+            let adjustedGreen = max(0, green - CGFloat(i) * step * (averageComponent - 0.5))
+            let adjustedBlue = max(0, blue - CGFloat(i) * step * (averageComponent - 0.5))
+            
+            let variation = UIColor(red: min(1, adjustedRed), green: min(1, adjustedGreen), blue: min(1, adjustedBlue), alpha: 1)
+            variations.append(variation)
+        }
+        
+        return variations
+    }
+    
+    var rgbComponents: (red: CGFloat, green: CGFloat, blue: CGFloat) {
+        var r: CGFloat = 0
+        var g: CGFloat = 0
+        var b: CGFloat = 0
+        var a: CGFloat = 0
+        
+        self.getRed(&r, green: &g, blue: &b, alpha: &a)
+        return (r, g, b)
+    }
 }
 
 
