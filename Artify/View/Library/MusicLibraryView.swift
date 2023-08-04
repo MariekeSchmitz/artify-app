@@ -13,10 +13,17 @@ struct MusicLibraryView: View {
     @StateObject var playerVM = PlayerViewModel.shared
     @Binding var musicLibraryViewOn:Bool
     
+    @State var loadingIndicatorOn:Bool = false
+
+    
     var body: some View {
         NavigationStack {
             ZStack {
+                
                 Color.darkGrayBG.ignoresSafeArea()
+                
+                
+                
                 VStack(spacing:0){
                     HStack{
                         Button {
@@ -42,7 +49,7 @@ struct MusicLibraryView: View {
                         .padding(.top, 35)
                         .padding(.bottom, 15)
                         
-                    PlaylistsView(playlists: musicLibraryVM.playlistLibrary.items, musicLibraryViewOn: $musicLibraryViewOn).padding(0)
+                    PlaylistsView(playlists: musicLibraryVM.playlistLibrary.items, musicLibraryViewOn: $musicLibraryViewOn, loadingIndicatorOn: $loadingIndicatorOn).padding(0)
                     
                     Text("Deine Top-Tracks")
                         .font(Font.custom("DMSerifDisplay-Regular", size: 32))
@@ -51,12 +58,17 @@ struct MusicLibraryView: View {
                         .padding(.top, 35)
                         .padding(.bottom, 15)
                     
-                    TrackView(musicLibraryViewOn: $musicLibraryViewOn, savedTrackObjects: musicLibraryVM.favoriteTracks.items)
+                    TrackView(musicLibraryViewOn: $musicLibraryViewOn, loadingIndicatorOn: $loadingIndicatorOn, savedTrackObjects: musicLibraryVM.favoriteTracks.items)
                 }
                 .onAppear(){
                     musicLibraryVM.getFavouriteTracks()
                     musicLibraryVM.getUsersPlaylists()
                 }.padding(.leading, 20)
+                
+                if (loadingIndicatorOn) {
+                    Color.black.opacity(0.8).ignoresSafeArea()
+                    LoadingView()
+                }
                 
             }
         }
@@ -67,12 +79,14 @@ struct PlaylistsView: View {
     
     var playlists:[SimplifiedPlaylistObject]
     @Binding var musicLibraryViewOn:Bool
+    @Binding var loadingIndicatorOn:Bool
+
     
     var body: some View {
         ScrollView(.horizontal) {
             LazyHStack {
                 ForEach(playlists, id: \.self) { playlist in
-                    PlaylistCellView(playlist: playlist, musicLibraryViewOn: $musicLibraryViewOn)
+                    PlaylistCellView(playlist: playlist, musicLibraryViewOn: $musicLibraryViewOn, loadingIndicatorOn: $loadingIndicatorOn)
                 }
             }
         }.padding(0).frame(height: 200)
@@ -85,6 +99,8 @@ struct PlaylistCellView: View {
     
     var playlist: SimplifiedPlaylistObject
     @Binding var musicLibraryViewOn:Bool
+    @Binding var loadingIndicatorOn:Bool
+
     
     var imageURL : String {
         if (playlist.images.count == 0) {
@@ -97,7 +113,7 @@ struct PlaylistCellView: View {
     
     var body: some View {
         
-            NavigationLink(destination: PlaylistView(musicLibraryViewOn: $musicLibraryViewOn, playlistID: playlist.id, playlistName: playlist.name, imageURL: imageURL)) {
+        NavigationLink(destination: PlaylistView(musicLibraryViewOn: $musicLibraryViewOn, loadingIndicatorOn: $loadingIndicatorOn, playlistID: playlist.id, playlistName: playlist.name, imageURL: imageURL)) {
                 AsyncImage(url: URL(string: imageURL)) {
                     image in image.resizable()
                 }
@@ -116,6 +132,29 @@ struct PlaylistCellView: View {
                             .padding()
                     })
             }
+    }
+}
+
+struct LoadingView: View {
+ 
+    @State private var isLoading = false
+ 
+    var body: some View {
+        ZStack {
+ 
+            RoundedRectangle(cornerRadius: 3)
+                .stroke(Color(.systemGray5), lineWidth: 2)
+                .frame(width: 250, height: 2)
+ 
+            RoundedRectangle(cornerRadius: 3)
+                .stroke(Color.white, lineWidth: 2)
+                .frame(width: 30, height: 2)
+                .offset(x: isLoading ? 110 : -110, y: 0)
+                .animation(Animation.linear(duration: 2).repeatForever(autoreverses: false), value: isLoading)
+        }
+        .onAppear() {
+            self.isLoading = true
+        }
     }
 }
 

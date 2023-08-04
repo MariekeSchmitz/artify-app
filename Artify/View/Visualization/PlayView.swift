@@ -37,8 +37,8 @@ struct PlayView:View {
                         showInfo.toggle()
                     }
                 }label: {
-                    showInfo ? "hideInfo" : "showInfo"
-                }.padding(.top, 80)
+                    Image("up").rotationEffect(.degrees(showInfo ? 0 : 180))
+                }.padding(.top, 50)
                 Spacer()
             }
             
@@ -172,7 +172,7 @@ struct PlayView:View {
                         
                         
                     }
-                }.padding(20).padding(.vertical, 50).transition(.scale)
+                }.padding(20).padding(.vertical, 50)
             }
             
             

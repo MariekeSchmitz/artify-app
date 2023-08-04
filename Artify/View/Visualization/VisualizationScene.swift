@@ -12,6 +12,7 @@ import SpriteKit
 class VisualizationScene: SKScene {
     
     var startTime: TimeInterval = 0.0
+    var roundedTimer: Double = 0.0
     var musicAnalysisVM = MusicAnalysisViewModel.shared
     var playVM = PlayerViewModel.shared
     var offsetToBeVisualized:Bool = false
@@ -85,14 +86,34 @@ class VisualizationScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         
+
+        
+        
+        
+        
         if (playVM.isPlayling) {
+            
+//            if let t = playVM.currentTrack {
+//                var duration = t.duration_ms/1000
+//                print(roundedTimer)
+//                print(duration)
+//                if (Int(roundedTimer) > duration) {
+//                    playVM.endTrack()
+//                }
+//            }
+            
+            let numBeat = musicAnalysisVM.counterBeatsDetected
+            if numBeat == visualizationValues.count - 1{
+                playVM.pauseTrack()
+            }
+            
             if self.startTime == 0.0 { self.startTime = currentTime }
             if (playVM.songForwarded) {
                 resetScene(currentTime)
             }
             
             let timePassed = currentTime - self.startTime + playVM.offset - self.delay
-            let roundedTimer = round(timePassed*100)/100
+            roundedTimer = round(timePassed*100)/100
             
 //            print(roundedTimer)
             
@@ -115,6 +136,8 @@ class VisualizationScene: SKScene {
 
             }
         }
+        
+        
         
     }
     

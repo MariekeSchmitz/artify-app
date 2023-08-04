@@ -10,6 +10,8 @@ import SwiftUI
 struct TrackView: View {
     
     @Binding var musicLibraryViewOn:Bool
+    @Binding var loadingIndicatorOn: Bool
+
     var savedTrackObjects:[SavedTrackObject]
     
     var body: some View {
@@ -17,7 +19,7 @@ struct TrackView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 5) {
                 ForEach(savedTrackObjects, id: \.self) { savedTrackObject in
-                    TrackCellView(musicLibraryViewOn:$musicLibraryViewOn, track: savedTrackObject.track)
+                    TrackCellView(musicLibraryViewOn:$musicLibraryViewOn, loadingIndicatorOn: $loadingIndicatorOn, track: savedTrackObject.track)
                 }
             }
         }
@@ -29,6 +31,8 @@ struct TrackView: View {
 struct TrackCellView: View {
     
     @Binding var musicLibraryViewOn:Bool
+    @Binding var loadingIndicatorOn: Bool
+    
     var playerVM = PlayerViewModel.shared
     var audioAnalysis = MusicAnalysisViewModel.shared
     var track: Track
@@ -48,8 +52,8 @@ struct TrackCellView: View {
             }
             .onTapGesture {
                 playerVM.currentTrack = track
+                loadingIndicatorOn = true
                 Task {
-                    // Fetch analysis data, afterwards back to MainView – TO DO: could be parallel to be faster
                     await audioAnalysis.getTracksAudioAnalysis(id: track.id)
                     await audioAnalysis.getTracksAudioFeatures(id: track.id)
                     withAnimation {

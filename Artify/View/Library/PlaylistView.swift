@@ -11,6 +11,8 @@ struct PlaylistView: View {
     
     @StateObject var playlistViewmodel = PlaylistViewModel()
     @Binding var musicLibraryViewOn:Bool
+    @Binding var loadingIndicatorOn: Bool
+
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
 
     var playerVM = PlayerViewModel.shared
@@ -20,29 +22,37 @@ struct PlaylistView: View {
     
     var body: some View {
        
-        VStack {
+        ZStack {
             
-            ImageView(url: imageURL, name: playlistName).ignoresSafeArea()
-            ScrollView{
-                LazyVStack(alignment: .leading, spacing: 5) {
-                    ForEach(playlistViewmodel.playlist.items, id: \.self) { track in
-                        TrackCellView(musicLibraryViewOn: $musicLibraryViewOn, track: track.track)
+            VStack {
+                
+                ImageView(url: imageURL, name: playlistName).ignoresSafeArea()
+                ScrollView{
+                    LazyVStack(alignment: .leading, spacing: 5) {
+                        ForEach(playlistViewmodel.playlist.items, id: \.self) { track in
+                            TrackCellView(musicLibraryViewOn: $musicLibraryViewOn, loadingIndicatorOn: $loadingIndicatorOn, track: track.track)
+                        }
                     }
-                }
-            }.ignoresSafeArea().padding(0)
-        }
-        .onAppear() {
-            playlistViewmodel.getAllTracksInPlaylist(playlistId: playlistID)
-        }
-        .background(Color.black)
-        .ignoresSafeArea()
-        .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: Button {
-                self.mode.wrappedValue.dismiss()
-        } label: {
-                Image("back")
-            }.padding(.top, 85))
+                }.ignoresSafeArea().padding(0)
+            }
+            .onAppear() {
+                playlistViewmodel.getAllTracksInPlaylist(playlistId: playlistID)
+            }
+            .background(Color.black)
+            .ignoresSafeArea()
+            .navigationBarBackButtonHidden(true)
+            .navigationBarItems(leading: Button {
+                    self.mode.wrappedValue.dismiss()
+            } label: {
+                    Image("back")
+                }.padding(.top, 85))
 
+            if (loadingIndicatorOn) {
+                Color.black.opacity(0.8).ignoresSafeArea()
+                LoadingView()
+            }
+        }
+        
     }
 }
 

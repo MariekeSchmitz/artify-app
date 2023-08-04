@@ -57,6 +57,11 @@ class PlayerViewModel : ObservableObject {
         player.pauseTrack()
     }
     
+    func endTrack() {
+        isPlayling = false
+        player.pauseTrack()
+    }
+    
     func resumeTrack() {
         isPlayling = true
         timeOnHold = false
