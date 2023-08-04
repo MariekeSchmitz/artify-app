@@ -15,9 +15,9 @@ extension Color {
 }
 
 extension UIColor {
-    func generateVariations(count: Int) -> [UIColor] {
+    func generateVariations(count: Int, step:CGFloat = 0.3) -> [UIColor] {
         var variations: [UIColor] = []
-        let step: CGFloat = 0.3
+        let step: CGFloat = step
         
         for i in 0..<count {
             let red = self.rgbComponents.red + CGFloat(i) * step

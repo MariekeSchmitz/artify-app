@@ -20,6 +20,10 @@ class VisualizationLoudness : Visualization {
     
     var sectionToggle: Bool = false
     
+    var audioFeatureColor:AudioFeatureColors = AudioFeatureColors.Colors
+    var colorfulColors = UIColor().getColorful()
+    var colorVariations:[UIColor] = []
+    
     override init(visualitationValues:[VisualizationElement], centerX:Double, centerY:Double, width:Double, height:Double) {
         super.init(visualitationValues: visualitationValues, centerX: centerX, centerY: centerY, width:width, height:height)
         angle = 2 * .pi / Double(visualizationValues.count)
@@ -34,6 +38,14 @@ class VisualizationLoudness : Visualization {
         minSectionLoudness = musicAnalysisVM.minSectionLoudness
         
         sectionLoudnessRange = maxSectionLoudness - minSectionLoudness
+        
+        audioFeatureColor = musicAnalysisVM.audioFeatureColor
+        
+        if (audioFeatureColor == .Colors) {
+            colorVariations = colorfulColors
+        } else {
+            colorVariations = audioFeatureColor.color.generateVariations(count: 12, step: 0.1)
+        }
         
         radius = 200
     }
@@ -62,29 +74,19 @@ class VisualizationLoudness : Visualization {
             sectionToggle.toggle()
         }
         
-        let color: UIColor
-        
-        let red:CGFloat = 1
-        let green:CGFloat = 1
-        let blue:CGFloat = 1
-        let alpha = normalizedLoudnessTo1 < 0.5 ? 1 : 0.05
-        
-        color = UIColor(red: red, green: green, blue: blue, alpha: alpha)
         
         let line = drawLine(
             startPoint: CGPoint(x: centerX, y: centerY),
             endPoint: CGPoint(x: getX(angle: angle, step: step, radius: radius/100 * intenseLoudness) + centerX ,
                               y: getY(angle: angle, step: step, radius: radius/100 * intenseLoudness) + centerY),
-            lineColor: SKColor.init(white: 1, alpha: 0.3))
+            lineColor: colorVariations[.random(in: 0..<12)].withAlphaComponent(0.3))
         scene.addChild(line)
 
-        
         let circle = drawCircle(
             radius: normalizedLoudnessTo1 < 0.5 ? normalizedLoudnessTo1*10 : 0.7 * intenseLoudness,
             posX: getX(angle: angle, step: step, radius: radius*2/3 + radius * pitches[0]) + centerX ,
             posY: getY(angle: angle, step: step, radius: radius*2/3 + radius * pitches[0]) + centerY,
-            fillColor: color
-//            fillColor: SKColor.init(white: 1, alpha: normalizedLoudnessTo1 < 0.5 ? 1 : 0.05)
+            fillColor: colorVariations[.random(in: 0..<12)].withAlphaComponent(normalizedLoudnessTo1 < 0.5 ? 1 : 0.05)
             
         )
         

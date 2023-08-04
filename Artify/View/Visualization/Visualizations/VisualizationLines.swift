@@ -22,6 +22,10 @@ class VisualizationLines : Visualization{
     private var startXTimbreLines:Double = 0
     private var startYTimbreLines:Double = 0
     
+    private var audioFeatureColor:AudioFeatureColors = AudioFeatureColors.Colors
+    private var colorfulColors = UIColor().getColorful()
+
+    
     override init(visualitationValues:[VisualizationElement], centerX:Double, centerY:Double, width:Double, height:Double) {
         super.init(visualitationValues: visualitationValues, centerX: centerX, centerY: centerY, width:width, height:height)
         
@@ -39,16 +43,27 @@ class VisualizationLines : Visualization{
             pitchRadius[i] = radius/12 * Double(i)
         }
         
+        audioFeatureColor = musicAnalysisVM.audioFeatureColor
+        
         if (visualitationValues.count != 0 ) {
             for i in 0..<prevPitchLinePos.count {
 
                 prevPitchLinePos[i] = CGPoint(x: startXPitchLines, y:startYPitchLines)
-                pitchColors[i] = i % 2 == 0 ? SKColor.white.withAlphaComponent(0.8) : SKColor.blue.withAlphaComponent(0.3)
+                pitchColors[i] = i % 2 == 0 ? SKColor.white.withAlphaComponent(0.8) : audioFeatureColor.color.withAlphaComponent(0.3)
+                
+                if (audioFeatureColor == .Colors) {
+                    pitchColors[i] = i % 2 == 0 ? SKColor.white.withAlphaComponent(0.8) : colorfulColors[i].withAlphaComponent(0.3)
+                } else {
+                    pitchColors[i] = i % 2 == 0 ? SKColor.white.withAlphaComponent(0.8) : audioFeatureColor.color.withAlphaComponent(0.3)
+                }
                 
                 prevTimbreLinePos[i] = CGPoint(x: startXTimbreLines, y:startYTimbreLines)
                 
             }
         }
+        
+        
+        
     }
     
     override func visualizeBeat(scene:VisualizationScene, step:Int, visualisationData:VisualizationElement) {
@@ -59,7 +74,11 @@ class VisualizationLines : Visualization{
         }
         
         if(visualisationData.sectionChange) {
-            var circle = drawCircle(radius: 30, posX: getX(angle: angle, step: step, radius: radius*9/20) + centerX , posY: getY(angle: angle, step: step, radius: radius*9/20) + centerY, fillColor: SKColor.blue.withAlphaComponent(0.4))
+            var circle = drawCircle(
+                radius: 30,
+                posX: getX(angle: angle, step: step, radius: radius*9/20) + centerX ,
+                posY: getY(angle: angle, step: step, radius: radius*9/20) + centerY,
+                fillColor: audioFeatureColor == .Colors ? colorfulColors[.random(in: 0..<12)] : audioFeatureColor.color.withAlphaComponent(0.4))
             scene.addChild(circle)
         }
         
