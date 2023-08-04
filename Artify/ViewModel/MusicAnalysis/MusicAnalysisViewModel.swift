@@ -18,6 +18,8 @@ class MusicAnalysisViewModel : ObservableObject {
     @Published var visualizationValues:[VisualizationElement] = []
     
     @Published var visualizationType:VisualizationType = .Bubble
+    @Published var visualizationModifier:VisualizationModifier = .Move
+
     
     var numBeatsPerTimestamp = [Double:Int]()
     var beatDetectedPerTimeStamp = [Double:Bool]()

@@ -166,20 +166,47 @@ extension VisualizationScene {
             
             let dist = CGPointDistanceSquared(from: child.position, to: touchPosition)
             
-            if (dist < 400) {
+            switch musicAnalysisVM.visualizationModifier {
+            case .Move:
+                if (dist < 400) {
+                    
+                    let newPoint = newPointAfterMoving(child.position, angle: angleBetweenPoints(child.position, touchPosition), distance: -50)
+    //                child.position = newPoint
+                    let moveAnimation = SKAction.move(to: newPoint, duration: 0.1)
+                    child.run(moveAnimation)
+                }
+            case .ScaleUp:
                 
-//                var angle = angleBetweenPoints(child.position, touchPosition)
-                let newPoint = newPointAfterMoving(child.position, angle: angleBetweenPoints(child.position, touchPosition), distance: -50)
-//                child.position = newPoint
-                let moveAnimation = SKAction.move(to: newPoint, duration: 0.5)
-                child.run(moveAnimation)
-//                var scaleFactor = ((400 - dist)/200) + 1
-//
-//                let scaleAnimation = SKAction.scale(by: scaleFactor, duration: 0.5)
-//                child.run(scaleAnimation)
+                if (dist < 400) {
+                    let scaleFactor = ((400 - dist)/200) + 1
+
+                    let scaleAnimation = SKAction.scale(by: scaleFactor, duration: 0.1)
+                    child.run(scaleAnimation)
+                }
                 
+            case .ScaleDown:
                 
+                if (dist < 400) {
+                    let scale = scaleFactor(for: dist)
+                    
+                    let scaleAnimation = SKAction.scale(by: scale, duration: 0.1)
+                    child.run(scaleAnimation)
+                }
+            
+            case .Remove:
+                break
+                
+//                if (dist < 10) {
+//                    child.physicsBody = SKPhysicsBody(circleOfRadius: 10)
+//                }
             }
+            
+            
+        
+            
+            
+            
+            
             
         }
         
@@ -217,6 +244,18 @@ extension VisualizationScene {
         return point.move(by: angle, distance: distance)
     }
     
+    func scaleFactor(for distance: CGFloat) -> CGFloat {
+        // Define your distance limits
+        let minDistance: CGFloat = 0
+        let maxDistance: CGFloat = 400 // You can adjust this
+        
+        // Calculate the scale factor
+        let scaleFactor = (distance - minDistance) / (maxDistance - minDistance)
+        
+        // Make sure the scale factor is within the valid range
+        return max(0, min(1, scaleFactor))
+    }
+    
     
     
 }
@@ -244,5 +283,7 @@ extension CGPoint {
         let deltaY = sin(CGFloat(angle.radians)) * distance
         return CGPoint(x: self.x + deltaX, y: self.y + deltaY)
     }
+    
+    
 }
 

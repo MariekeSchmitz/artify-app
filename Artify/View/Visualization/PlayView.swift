@@ -20,132 +20,162 @@ struct PlayView:View {
     @State var visualizationView = VisualizationView()
     
     @State var longTitle:Bool = false
+    @State var showInfo:Bool = true
     
     var visualizationTypes:[VisualizationType] = VisualizationType.allCases.map { $0 }
-    
+    var visualizationModifiers:[VisualizationModifier] = VisualizationModifier.allCases.map { $0 }
+
 
     var body: some View {
         ZStack {
             Color.black.ignoresSafeArea()
             visualizationView
             
-            VStack{
-                HStack{
-                    Button {
-                        withAnimation {
-                            musicLibraryViewOn.toggle()
-                        }
-                    } label: {
-                        Image("playlist")
+            VStack {
+                Button{
+                    withAnimation {
+                        showInfo.toggle()
                     }
+                }label: {
+                    showInfo ? "hideInfo" : "showInfo"
+                }.padding(.top, 80)
+                Spacer()
+            }
+            
+                
+            
+            
+            if (showInfo) {
+                VStack{
+                    HStack{
+                        Button {
+                            withAnimation {
+                                musicLibraryViewOn.toggle()
+                            }
+                        } label: {
+                            Image("playlist")
+                        }
+                        
+                        Spacer()
+                        
+                        Button {
+                            visualizationView.takeScreenshot()
+                        } label: {
+                            Image("screenshot")
+                        }
+                        
+    //                    Button("Settings") {
+    //                        withAnimation {
+    //                            settingViewOn.toggle()
+    //                        }
+    //                    }
+                    }.padding()
+                    
                     
                     Spacer()
                     
-                    Button {
-                        visualizationView.takeScreenshot()
-                    } label: {
-                        Image("screenshot")
+                    // Song data
+                    if (playerVM.currentTrack != nil) {
+                        VStack {
+                            
+                            TitleView(title: playerVM.currentTrack!.name)
+                            
+                            Text(playerVM.currentTrack!.artists[0].name)
+                                .foregroundColor(.white)
+                                .font(Font.custom("Poppins-Italic", size: 20))
+                                .multilineTextAlignment(.leading)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.leading)
+                            
+                        }
                     }
                     
-//                    Button("Settings") {
-//                        withAnimation {
-//                            settingViewOn.toggle()
-//                        }
-//                    }
-                }.padding()
-                
-                
-                Spacer()
-                
-                // Song data
-                if (playerVM.currentTrack != nil) {
                     VStack {
                         
-                        TitleView(title: playerVM.currentTrack!.name)
-                        
-                        Text(playerVM.currentTrack!.artists[0].name)
-                            .foregroundColor(.white)
-                            .font(Font.custom("Poppins-Italic", size: 20))
-                            .multilineTextAlignment(.leading)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.leading)
-                        
-                    }
-                }
-                
-                VStack {
-                    
-                    if (playerVM.currentTrack != nil) {
-                        
-
-                        HStack (spacing:20){
+                        if (playerVM.currentTrack != nil) {
                             
-                            if (playerVM.isPlayling) {
-                                Button {
-                                    playerVM.pauseTrack()
-                                    print("Track to be paused")
-                                } label: {
-                                    Image("pause")
-                                }
-                            } else {
-                                Button {
-                                    playerVM.resumeTrack()
-                                    print("Track to be played")
 
-                                } label: {
-                                    Image("play")
-                                }
-                            }
-                            
-                            Slider(value: $playerVM.currentTIme, in: 0...Double(playerVM.currentTrack!.duration_ms)/1000.0) { editingChange in
-                                print(editingChange)
-                                if (editingChange) {
-                                    playerVM.timeOnHold = false
+                            HStack (spacing:20){
+                                
+                                if (playerVM.isPlayling) {
+                                    Button {
+                                        playerVM.pauseTrack()
+                                        print("Track to be paused")
+                                    } label: {
+                                        Image("pause")
+                                    }
                                 } else {
-                                    if (!playerVM.timeOnHold) {
-                                        print("CURRENT TIME SLIDER END: ",playerVM.currentTIme)
-                                        print(playerVM.currentTrack!.duration_ms)
-                                        playerVM.seekToPositionInTrack()
+                                    Button {
+                                        playerVM.resumeTrack()
+                                        print("Track to be played")
+
+                                    } label: {
+                                        Image("play")
                                     }
                                 }
-                            }.tint(Color.white).padding(.trailing,30)
-                        }.padding(.leading, 20)
-                        
-                        
-                        
-                        
-                        Picker("Selection", selection: $analysisVM.visualizationType) {
-                                        ForEach(visualizationTypes, id: \.self) { i in
-                                            Text(i.description)
-//                                                    .rotationEffect(Angle(degrees: 90))
+                                
+                                Slider(value: $playerVM.currentTIme, in: 0...Double(playerVM.currentTrack!.duration_ms)/1000.0) { editingChange in
+                                    print(editingChange)
+                                    if (editingChange) {
+                                        playerVM.timeOnHold = false
+                                    } else {
+                                        if (!playerVM.timeOnHold) {
+                                            print("CURRENT TIME SLIDER END: ",playerVM.currentTIme)
+                                            print(playerVM.currentTrack!.duration_ms)
+                                            playerVM.seekToPositionInTrack()
                                         }
+                                    }
+                                }.tint(Color.white).padding(.trailing,30)
+                            }.padding(.leading, 20)
+                            
+                            
+                            HStack {
+                                Picker("Selection", selection: $analysisVM.visualizationType) {
+                                    ForEach(visualizationTypes, id: \.self) { i in
+                                        Text(i.description)
+                                    }
+                                }
+                                .pickerStyle(.menu)
+                                    .accentColor(.white)
+                                    .font(Font.custom("Poppins-Regular", size: 15))
+                                    .onChange(of: analysisVM.visualizationType) { change in
+                                        playerVM.songForwarded = true
+                                        playerVM.offset = playerVM.currentTIme
+                                    }
+
+                                    
+                                Picker("Selection", selection: $analysisVM.visualizationModifier) {
+                                    ForEach(visualizationModifiers, id: \.self) { i in
+                                        Text(i.description)
+                                    }
+                                }.pickerStyle(.menu)
+                                    .accentColor(.white)
+                                    .font(Font.custom("Poppins-Regular", size: 15))
+    //                                .onChange(of: analysisVM.visualizationType) { change in
+    //                                    playerVM.songForwarded = true
+    //                                }
+                            }
+                            
+                            
+                            
+                            
+                        } else {
+                            Text("Select a song")
+                                .foregroundColor(.white)
+                                .font(Font.custom("DMSerifDisplay-Regular", size: 40))
+                                .multilineTextAlignment(.leading)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.leading)
+                                .lineSpacing(0)
                         }
                         
-                        .pickerStyle(.menu)
-                            .accentColor(.white)
-                            .font(Font.custom("Poppins-Regular", size: 15))
-                            .onChange(of: analysisVM.visualizationType) { change in
-                                playerVM.songForwarded = true
-                                playerVM.offset = playerVM.currentTIme
-                            }
-//                                .rotationEffect(Angle(degrees: -90))
-//                                .frame(maxHeight: 100)
-//                                .clipped()
-                            
-                    } else {
-                        Text("Select a song")
-                            .foregroundColor(.white)
-                            .font(Font.custom("DMSerifDisplay-Regular", size: 40))
-                            .multilineTextAlignment(.leading)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.leading)
-                            .lineSpacing(0)
+                        
+                        
                     }
-                    
-                    
-                    
-                }
-            }.padding(20).padding(.vertical, 50)
+                }.padding(20).padding(.vertical, 50).transition(.scale)
+            }
+            
+            
         }.onAppear{
             if (playerVM.currentTrack != nil) {
                 playerVM.playCurrentTrack()
