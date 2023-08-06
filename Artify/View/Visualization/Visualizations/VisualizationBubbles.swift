@@ -11,7 +11,7 @@ import SpriteKit
 
 class VisualizationBubbles : Visualization{
     
-    private var audioFeatureColor:AudioFeatureColors = AudioFeatureColors.Colors
+    private var audioFeatureColor:AudioFeatureColor = AudioFeatureColor.Colors
     private var colorfulColors = UIColor().getColorful()
     private var colorVariations:[UIColor] = []
     
@@ -52,22 +52,8 @@ class VisualizationBubbles : Visualization{
             
             for i in 0..<colorVariations.count {
                 
-                let color = colorVariations[i]
+                colorVariations[i] = editColorBrightness(color: colorVariations[i], factor: 3, alpha: 0.6)
                 
-                var red: CGFloat = 0
-                var green: CGFloat = 0
-                var blue: CGFloat = 0
-                var alpha: CGFloat = 0
-                
-                let factor:CGFloat = 3
-                
-                if color.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
-                    let newRed = max(0, red*factor)
-                    let newGreen = max(0, green*factor)
-                    let newBlue = max(0, blue*factor)
-                    
-                    colorVariations[i] = UIColor(red: Double(newRed), green: Double(newGreen), blue: Double(newBlue), alpha: Double(0.6))
-                }
             }
         }
     }

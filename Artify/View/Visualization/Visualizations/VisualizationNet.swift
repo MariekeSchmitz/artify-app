@@ -35,6 +35,10 @@ class VisualizationNet : Visualization {
         for i in 0..<pitchRadius.count {
             pitchRadius[i] = radius/12 * Double(i)
         }
+       
+        radius = 20
+        counterBeatsVisualizedInCurrentSegment = 0
+        
         maxSegmentLoudness = musicAnalysisVM.maxSegmentLoudness
         minSegmentLoudness = musicAnalysisVM.minSegmentLoudness
         segmentLoudnessRange = maxSegmentLoudness - minSegmentLoudness
@@ -43,10 +47,7 @@ class VisualizationNet : Visualization {
         minSectionLoudness = musicAnalysisVM.minSectionLoudness
         
         sectionLoudnessRange = maxSectionLoudness - minSectionLoudness
-        
-        radius = 20
-        counterBeatsVisualizedInCurrentSegment = 0
-        
+
         numSections = musicAnalysisVM.audioAnalysis.sections.count
         
         if (numSections > 6) {
@@ -55,10 +56,8 @@ class VisualizationNet : Visualization {
             radiusPerSection = radius/Double(numSections)
         }
         
- 
         positionPerSection = [CGPoint](repeating: CGPoint(), count: numSections)
         anglePerSection = [Double](repeating: Double(), count: numSections)
-
         
         let audioFeatureType = musicAnalysisVM.audioFeatureColor
         
@@ -88,7 +87,6 @@ class VisualizationNet : Visualization {
         let positiveLoudness = loudness - minSegmentLoudness
         let normalizedLoudnessTo10 = positiveLoudness/(segmentLoudnessRange/10)
         let intenseLoudness = normalizedLoudnessTo10 * normalizedLoudnessTo10
-        
         
         let sectionNum = visualisationData.sectionCounter
         
@@ -189,11 +187,7 @@ class VisualizationNet : Visualization {
         return [point1, point2]
         
     }
-    
 
-
-    
-    
     
 }
 

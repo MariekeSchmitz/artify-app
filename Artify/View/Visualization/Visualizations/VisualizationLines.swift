@@ -22,7 +22,7 @@ class VisualizationLines : Visualization{
     private var startXTimbreLines:Double = 0
     private var startYTimbreLines:Double = 0
     
-    private var audioFeatureColor:AudioFeatureColors = AudioFeatureColors.Colors
+    private var audioFeatureColor:AudioFeatureColor = AudioFeatureColor.Colors
     private var colorfulColors = UIColor().getColorful()
 
     

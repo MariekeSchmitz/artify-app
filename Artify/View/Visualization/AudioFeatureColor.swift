@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-enum AudioFeatureColors : CaseIterable {
+enum AudioFeatureColor : CaseIterable {
     case Colors
     case White
     case Blue

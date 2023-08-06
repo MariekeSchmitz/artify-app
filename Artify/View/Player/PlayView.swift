@@ -26,7 +26,7 @@ struct PlayView:View {
     
     var visualizationTypes:[VisualizationType] = VisualizationType.allCases.map { $0 }
     var visualizationModifiers:[VisualizationModifier] = VisualizationModifier.allCases.map { $0 }
-    var audioFeatureColors:[AudioFeatureColors] = AudioFeatureColors.allCases.map { $0 }
+    var audioFeatureColors:[AudioFeatureColor] = AudioFeatureColor.allCases.map { $0 }
 
 
     var body: some View {

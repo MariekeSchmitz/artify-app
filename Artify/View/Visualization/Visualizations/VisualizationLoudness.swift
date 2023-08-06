@@ -20,20 +20,23 @@ class VisualizationLoudness : Visualization {
     
     private var sectionToggle: Bool = false
     
-    private var audioFeatureColor:AudioFeatureColors = AudioFeatureColors.Colors
+    private var audioFeatureColor:AudioFeatureColor = AudioFeatureColor.Colors
     private var colorfulColors = UIColor().getColorful()
     private var colorVariations:[UIColor] = []
     
     override init(visualitationValues:[VisualizationElement], centerX:Double, centerY:Double, width:Double, height:Double) {
+        
         super.init(visualitationValues: visualitationValues, centerX: centerX, centerY: centerY, width:width, height:height)
         angle = 2 * .pi / Double(visualizationValues.count)
+        radius = 200
+
         for i in 0..<pitchRadius.count {
             pitchRadius[i] = radius/12 * Double(i)
         }
+        
         maxSegmentLoudness = musicAnalysisVM.maxSegmentLoudness
         minSegmentLoudness = musicAnalysisVM.minSegmentLoudness
         segmentLoudnessRange = maxSegmentLoudness - minSegmentLoudness
-        
         maxSectionLoudness = musicAnalysisVM.maxSectionLoudness
         minSectionLoudness = musicAnalysisVM.minSectionLoudness
         sectionLoudnessRange = maxSectionLoudness - minSectionLoudness
@@ -42,31 +45,15 @@ class VisualizationLoudness : Visualization {
         
         if (audioFeatureColor == .Colors) {
             colorVariations = colorfulColors
+            
             for i in 0..<colorVariations.count {
-                
-                let color = colorVariations[i]
-                
-                var red: CGFloat = 0
-                var green: CGFloat = 0
-                var blue: CGFloat = 0
-                var alpha: CGFloat = 0
-                
-                let factor:CGFloat = 10
-                
-                if color.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
-                    let newRed = max(0, red/factor)
-                    let newGreen = max(0, green/factor)
-                    let newBlue = max(0, blue/factor)
-                    
-                    colorVariations[i] = UIColor(red: Double(newRed), green: Double(newGreen), blue: Double(newBlue), alpha: Double(alpha))
-                }
+                colorVariations[i] = editColorBrightness(color: colorVariations[i], factor: 0.1)
             }
 
         } else {
             colorVariations = audioFeatureColor.color.generateVariations(count: 12, step: 0.1)
         }
         
-        radius = 200
     }
     
     override func visualizeBeat(scene: VisualizationScene, step: Int, visualisationData: VisualizationElement) {
@@ -77,7 +64,6 @@ class VisualizationLoudness : Visualization {
         let normalizedLoudnessTo10 = positiveLoudness/(segmentLoudnessRange/10)
         let normalizedLoudnessTo1 = positiveLoudness/(segmentLoudnessRange)
 
-        
         let intenseLoudness = normalizedLoudnessTo10 * normalizedLoudnessTo10
     
         let newSection = visualisationData.sectionChange
@@ -96,14 +82,16 @@ class VisualizationLoudness : Visualization {
             alpha = normalizedLoudnessTo1 < 0.5 ? 1 : 0.05
         }
         
-        
         let line = drawLine(
             startPoint: CGPoint(x: centerX, y: centerY),
-            endPoint: CGPoint(x: getX(angle: angle, step: step, radius: radius/100 * intenseLoudness) + centerX ,
+            endPoint: CGPoint(x: getX(angle: angle,
+                                      step: step,
+                                      radius: radius/100 * intenseLoudness) + centerX,
                               y: getY(angle: angle,
                                       step: step,
                                       radius: radius/100 * intenseLoudness) + centerY),
             lineColor: colorVariations[.random(in: 0..<12)].withAlphaComponent(0.3))
+        
         scene.addChild(line)
 
         let circle = drawCircle(
@@ -111,7 +99,6 @@ class VisualizationLoudness : Visualization {
             posX: getX(angle: angle, step: step, radius: radius*2/3 + radius * pitches[0]) + centerX ,
             posY: getY(angle: angle, step: step, radius: radius*2/3 + radius * pitches[0]) + centerY,
             fillColor: colorVariations[.random(in: 0..<12)].withAlphaComponent(alpha)
-            
         )
         
         scene.addChild(circle)

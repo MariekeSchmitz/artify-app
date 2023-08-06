@@ -19,7 +19,7 @@ class MusicAnalysisViewModel : ObservableObject {
     
     @Published var visualizationType:VisualizationType = .Net
     @Published var visualizationModifier:VisualizationModifier = .Move
-    @Published var audioFeatureColor:AudioFeatureColors = .White
+    @Published var audioFeatureColor:AudioFeatureColor = .White
 
     
     var numBeatsPerTimestamp = [Double:Int]()
