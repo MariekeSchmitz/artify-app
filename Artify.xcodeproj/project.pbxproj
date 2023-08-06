@@ -20,7 +20,7 @@
 		194650392A7CD08400CE8D96 /* VisualizationLoudness.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194650382A7CD08400CE8D96 /* VisualizationLoudness.swift */; };
 		1946503B2A7D012C00CE8D96 /* VisualizationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1946503A2A7D012C00CE8D96 /* VisualizationModifier.swift */; };
 		1946503D2A7D355F00CE8D96 /* VisualizationNet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1946503C2A7D355F00CE8D96 /* VisualizationNet.swift */; };
-		194650412A7D779800CE8D96 /* AudioFeatureColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194650402A7D779800CE8D96 /* AudioFeatureColors.swift */; };
+		194650412A7D779800CE8D96 /* AudioFeatureColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194650402A7D779800CE8D96 /* AudioFeatureColor.swift */; };
 		194791572A2200CA00FD2604 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791562A2200CA00FD2604 /* LoginViewModel.swift */; };
 		194791592A22010900FD2604 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 194791582A22010900FD2604 /* APIConstants.swift */; };
 		194791602A2231E400FD2604 /* MusicLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1947915F2A2231E400FD2604 /* MusicLibraryView.swift */; };
@@ -108,7 +108,7 @@
 		194650382A7CD08400CE8D96 /* VisualizationLoudness.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationLoudness.swift; sourceTree = "<group>"; };
 		1946503A2A7D012C00CE8D96 /* VisualizationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationModifier.swift; sourceTree = "<group>"; };
 		1946503C2A7D355F00CE8D96 /* VisualizationNet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizationNet.swift; sourceTree = "<group>"; };
-		194650402A7D779800CE8D96 /* AudioFeatureColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFeatureColors.swift; sourceTree = "<group>"; };
+		194650402A7D779800CE8D96 /* AudioFeatureColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFeatureColor.swift; sourceTree = "<group>"; };
 		194791562A2200CA00FD2604 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		194791582A22010900FD2604 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		1947915F2A2231E400FD2604 /* MusicLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLibraryView.swift; sourceTree = "<group>"; };
@@ -249,7 +249,7 @@
 				19CF2E2F2A7A6F0C0038855E /* VisualizationTimerDelegate.swift */,
 				19CF2E332A7BCEED0038855E /* VisualizationType.swift */,
 				1946503A2A7D012C00CE8D96 /* VisualizationModifier.swift */,
-				194650402A7D779800CE8D96 /* AudioFeatureColors.swift */,
+				194650402A7D779800CE8D96 /* AudioFeatureColor.swift */,
 			);
 			path = Visualization;
 			sourceTree = "<group>";
@@ -339,11 +339,11 @@
 		197212AC2A1B6B11007225BB /* View */ = {
 			isa = PBXGroup;
 			children = (
-				195170692A409CB600789099 /* Visualization */,
 				19C87BDA2A446A3500C75E1F /* Intro */,
 				19C87BD72A4469F100C75E1F /* Library */,
 				19C87BE62A446D0B00C75E1F /* Player */,
 				19C87BD92A446A1900C75E1F /* Styling */,
+				195170692A409CB600789099 /* Visualization */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -448,10 +448,10 @@
 			children = (
 				19934DA02A7D993500189840 /* VisualizationsInProgress */,
 				19CF2E352A7BD9F00038855E /* VisualizationBubbles.swift */,
-				194650342A7BEE0E00CE8D96 /* Visualization.swift */,
 				194650362A7BEE7A00CE8D96 /* VisualizationLines.swift */,
 				194650382A7CD08400CE8D96 /* VisualizationLoudness.swift */,
 				1946503C2A7D355F00CE8D96 /* VisualizationNet.swift */,
+				194650342A7BEE0E00CE8D96 /* Visualization.swift */,
 			);
 			path = Visualizations;
 			sourceTree = "<group>";
@@ -630,7 +630,7 @@
 				1919388C2A3623D7009B1743 /* TrackView.swift in Sources */,
 				197212BB2A1B6DE0007225BB /* SpotifyURLService.swift in Sources */,
 				191938872A36195D009B1743 /* PlaylistView.swift in Sources */,
-				194650412A7D779800CE8D96 /* AudioFeatureColors.swift in Sources */,
+				194650412A7D779800CE8D96 /* AudioFeatureColor.swift in Sources */,
 				19CF2E342A7BCEED0038855E /* VisualizationType.swift in Sources */,
 				198741F52A3B649000853D12 /* ColorExtension.swift in Sources */,
 				197212752A0E533C007225BB /* ArtifyApp.swift in Sources */,
