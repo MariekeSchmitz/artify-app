@@ -11,8 +11,8 @@ enum APIConstants {
     
     static let apiHost = "api.spotify.com"
     static let authHost = "accounts.spotify.com"
-    static let clientID = "0e5b4c92168e4cf7971e3407e7b06284"
-    static let clientSecret = "8eb495076dfd49d5b254077b469a6c8b"
+    static let clientID = "xxx"
+    static let clientSecret = "xxx"
     static let redirectURL = "https://www.google.de/"
     static let responseType = "token"
     static let scopes = "streaming user-library-read user-modify-playback-state"
