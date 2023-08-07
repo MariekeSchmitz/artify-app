@@ -13,7 +13,9 @@ iOS-App to visualize audio data from Spotify songs
 - SwiftUI
 - Sprite Kit
 
-How to run: run application in XCode
+## How to run
+- put Spotify ClientID and ClientSecret into enum "API Constants"
+- run application in XCode
 
 ## Impressions
 ![alt](./Docs/Artify-Impressions.jpg)
